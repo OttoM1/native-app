@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   FlatList,
+  Animated,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -16,9 +17,31 @@ import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 
 export default function ChallengesScreen() {
+
+const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(30)).current;
+
+      useEffect(() => {
+        Animated.parallel([
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 600,
+            useNativeDriver: true,
+          }),
+          Animated.spring(slideAnim, {
+            toValue: 0,
+            tension: 50,
+            friction: 5,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      }, []);
+
     const router = useRouter();
   const { progress } = useProgress();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
 
   const filteredChallenges = selectedCategory
     ? CHALLENGES.filter(c => c.category === selectedCategory)
@@ -28,6 +51,10 @@ export default function ChallengesScreen() {
     const category = CATEGORIES.find(c => c.id === challenge.category);
     const isCompleted = progress.completedChallenges.includes(challenge.id);
 
+
+  
+    
+    
     return (
       <Pressable
         onPress={() => router.push('./screens/ChallengesDetailScreen')}
@@ -90,16 +117,18 @@ export default function ChallengesScreen() {
     );
   };
 
+
+
   return (
     <LinearGradient
       colors={[COLORS.background.primary, COLORS.background.secondary]}
       style={styles.container}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <AnimatedSafeAreaView style={[styles.safeArea, {opacity: fadeAnim,  transform: [{ translateY: slideAnim }] }]}>
         {/* Header */}
         <View style={styles.header}>
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => router.push('./DashboardScreen')}
             style={styles.backButton}
           >
             <Text style={styles.backText}>← Back</Text>
@@ -110,58 +139,7 @@ export default function ChallengesScreen() {
           </Text>
         </View>
 
-        {/* Category filters */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.filterContainer}
-          contentContainerStyle={styles.filterContent}
-        >
-          <Pressable
-            onPress={() => setSelectedCategory(null)}
-            style={({ pressed }) => [
-              styles.filterChip,
-              selectedCategory === null && styles.filterChipActive,
-              pressed && { opacity: 0.7 },
-            ]}
-          >
-            <Text
-              style={[
-                styles.filterText,
-                selectedCategory === null && styles.filterTextActive,
-              ]}
-            >
-              All
-            </Text>
-          </Pressable>
-
-          {CATEGORIES.map(category => (
-            <Pressable
-              key={category.id}
-              onPress={() => setSelectedCategory(category.id)}
-              style={({ pressed }) => [
-                styles.filterChip,
-                selectedCategory === category.id && styles.filterChipActive,
-                selectedCategory === category.id && {
-                  backgroundColor: category.color + '30',
-                  borderColor: category.color,
-                },
-                pressed && { opacity: 0.7 },
-              ]}
-            >
-              <Text style={styles.filterEmoji}>{category.icon}</Text>
-              <Text
-                style={[
-                  styles.filterText,
-                  selectedCategory === category.id && styles.filterTextActive,
-                ]}
-              >
-                {category.name}
-              </Text>
-            </Pressable>
-          ))}
-        </ScrollView>
-
+       
         {/* Challenges list */}
         <FlatList
           data={filteredChallenges}
@@ -170,7 +148,7 @@ export default function ChallengesScreen() {
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
         />
-      </SafeAreaView>
+      </AnimatedSafeAreaView>
     </LinearGradient>
   );
 }
@@ -184,8 +162,6 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: SPACING.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
   },
   backButton: {
     marginBottom: SPACING.sm,
@@ -196,31 +172,36 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   title: {
-    fontSize: 28,
-    fontWeight: '800',
+    fontSize: 46,
+    fontWeight: '500',
+    fontFamily: 'System',
     color: COLORS.text.primary,
     marginBottom: SPACING.xs,
+    letterSpacing: -1,
   },
   subtitle: {
     fontSize: 14,
     color: COLORS.text.tertiary,
   },
   filterContainer: {
-    maxHeight: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    height: 160,
+    zIndex: 9999,
+    marginBottom: SPACING.sm,
+    marginTop: SPACING.lg,
+        paddingBottom: SPACING.sm,
+
   },
   filterContent: {
-    paddingHorizontal: SPACING.lg,
+    paddingHorizontal: SPACING.xl,
     paddingVertical: SPACING.md,
   },
   filterChip: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
+    paddingVertical: SPACING.lg,
     borderRadius: BORDER_RADIUS.lg,
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: COLORS.success,
     borderWidth: 1,
     borderColor: COLORS.border,
     marginRight: SPACING.sm,
@@ -245,7 +226,7 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
   },
   challengeCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: 'white',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.md,
@@ -345,3 +326,61 @@ const styles = StyleSheet.create({
     color: COLORS.text.secondary,
   },
 });
+
+
+
+/*
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.filterContainer}
+          contentContainerStyle={styles.filterContent}
+        >
+          <Pressable
+            onPress={() => setSelectedCategory(null)}
+            style={({ pressed }) => [
+              styles.filterChip,
+              selectedCategory === null && styles.filterChipActive,
+              pressed && { opacity: 0.7 },
+            ]}
+          >
+            <Text
+              style={[
+                styles.filterText,
+                selectedCategory === null && styles.filterTextActive,
+              ]}
+            >
+              All
+            </Text>
+          </Pressable>
+
+          {CATEGORIES.map(category => (
+            <Pressable
+              key={category.id}
+              onPress={() => setSelectedCategory(category.id)}
+              style={({ pressed }) => [
+                styles.filterChip,
+                selectedCategory === category.id && styles.filterChipActive,
+                selectedCategory === category.id && {
+                  backgroundColor: category.color + '30',
+                  borderColor: category.color,
+                },
+                pressed && { opacity: 0.7 },
+              ]}
+            >
+              <Text style={styles.filterEmoji}>{category.icon}</Text>
+              <Text
+                style={[
+                  styles.filterText,
+                  selectedCategory === category.id && styles.filterTextActive,
+                ]}
+              >
+                {category.name}
+              </Text>
+            </Pressable>
+          ))}
+        </ScrollView>
+
+
+*/

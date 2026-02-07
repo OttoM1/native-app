@@ -118,7 +118,7 @@ export default function HomeScreen() {
           }}
         >
           <Pressable 
-            onPress={() => router.push('/onboarding')}
+            onPress={() => router.push('./AuthScreen')}
             style={({ pressed }) => [
               styles.button,
               pressed && styles.buttonPressed,
@@ -144,7 +144,7 @@ export default function HomeScreen() {
           ]}
         >
           <Pressable  
-            onPress={() => router.push('/onboarding')}
+            onPress={() => router.push('./AuthScreen')}
             style={({ pressed }) => [
               styles.linkButton,
               pressed && { opacity: 0.6 },
@@ -236,9 +236,12 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: SPACING.md,
     borderRadius: BORDER_RADIUS.lg,
+    marginTop: SPACING.xxl,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#20d5e257',
     shadowColor: COLORS.brand.teal,
-    shadowOffset: { width: 0, height: 6 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.35,
     shadowRadius: 16,
     elevation: 8,
@@ -251,11 +254,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: SPACING.lg,
-    paddingHorizontal: SPACING.xl,
+    paddingHorizontal: SPACING.xxl,
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: '300',
+    fontWeight: '500',
     color: COLORS.text.primary,
     marginRight: SPACING.sm,
   },

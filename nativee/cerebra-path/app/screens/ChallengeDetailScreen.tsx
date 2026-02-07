@@ -182,7 +182,7 @@ export default function ChallengeDetailScreen() {
 
           {/* Skills you'll gain */}
           <View style={styles.skillsCard}>
-            <Text style={styles.skillsTitle}>Skills You'll Gain</Text>
+            <Text style={styles.skillsTitle}>Skills You Gain</Text>
             <View style={styles.skillsList}>
               {challenge.skills.map((skill, index) => (
                 <View key={index} style={styles.skillChip}>

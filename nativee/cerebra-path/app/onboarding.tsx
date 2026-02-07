@@ -156,7 +156,7 @@ export default function OnboardingScreen() {
               <LinearGradient
                 colors={
                   selectedInterests.length === 0
-                    ? ['#71d8fa', '#ffffff']
+                    ? ['#71d8fa', '#ecfbff']
                     : ['#71facc', 'white']
                 }
                 start={{ x: 0, y: 0 }}
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   cardSelected: {
-    borderColor: COLORS.brand.teal,
+    borderColor: COLORS.success,
     borderWidth: 1,
   },
   cardContent: {
@@ -290,9 +290,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding:  SPACING.sm,
-    backgroundColor:  COLORS.background.secondary,
-    borderTopWidth: 1,
-    borderTopColor:  COLORS.border,
+    backgroundColor: 'transparent',
+    
   },
   button: {
     borderRadius:  BORDER_RADIUS.lg,
@@ -313,7 +312,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '700',
     color:  '#202020',
   },
   buttonTextDisabled: {

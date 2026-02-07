@@ -10,7 +10,7 @@ export const COLORS = {
   
   brand: {
     purple: '#e1a8af',
-    teal: '#3fd2b0',
+    teal: '#49f7cf',
     purpleLight: '#ff1047',
     tealLight: '#5feac9',
     purpleDark: '#ff0011',
@@ -29,15 +29,16 @@ export const COLORS = {
     secondary: '#6c7284',
     tertiary: '#414244',
     disabled: '#223047',
-        blue: '#6d95e0',
+    blue: '#6a9af5',
+        placeholder: '#c4d9de',
 
   },
   
 
   border: '#71d8fa',
-  success: '#6bcf7f',
+  success: '#42faa4',
   warning: '#ff64a5',
-  error: '#ff001e',
+  error: '#ff0d3a',
   hotpink: '#71d8fa',
 };
 

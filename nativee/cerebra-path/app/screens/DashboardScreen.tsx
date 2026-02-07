@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -9,20 +9,20 @@ import {
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES, getChallengesByInterests } from '../data/challenges';
 import { getRandomTip } from '../data/tips';
 import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
+import { MenuButton, MenuOverlay } from './MenuOverlay';
 
 const { width } = Dimensions.get('window');
 
 export default function DashboardScreen() {
           const router = useRouter();
-    
-  const navigation = useNavigation();
+      const [menuVisible, setMenuVisible] = useState(false);
+
   const { progress } = useProgress();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
@@ -70,7 +70,17 @@ export default function DashboardScreen() {
               },
             ]}
           >
-            <Text style={styles.title}>Your Progress</Text>
+
+
+
+            <View style={styles.headerRow}>
+              <View>
+                <Text style={styles.title}>Home</Text>
+                                <Text style={styles.greeting}>Welcome back!</Text>
+
+              </View>
+              <MenuButton onPress={() => setMenuVisible(true)} />
+            </View>
           </Animated.View>
 
           {/* Stats Cards */}
@@ -123,7 +133,7 @@ export default function DashboardScreen() {
             ]}
           >
             <View style={styles.tipHeader}>
-              <Text style={styles.tipEmoji}>+</Text>
+              <Text style={styles.tipEmoji}></Text>
               <Text style={styles.tipTitle}>Cerebra Tip</Text>
             </View>
             <Text style={styles.tipMessage}>{motivationalTip.message}</Text>
@@ -177,7 +187,7 @@ export default function DashboardScreen() {
               ]}
             >
               <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>🎯</Text>
+                <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>Browse All Challenges</Text>
@@ -197,7 +207,7 @@ export default function DashboardScreen() {
               ]}
             >
               <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>📊</Text>
+                <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>View Progress</Text>
@@ -270,6 +280,8 @@ export default function DashboardScreen() {
           )}
         </ScrollView>
       </SafeAreaView>
+            <MenuOverlay visible={menuVisible} onClose={() => setMenuVisible(false)} />
+
     </LinearGradient>
   );
 }
@@ -291,11 +303,17 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 16,
     color: COLORS.text.secondary,
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.xl,
+  },
+
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
     title: {
-      marginBottom: SPACING.xl,
-      fontSize: 48,
+      marginBottom: SPACING.xs,
+      fontSize: 56,
       textAlign: 'center',
       fontWeight: '500',
         fontFamily: 'System',
