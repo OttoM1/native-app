@@ -227,7 +227,7 @@ export default function HomeScreen() {
         }
             >Cerebra Path</Text>
           <Text style={styles.subtitle}>
-            Master digital skills through bite-sized challenges
+            Discover the relevant career path skills 
           </Text>
         </Animated.View>
 

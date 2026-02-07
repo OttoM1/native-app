@@ -44,7 +44,7 @@ export default function OnboardingScreen() {
 
   return (
     <LinearGradient
-       colors={[COLORS.background.primary, COLORS.background.secondary]}
+       colors={[COLORS.background.primary, COLORS.background.primary]}
 
       style={styles.container}
     >
@@ -123,12 +123,10 @@ export default function OnboardingScreen() {
 
         <View style={styles.footer}>
           <Pressable
-            onPress={handleContinue}
-            disabled={selectedInterests.length === 0}
+            onPress={() => router.push('./screens/DashboardScreen')}
             style={({ pressed }) => [
               styles.button,
-              selectedInterests.length === 0 && styles.buttonDisabled,
-              pressed && styles.buttonPressed,
+              pressed && { opacity: 0.6 },
             ]}
           >
             <LinearGradient
@@ -169,13 +167,17 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.xl
   },
   title: {
-    fontSize: 32,
-    fontWeight: '800',
+    fontSize: 40,
+    fontWeight: '500',
     color: COLORS.text.primary,
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.lg,
+
+    textAlign: 'center',
+    fontFamily: 'Georgia',
+    letterSpacing: -1,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 18,
     color: COLORS.text.secondary,
     lineHeight: 24,
   },
@@ -189,7 +191,7 @@ const styles = StyleSheet.create({
     marginBottom:  SPACING.md,
     backgroundColor: 'white',
     borderRadius:  BORDER_RADIUS.lg,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: COLORS.hotpink,
     overflow: 'hidden',
   },
@@ -214,7 +216,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: COLORS.text.secondary,
     textAlign: 'center',
   },
   checkmark: {
@@ -237,8 +239,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 4,
-    opacity: 0.8,
+    height: 0,
+    opacity: 0,
   },
   counter: {
     alignItems: 'center', marginTop:

@@ -12,21 +12,21 @@ export interface Challenge {
   title: string;
   category: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
-  duration: string; // e.g., "15 min"
+  duration: string; 
   description: string;
-  skills: string[]; // Skills this challenge teaches
-  skillGains: { [key: string]: number }; // Points gained per skill
+  skills: string[]; 
+  skillGains: { [key: string]: number }; 
   steps: ChallengeStep[];
   tips: string[];
 }
 
 export const CATEGORIES = [
-  { id: 'web-design', name: 'Web Design', icon: '🎨', color: '#ff6b35' },
-  { id: 'app-dev', name: 'App Development', icon: '📱', color: '#4a90e2' },
-  { id: 'ai-ml', name: 'AI & ML', icon: '🤖', color: '#9644b1' },
-  { id: 'entrepreneurship', name: 'Entrepreneurship', icon: '💡', color: '#3fd2b0' },
-  { id: 'data-science', name: 'Data Science', icon: '📊', color: '#ffd93d' },
-  { id: 'digital-marketing', name: 'Digital Marketing', icon: '📢', color: '#ff477e' },
+  { id: 'web-design', name: 'Web Design', icon: '🎨', color: '#73b0f5' },
+  { id: 'app-dev', name: 'App Development', icon: '📱', color: '#73b0f5' },
+  { id: 'ai-ml', name: 'AI & ML', icon: '🤖', color: '#73b0f5' },
+  { id: 'entrepreneurship', name: 'Entrepreneurship', icon: '💡', color: '#73b0f5' },
+  { id: 'data-science', name: 'Data Science', icon: '📊', color: '#73b0f5' },
+  { id: 'digital-marketing', name: 'Digital Marketing', icon: '📢', color: '#73b0f5' },
 ];
 
 export const CHALLENGES: Challenge[] = [
