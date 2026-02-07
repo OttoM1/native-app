@@ -170,7 +170,7 @@ export default function ChallengeDetailScreen() {
           {/* Tips section */}
           {challenge.tips.length > 0 && (
             <View style={styles.tipsCard}>
-              <Text style={styles.tipsTitle}>💡 Pro Tips</Text>
+              <Text style={styles.tipsTitle}> Pro Tips</Text>
               {challenge.tips.map((tip, index) => (
                 <View key={index} style={styles.tipItem}>
                   <Text style={styles.tipBullet}>•</Text>

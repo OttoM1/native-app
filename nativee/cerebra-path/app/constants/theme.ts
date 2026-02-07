@@ -2,7 +2,7 @@ export const COLORS = {
   background: {
     primary: '#ffffff',
     secondary: '#ffffff',
-    tertiary: '#ff0037',
+    tertiary: '#71d8fa',
         tertiaryOpacity: '#ff003724',
 
   },
@@ -11,7 +11,7 @@ export const COLORS = {
   brand: {
     purple: '#e1a8af',
     teal: '#3fd2b0',
-    purpleLight: '#ff4671',
+    purpleLight: '#ff1047',
     tealLight: '#5feac9',
     purpleDark: '#ff0011',
   },
@@ -25,26 +25,34 @@ export const COLORS = {
   },
   
   text: {
-    primary: '#ff1b50',
-    secondary: '#586078',
+    primary: '#71d8fa',
+    secondary: '#6c7284',
     tertiary: '#414244',
     disabled: '#223047',
-        blue: '#6db4e0',
+        blue: '#6d95e0',
 
   },
   
 
-  border: '#000000',
+  border: '#71d8fa',
   success: '#6bcf7f',
   warning: '#ff64a5',
   error: '#ff001e',
-  hotpink: '#ff0d45',
+  hotpink: '#71d8fa',
 };
 
 export const FONTS = {
   heading: 'System',
   body: 'System',
   mono: 'Courier',
+  
+};
+
+export const WEIGHT = {
+  bodies: {
+  general: '100',
+    thick: '300',
+  },
 };
 
 export const SPACING = {

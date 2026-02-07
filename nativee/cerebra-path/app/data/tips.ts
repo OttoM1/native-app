@@ -1,7 +1,7 @@
 export const MOTIVATIONAL_TIPS = [
   {
     id: '1',
-    message: "Every expert was once a beginner. You're on the right path! 🚀",
+    message: "Every expert was once a beginner. You're on the right path! ",
     category: 'motivation',
   },
   {
@@ -31,7 +31,7 @@ export const MOTIVATIONAL_TIPS = [
   },
   {
     id: '7',
-    message: "Impostor syndrome? That means you're growing. Keep pushing! 💪",
+    message: "Impostor syndrome? That means you're growing. Keep pushing! ",
     category: 'motivation',
   },
   {
@@ -66,7 +66,7 @@ export const MOTIVATIONAL_TIPS = [
   },
   {
     id: '14',
-    message: "Your first draft will be terrible. And that's perfectly okay! ✨",
+    message: "Your first draft will be terrible. And that's perfectly okay! ",
     category: 'motivation',
   },
   {

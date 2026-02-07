@@ -58,7 +58,7 @@ export default function ProgressScreen() {
           <View style={styles.statsGrid}>
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.purple, COLORS.brand.purpleLight]}
+                colors={[COLORS.brand.teal, 'white']}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
@@ -68,7 +68,7 @@ export default function ProgressScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.teal, COLORS.brand.tealLight]}
+                colors={[COLORS.brand.teal, 'white']}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
@@ -214,7 +214,7 @@ export default function ProgressScreen() {
 
           {/* Achievements (placeholder for future) */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Achievements 🏆</Text>
+            <Text style={styles.sectionTitle}>Achievements </Text>
             <View style={styles.achievementsPlaceholder}>
               <Text style={styles.placeholderEmoji}>🚧</Text>
               <Text style={styles.placeholderText}>

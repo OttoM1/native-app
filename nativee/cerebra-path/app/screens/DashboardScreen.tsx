@@ -70,8 +70,7 @@ export default function DashboardScreen() {
               },
             ]}
           >
-            <Text style={styles.greeting}>Welcome back!</Text>
-            <Text style={styles.title}>Your Learning Dashboard</Text>
+            <Text style={styles.title}>Your Progress</Text>
           </Animated.View>
 
           {/* Stats Cards */}
@@ -85,7 +84,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.purple, COLORS.brand.purpleLight]}
+                colors={['white', COLORS.brand.teal]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
@@ -95,7 +94,7 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.teal, COLORS.brand.tealLight]}
+                colors={['white', COLORS.brand.teal]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
@@ -105,11 +104,11 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.accent.orange, COLORS.accent.pink]}
+                colors={['white', COLORS.brand.teal]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.streak}</Text>
-                <Text style={styles.statLabel}>Day Streak 🔥</Text>
+                <Text style={styles.statLabel}>Day Streak </Text>
               </LinearGradient>
             </View>
           </Animated.View>
@@ -124,7 +123,7 @@ export default function DashboardScreen() {
             ]}
           >
             <View style={styles.tipHeader}>
-              <Text style={styles.tipEmoji}>💡</Text>
+              <Text style={styles.tipEmoji}>+</Text>
               <Text style={styles.tipTitle}>Cerebra Tip</Text>
             </View>
             <Text style={styles.tipMessage}>{motivationalTip.message}</Text>
@@ -294,15 +293,19 @@ const styles = StyleSheet.create({
     color: COLORS.text.secondary,
     marginBottom: SPACING.xs,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: '800',
+    title: {
+      marginBottom: SPACING.xl,
+      fontSize: 48,
+      textAlign: 'center',
+      fontWeight: '500',
+        fontFamily: 'System',
+      letterSpacing: -1,
     color: COLORS.text.primary,
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: SPACING.xl,
+    marginBottom: SPACING.xxl,
   },
   statCard: {
     flex: 1,
@@ -317,21 +320,21 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: '800',
-    color: COLORS.text.primary,
+    color: COLORS.text.secondary,
     marginBottom: SPACING.xs,
   },
   statLabel: {
     fontSize: 12,
-    color: COLORS.text.primary,
+    color: COLORS.text.disabled,
     opacity: 0.9,
   },
   tipCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: 'white',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
-    marginBottom: SPACING.xl,
-    borderLeftWidth: 4,
-    borderLeftColor: COLORS.brand.teal,
+    marginBottom: SPACING.xxl,
+    borderWidth: 1,
+    borderColor: COLORS.brand.teal,
   },
   tipHeader: {
     flexDirection: 'row',
@@ -392,10 +395,10 @@ const styles = StyleSheet.create({
   actionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: 'white',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
     borderWidth: 1,
     borderColor: COLORS.border,
   },
@@ -422,7 +425,7 @@ const styles = StyleSheet.create({
   },
   actionSubtitle: {
     fontSize: 13,
-    color: COLORS.text.tertiary,
+    color: COLORS.text.secondary,
   },
   actionArrow: {
     fontSize: 20,
@@ -431,10 +434,10 @@ const styles = StyleSheet.create({
   challengeCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: 'white',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
     borderWidth: 1,
     borderColor: COLORS.border,
   },
