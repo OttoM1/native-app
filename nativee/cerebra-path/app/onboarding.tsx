@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from './context/ProgressContext';
 import { CATEGORIES } from './data/challenges';
-// import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { COLORS, SPACING, BORDER_RADIUS } from './constants/theme';
 
 export default function OnboardingScreen() {
   const router = useRouter();
@@ -44,8 +44,7 @@ export default function OnboardingScreen() {
 
   return (
     <LinearGradient
-      colors={["white", "white"]}
-      //      colors={[COLORS.background.primary, COLORS.background.secondary]}
+       colors={[COLORS.background.primary, COLORS.background.secondary]}
 
       style={styles.container}
     >
@@ -133,13 +132,12 @@ export default function OnboardingScreen() {
             ]}
           >
             <LinearGradient
-              colors={ [
-                "white", "red"]
-                /*
+              colors={ 
+               
                 selectedInterests.length === 0
                   ? [COLORS.text.disabled, COLORS.text.disabled]
                   : [COLORS.brand.purple, COLORS.brand.purpleLight]
-           */   }
+             }
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
@@ -164,23 +162,21 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { flex: 1 },
   scrollContent: {
-    padding:12, // SPACING.lg,
+    padding: SPACING.lg,
     paddingBottom: 100
   },
   header: {
-    marginBottom: 12,
-      // SPACING.xl
+    marginBottom: SPACING.xl
   },
   title: {
     fontSize: 32,
     fontWeight: '800',
-    color: "grey",
-      //COLORS.text.primary,
-    marginBottom: 8, //SPACING.sm,
+    color: COLORS.text.primary,
+    marginBottom: SPACING.sm,
   },
   subtitle: {
     fontSize: 16,
-    color: "black", //COLORS.text.secondary,
+    color: COLORS.text.secondary,
     lineHeight: 24,
   },
   grid: {
@@ -189,20 +185,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   card: {
-    width: '48%',
-    marginBottom: 8, // SPACING.md,
-    backgroundColor: "black", // COLORS.background.tertiary,
-    borderRadius: 10, // BORDER_RADIUS.lg,
+    width: 'auto',
+    marginBottom:  SPACING.md,
+    backgroundColor: 'white',
+    borderRadius:  BORDER_RADIUS.lg,
     borderWidth: 2,
-    borderColor:"red", // COLORS.border,
+    borderColor: COLORS.hotpink,
     overflow: 'hidden',
   },
   cardSelected: {
-    borderColor: "green", // COLORS.brand.teal,
+    borderColor: COLORS.brand.teal,
     borderWidth: 2,
   },
   cardContent: {
-    padding: 10, // SPACING.lg,
+    padding: SPACING.lg,
     alignItems: 'center',
     position: 'relative',
   },
@@ -212,19 +208,19 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8, // SPACING.md,
+    marginBottom: SPACING.md,
   },
   icon: { fontSize: 32 },
   cardTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: "grey", // COLORS.text.primary,
+    color: COLORS.text.primary,
     textAlign: 'center',
   },
   checkmark: {
     position: 'absolute',
-    top: 8, // SPACING.sm,
-    right: 6, // SPACING.sm,
+    top: SPACING.sm,
+    right:  SPACING.sm,
     width: 24,
     height: 24,
     borderRadius: 12,
@@ -232,7 +228,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkmarkText: {
-    color: "white", // COLORS.text.primary,
+    color:  COLORS.text.primary,
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -246,26 +242,26 @@ const styles = StyleSheet.create({
   },
   counter: {
     alignItems: 'center', marginTop:
-      12, // SPACING.lg
+       SPACING.lg
   },
   counterText: {
     fontSize: 14, color:
-     "orange", // COLORS.text.tertiary
+      COLORS.text.tertiary
   },
   footer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 14, // SPACING.lg,
-    backgroundColor: "blue", // COLORS.background.secondary,
+    padding:  SPACING.lg,
+    backgroundColor:  COLORS.background.secondary,
     borderTopWidth: 1,
-    borderTopColor: "green", // COLORS.border,
+    borderTopColor:  COLORS.border,
   },
   button: {
-    borderRadius: 14, // BORDER_RADIUS.lg,
+    borderRadius:  BORDER_RADIUS.lg,
     overflow: 'hidden',
-    shadowColor: "purple", // COLORS.brand.purple,
+    shadowColor: COLORS.brand.purple,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -275,15 +271,15 @@ const styles = StyleSheet.create({
   buttonPressed: { transform: [{ scale: 0.98 }] },
   buttonGradient: {
     paddingVertical:
-    12, //  SPACING.lg,
+      SPACING.lg,
     alignItems: 'center'
   },
   buttonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: "grey", // COLORS.text.primary,
+    color:  COLORS.text.primary,
   },
   buttonTextDisabled: {
-    color: "pink", // COLORS.text.tertiary
+    color:  COLORS.text.tertiary
   },
 });

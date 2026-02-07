@@ -1,21 +1,23 @@
 export const COLORS = {
   background: {
-    primary: '#0a0e1a',
-    secondary: '#141824',
-    tertiary: '#1e2433',
+    primary: '#ffffff',
+    secondary: '#ffffff',
+    tertiary: '#ff0037',
+        tertiaryOpacity: '#ff003724',
+
   },
   
   
   brand: {
-    purple: '#9644b1',
+    purple: '#e1a8af',
     teal: '#3fd2b0',
-    purpleLight: '#b865d4',
+    purpleLight: '#ff4671',
     tealLight: '#5feac9',
-    purpleDark: '#7a3590',
+    purpleDark: '#ff0011',
   },
   
   accent: {
-    orange: '#ff6b35',
+    orange: '#ebc2b4',
     pink: '#ff477e',
     blue: '#4a90e2',
     yellow: '#ffd93d',
@@ -23,16 +25,20 @@ export const COLORS = {
   },
   
   text: {
-    primary: '#ffffff',
-    secondary: '#b8c1d9',
-    tertiary: '#6b7a99',
-    disabled: '#4a5568',
+    primary: '#ff1b50',
+    secondary: '#586078',
+    tertiary: '#414244',
+    disabled: '#223047',
+        blue: '#6db4e0',
+
   },
   
-  border: '#2a3548',
+
+  border: '#000000',
   success: '#6bcf7f',
-  warning: '#ffd93d',
-  error: '#ff6b6b',
+  warning: '#ff64a5',
+  error: '#ff001e',
+  hotpink: '#ff0d45',
 };
 
 export const FONTS = {
@@ -81,7 +87,7 @@ export const SHADOWS = {
     elevation: 8,
   },
   glow: {
-    shadowColor: '#9644b1',
+    shadowColor: '#ff9292',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,
     shadowRadius: 20,
