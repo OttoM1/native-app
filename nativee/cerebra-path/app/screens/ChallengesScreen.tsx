@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES, CHALLENGES, Challenge } from '../data/challenges';
-import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 
 export default function ChallengesScreen() {
@@ -121,7 +121,7 @@ const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.secondary]}
+      colors={['white', 'white']}
       style={styles.container}
     >
       <AnimatedSafeAreaView style={[styles.safeArea, {opacity: fadeAnim,  transform: [{ translateY: slideAnim }] }]}>
@@ -168,20 +168,20 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontSize: 16,
-    color: COLORS.brand.teal,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   title: {
     fontSize: 46,
     fontWeight: '500',
     fontFamily: 'System',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.xs,
     letterSpacing: -1,
   },
   subtitle: {
     fontSize: 14,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
   filterContainer: {
     height: 160,
@@ -201,14 +201,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.lg,
     borderRadius: BORDER_RADIUS.lg,
-    backgroundColor: COLORS.success,
+    backgroundColor: C.h.mint,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor:C.h.mint,
     marginRight: SPACING.sm,
   },
   filterChipActive: {
-    backgroundColor: COLORS.brand.purple + '30',
-    borderColor: COLORS.brand.purple,
+    backgroundColor: C.h.link + '30',
+    borderColor: C.h.link,
   },
   filterEmoji: {
     fontSize: 16,
@@ -216,11 +216,11 @@ const styles = StyleSheet.create({
   },
   filterText: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   filterTextActive: {
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   listContent: {
     padding: SPACING.lg,
@@ -231,11 +231,11 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     marginBottom: SPACING.md,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.mint,
   },
   challengeCardCompleted: {
-    borderColor: COLORS.success,
-    backgroundColor: COLORS.success + '10',
+    borderColor: C.h.mint,
+    backgroundColor: C.h.mint + '10',
   },
   challengeHeader: {
     flexDirection: 'row',
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   completedBadge: {
-    backgroundColor: COLORS.success,
+    backgroundColor: C.h.mint,
     paddingHorizontal: SPACING.sm,
     paddingVertical: 4,
     borderRadius: BORDER_RADIUS.sm,
@@ -262,17 +262,17 @@ const styles = StyleSheet.create({
   completedText: {
     fontSize: 12,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   challengeTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: SPACING.sm,
   },
   challengeDescription: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 20,
     marginBottom: SPACING.md,
   },
@@ -291,30 +291,30 @@ const styles = StyleSheet.create({
     marginRight: SPACING.sm,
   },
   difficultyBeginner: {
-    backgroundColor: COLORS.accent.green + '30',
+    backgroundColor: C.h.mint + '30',
   },
   difficultyIntermediate: {
-    backgroundColor: COLORS.accent.yellow + '30',
+    backgroundColor: C.h.bluemint + '30',
   },
   difficultyAdvanced: {
-    backgroundColor: COLORS.accent.orange + '30',
+    backgroundColor: C.h.error + '30',
   },
   difficultyText: {
     fontSize: 11,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color:C.h.graphite,
     textTransform: 'capitalize',
   },
   duration: {
     fontSize: 12,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
   skillTags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   skillTag: {
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.bluemint,
     paddingHorizontal: SPACING.sm,
     paddingVertical: 4,
     borderRadius: BORDER_RADIUS.sm,
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   },
   skillTagText: {
     fontSize: 11,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
 });
 

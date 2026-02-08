@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { COLORS, SPACING, BORDER_RADIUS } from './constants/theme';
+import { C, SPACING, BORDER_RADIUS } from './constants/theme';
 
 
 
@@ -101,13 +101,24 @@ export default function HomeScreen() {
              }
           ]}
         >
-          <Text style={styles.title
-           
-        }
-            >App Template</Text>
-          <Text style={styles.subtitle}>
+
+
+         
+          <Text style={styles.title}
+          > Dih App </Text>
+
+
+<Pressable onPress={() => router.push('https://ottomulari.tech')} >
+        
+            <Text style={styles.subtitle}>
             Dev @ottomulari.tech 
-          </Text>
+            </Text>
+            
+          </Pressable>
+          
+
+
+
         </Animated.View>
 
 
@@ -180,7 +191,7 @@ const styles = StyleSheet.create({
     width: 2,
     height: 2,
     borderRadius: 1,
-    backgroundColor: COLORS.brand.teal,
+    backgroundColor: C.h.bluemint,
   },
   content: {
     flex: 1,
@@ -198,7 +209,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: COLORS.brand.purple,
+    backgroundColor: 'white',
     opacity: 0.3,
   },
   logoCircle: {
@@ -208,18 +219,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 3,
-    borderColor: COLORS.brand.tealLight,
   },
   logoText: {
     fontSize: 48,
     fontWeight: '800',
-    color: COLORS.text.primary,
     letterSpacing: 2,
   },
   title: {
     fontSize: 54,
     fontWeight: '500',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     textAlign: 'center',
     fontFamily: 'System',
     marginBottom: SPACING.xl,
@@ -228,7 +237,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 18,
     fontWeight: 100,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     textAlign: 'center',
     marginBottom: SPACING.xxl,
     lineHeight: 24,
@@ -257,12 +266,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: '700',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     marginRight: SPACING.sm,
   },
   buttonArrow: {
     fontSize: 20,
-    color: COLORS.text.primary,
+    color: C.h.baby,
     fontWeight: '700',
   },
   linkButton: {
@@ -270,7 +279,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: COLORS.text.blue,
+    color: C.h.link,
     textAlign: 'center',
   },
   decorTop: {
@@ -280,7 +289,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     borderRadius: 150,
-    backgroundColor: COLORS.brand.purple,
+    backgroundColor: C.h.error,
     opacity: 0.05,
   },
   decorBottom: {
@@ -290,7 +299,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 400,
     borderRadius: 200,
-    backgroundColor: COLORS.brand.teal,
+    backgroundColor: C.h.mint,
     opacity: 0.05,
   },
 

@@ -1,45 +1,15 @@
-export const COLORS = {
-  background: {
-    primary: '#ffffff',
-    secondary: '#ffffff',
-    tertiary: '#71d8fa',
-        tertiaryOpacity: '#ff003724',
+export const C = {
+  h: {
+       graphite: '#66696e',
 
-  },
-  
-  
-  brand: {
-    purple: '#e1a8af',
-    teal: '#49f7cf',
-    purpleLight: '#ff1047',
-    tealLight: '#5feac9',
-    purpleDark: '#ff0011',
-  },
-  
-  accent: {
-    orange: '#ebc2b4',
-    pink: '#ff477e',
-    blue: '#4a90e2',
-    yellow: '#ffd93d',
-    green: '#6bcf7f',
-  },
-  
-  text: {
-    primary: '#71d8fa',
-    secondary: '#6c7284',
-    tertiary: '#414244',
-    disabled: '#223047',
-    blue: '#6a9af5',
-        placeholder: '#c4d9de',
+    bluemint: '#49f7cf',
+  mint: '#42faa4',
 
-  },
-  
-
-  border: '#71d8fa',
-  success: '#42faa4',
-  warning: '#ff64a5',
+    baby: '#71d8fa',
+            link: '#6a9af5',
   error: '#ff0d3a',
-  hotpink: '#71d8fa',
+
+  },
 };
 
 export const FONTS = {

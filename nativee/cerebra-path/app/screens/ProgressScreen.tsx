@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES } from '../data/challenges';
-import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
@@ -26,15 +26,15 @@ export default function ProgressScreen() {
   const skillsArray = Object.entries(progress.skillLevels).sort((a, b) => b[1] - a[1]);
 
   const getSkillLevel = (level: number) => {
-    if (level >= 75) return { title: 'Expert', color: COLORS.accent.orange };
-    if (level >= 50) return { title: 'Advanced', color: COLORS.brand.purple };
-    if (level >= 25) return { title: 'Intermediate', color: COLORS.brand.teal };
-    return { title: 'Beginner', color: COLORS.accent.blue };
+    if (level >= 75) return { title: 'Expert', color: C.h.error };
+    if (level >= 50) return { title: 'Advanced', color: C.h.bluemint };
+    if (level >= 25) return { title: 'Intermediate', color: C.h.baby };
+    return { title: 'Beginner', color: C.h.baby };
   };
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.secondary]}
+      colors={[C.h.baby, 'white']}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -53,11 +53,10 @@ export default function ProgressScreen() {
             <Text style={styles.subtitle}>Track your skills and achievements</Text>
           </View>
 
-          {/* Overall stats */}
           <View style={styles.statsGrid}>
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.teal, 'white']}
+                colors={[C.h.mint, 'white']}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
@@ -67,7 +66,7 @@ export default function ProgressScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.brand.teal, 'white']}
+                colors={[C.h.mint, 'white']}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
@@ -77,7 +76,7 @@ export default function ProgressScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.accent.orange, COLORS.accent.pink]}
+                colors={[C.h.error, 'white']}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.streak}</Text>
@@ -87,7 +86,7 @@ export default function ProgressScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={[COLORS.accent.blue, COLORS.accent.green]}
+                colors={[C.h.baby, C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{Object.keys(progress.skillLevels).length}</Text>
@@ -174,7 +173,7 @@ export default function ProgressScreen() {
                 
               >
                 <LinearGradient
-                  colors={[COLORS.brand.teal, COLORS.brand.tealLight]}
+                  colors={[C.h.bluemint, C.h.mint]}
                   style={styles.ctaGradient}
                 >
                   <Text style={styles.ctaText}>Browse Challenges</Text>
@@ -242,18 +241,18 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontSize: 16,
-    color: COLORS.brand.teal,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.xs,
   },
   subtitle: {
     fontSize: 14,
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
   },
   statsGrid: {
     flexDirection: 'row',
@@ -274,12 +273,12 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 32,
     fontWeight: '800',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.xs,
   },
   statLabel: {
     fontSize: 13,
-    color: COLORS.text.primary,
+    color: C.h.baby,
     opacity: 0.9,
   },
   section: {
@@ -288,16 +287,16 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.md,
   },
   skillCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.md,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.baby,
   },
   skillHeader: {
     flexDirection: 'row',
@@ -308,7 +307,7 @@ const styles = StyleSheet.create({
   skillName: {
     fontSize: 16,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.baby,
   },
   levelBadge: {
     paddingHorizontal: SPACING.md,
@@ -327,7 +326,7 @@ const styles = StyleSheet.create({
   progressBar: {
     flex: 1,
     height: 10,
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.sm,
     overflow: 'hidden',
     marginRight: SPACING.md,
@@ -339,7 +338,7 @@ const styles = StyleSheet.create({
   progressPercent: {
     fontSize: 14,
     fontWeight: '700',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     width: 45,
     textAlign: 'right',
   },
@@ -352,13 +351,13 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.mint,
     justifyContent: 'center',
     alignItems: 'center',
   },
   milestoneCheck: {
     fontSize: 12,
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     fontWeight: '700',
   },
   emptyState: {
@@ -372,12 +371,12 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.sm,
   },
   emptyText: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     textAlign: 'center',
     marginBottom: SPACING.xl,
   },
@@ -392,7 +391,7 @@ const styles = StyleSheet.create({
   ctaText: {
     fontSize: 15,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   interestsGrid: {
     flexDirection: 'row',
@@ -413,16 +412,16 @@ const styles = StyleSheet.create({
   interestName: {
     fontSize: 13,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     textAlign: 'center',
   },
   achievementsPlaceholder: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.bluemint,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.xxl,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor:C.h.mint,
     borderStyle: 'dashed',
   },
   placeholderEmoji: {
@@ -431,6 +430,6 @@ const styles = StyleSheet.create({
   },
   placeholderText: {
     fontSize: 14,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
 });

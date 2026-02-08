@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from './context/ProgressContext';
 import { CATEGORIES } from './data/challenges';
-import { COLORS, SPACING, BORDER_RADIUS, WEIGHT } from './constants/theme';
+import { C, SPACING, BORDER_RADIUS, WEIGHT } from './constants/theme';
 
 export default function OnboardingScreen() {
   const router = useRouter();
@@ -68,7 +68,7 @@ export default function OnboardingScreen() {
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.primary]}
+      colors={['white', 'white']}
       style={[styles.container]}
     >
       <Animated.View style={[styles.safeArea, { opacity: pageOpacity }, {transform: [{scale: bounceAnim}] }]}>
@@ -147,7 +147,7 @@ export default function OnboardingScreen() {
 
           <View style={styles.footer}>
             <Pressable
-              onPress={() => router.push('./screens/DashboardScreen')}
+              onPress={() => router.push('./screens/DashboardScreen')} //./screens/DashboardScreen
               style={({ pressed }) => [
                 styles.button,
                 pressed && { opacity: 0.6 },
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontWeight: '500',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.lg,
 
     textAlign: 'center',
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   subtitle: {
     marginTop: SPACING.lg,
     fontSize: 18,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 24,
     fontWeight: 100,
   },
@@ -225,11 +225,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius:  BORDER_RADIUS.lg,
     borderWidth: 1,
-    borderColor: COLORS.hotpink,
+    borderColor: C.h.baby,
     overflow: 'hidden',
   },
   cardSelected: {
-    borderColor: COLORS.success,
+    borderColor: C.h.mint,
     borderWidth: 1,
   },
   cardContent: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     textAlign: 'center',
   },
   checkmark: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkmarkText: {
-    color:  COLORS.text.primary,
+    color:  C.h.baby,
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   },
   counterText: {
     fontSize: 14, color:
-      COLORS.text.tertiary
+      C.h.baby
   },
   footer: {
     position: 'absolute',
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius:  BORDER_RADIUS.lg,
     overflow: 'hidden',
-    shadowColor: COLORS.brand.purple,
+    shadowColor: C.h.graphite,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -316,6 +316,6 @@ const styles = StyleSheet.create({
     color:  '#202020',
   },
   buttonTextDisabled: {
-    color:  COLORS.text.secondary
+    color:  C.h.graphite
   },
 });

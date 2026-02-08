@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import { useUser } from '../context/UserContext';
+
 import {
   View,
   Text,
@@ -9,20 +11,27 @@ import {
   ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter, Href } from 'expo-router';
 const { width, height } = Dimensions.get('window');
+
 interface MenuOverlayProps {
   visible: boolean;
   onClose: () => void;
 }
 
+
 export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
   const router = useRouter();
   const slideAnim = useRef(new Animated.Value(width)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { email, name } = useUser();
+  
 
   const [shouldRender, setShouldRender] = React.useState(visible);
+  console.log("Current email in Menu:", email);
+  
+
 
   useEffect(() => {
     if (visible) {
@@ -42,9 +51,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
   if (!shouldRender) return null;
 
   const menuItems = [
-    {
-    email: 'lol',
-  },
+   
     {
       id: 'home',
       title: 'Home',
@@ -59,20 +66,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
       route: '/challenges',
       description: 'Browse all challenges',
     },
-    {
-      id: 'progress',
-      title: 'Progress',
-      icon: 'x',
-      route: '/progress',
-      description: 'Track your skills',
-    },
-    {
-      id: 'profile',
-      title: 'Profile',
-      icon: 'x',
-      route: '/profile',
-      description: 'View your profile',
-    },
+    
     {
       id: 'settings',
       title: 'Settings',
@@ -124,7 +118,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
         ]}
       >
         <LinearGradient
-          colors={[COLORS.background.primary, COLORS.background.secondary]}
+          colors={['white', 'white', 'white']}
           style={styles.menuGradient}
         >
           <ScrollView
@@ -139,17 +133,17 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               <View style={styles.headerTop}>
                 <View style={styles.logoContainer}>
                   <LinearGradient
-                    colors={[COLORS.border, COLORS.success]}
+                    colors={['white', C.h.bluemint]}
                     style={styles.miniLogo}
                   >
                     <Text style={styles.miniLogoText}>69</Text>
                   </LinearGradient>
                   <View>
-                    <Text style={styles.appName}>Cerebra Path</Text>
-                    {menuItems.map((item, index) => (
+                    <Text style={styles.appName}>{name}</Text>
+                    
 
-                      <Text style={styles.userEmail} key={item.id}>{item.email}</Text>
-                    ))}
+                      <Text style={styles.userEmail} >{email}</Text>
+                    
 
                     </View>
                 </View>
@@ -197,7 +191,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               <Text style={styles.sectionTitle}>Account</Text>
               
               <Pressable
-                onPress={() => handleNavigate('./ChallengesScreen')}
+                onPress={() => router.push('../MenuWindowSettings/Settings')}
                 style={({ pressed }) => [
                   styles.menuItem,
                   pressed && styles.menuItemPressed,
@@ -298,7 +292,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.lg,
     paddingBottom: SPACING.xl,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.success,
+    borderBottomColor: C.h.mint,
   },
   headerTop: {
     flexDirection: 'row',
@@ -317,7 +311,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: SPACING.md,
     borderWidth: 2,
-    borderColor: COLORS.brand.tealLight,
+    borderColor: C.h.bluemint,
   },
   miniLogoText: {
     fontSize: 20,
@@ -327,12 +321,12 @@ const styles = StyleSheet.create({
   appName: {
     fontSize: 18,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: 4,
   },
   userEmail: {
     fontSize: 13,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
   closeButton: {
     width: 36,
@@ -344,7 +338,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     fontSize: 26,
-    color: COLORS.text.disabled,
+    color: C.h.graphite,
     fontWeight: '800',
   },
 
@@ -355,7 +349,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 12,
     fontWeight: '700',
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginBottom: SPACING.md,
@@ -369,17 +363,17 @@ const styles = StyleSheet.create({
     padding: SPACING.md,
     marginBottom: SPACING.md,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.mint,
   },
   menuItemPressed: {
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.bluemint,
     transform: [{ scale: 0.98 }],
   },
   menuItemIcon: {
     width: 40,
     height: 40,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.baby,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
@@ -393,23 +387,23 @@ const styles = StyleSheet.create({
   menuItemTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: 2,
   },
   menuItemDescription: {
     fontSize: 12,
-    color: COLORS.text.tertiary,
+    color:C.h.graphite,
   },
   menuItemArrow: {
     fontSize: 18,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
   logoutItem: {
-    borderColor: COLORS.error + '60',
-    backgroundColor: COLORS.error + '10',
+    borderColor: C.h.error + '60',
+    backgroundColor: C.h.error + '10',
   },
   logoutText: {
-    color: COLORS.error,
+    color: C.h.error,
   },
 
   appInfo: {
@@ -420,7 +414,7 @@ const styles = StyleSheet.create({
   },
   appInfoText: {
     fontSize: 11,
-    color: COLORS.text.disabled,
+    color: C.h.graphite,
     marginBottom: 4,
   },
 
@@ -442,7 +436,7 @@ const styles = StyleSheet.create({
   hamburgerLine: {
     width: '100%',
     height: 3,
-    backgroundColor: COLORS.text.primary,
+    backgroundColor: C.h.graphite,
     borderRadius: 1,
   },
 });

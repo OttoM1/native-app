@@ -13,20 +13,22 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { COLORS, SPACING, BORDER_RADIUS } from './constants/theme';
+import { C, SPACING, BORDER_RADIUS } from './constants/theme';
+import { useUser } from './context/UserContext';
 
 export default function AuthScreen() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
+
+
+const { email, setEmail, name, setName, password, setPassword } = useUser();
 
   //
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
   const logoScale = useRef(new Animated.Value(0.8)).current;
+
 
   useEffect(() => {
     Animated.parallel([
@@ -53,7 +55,7 @@ export default function AuthScreen() {
 
 
   const handleAuth = () => {
-    if (isLogin) {
+   /* if (isLogin) {
 
       
 
@@ -76,28 +78,45 @@ export default function AuthScreen() {
       }
             router.replace('/onboarding');
 
-    } else {
-
+    } 
+    
+    */
+            
+      
+if (!isLogin) {
 
       if (password !== confirmPassword) {
-        alert('Passwords do not match!');
+        alert('Passwords do not match');
         return;
       }
+  if (password.length <= 3) {
+        alert('Password is too short. Need to be more than 3 characters');
+        return;
+      }
+  if (password !== confirmPassword && password.length <= 3) {
+        alert('Passwords did not match and were too short');
+        return;
+      }
+  
+  
       console.log('Signup:', { name, email, password });
 
       router.replace('/onboarding');
-    }
-
     
-    while (password.length <= 2) {
-        alert('Passwords too short!');
-      router.push('/AuthScreen');
-      return;
+}
+    
+else if (password !== '69' && email !== 'dev' ) {
+  
+ alert('You are not that guy');
+        return;
     }
 
+else {
+        router.push('/onboarding');
+
+    }
 
   };
-  
   
   
   
@@ -118,7 +137,7 @@ export default function AuthScreen() {
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.secondary]}
+      colors={['white', 'white']}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -160,7 +179,7 @@ export default function AuthScreen() {
               ]}
             >
               <LinearGradient
-                colors={[COLORS.brand.purpleLight, COLORS.brand.purple]}
+                colors={['white', 'white']}
                 style={styles.logoCircle}
               >
                 <Text style={styles.logoText}>CP</Text>
@@ -202,16 +221,20 @@ export default function AuthScreen() {
 
 
               {!isLogin && (
-                <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Full Name</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter your name"
-                    placeholderTextColor={COLORS.text.tertiary}
-                    value={name}
-                    onChangeText={setName}
-                    autoCapitalize="words"
-                  />
+               
+           <View style={styles.inputContainer}>
+
+                   <Text style={styles.label}>Email</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your email"
+                  placeholderTextColor={C.h.graphite}
+                  value={email}
+                  onChangeText={setEmail} 
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoComplete="email"
+                />
                 </View>
               )}
 
@@ -221,18 +244,16 @@ export default function AuthScreen() {
 
 
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>Email</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter your email"
-                  placeholderTextColor={COLORS.text.placeholder}
-                  value={email}
-                  onChangeText={setEmail}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                />
+               <View style={styles.inputContainer}>
+                  <Text style={styles.label}>Username</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter your username"
+                    placeholderTextColor={C.h.baby}
+                    value={name}
+                    onChangeText={setName}
+                    autoCapitalize="words"
+                  />
               </View>
 
 
@@ -244,7 +265,7 @@ export default function AuthScreen() {
                 <TextInput
                   style={styles.input}
                   placeholder="Enter your password"
-                  placeholderTextColor={COLORS.text.placeholder}
+                  placeholderTextColor={C.h.graphite}
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
@@ -258,7 +279,7 @@ export default function AuthScreen() {
                   <TextInput
                     style={styles.input}
                     placeholder="Re-enter your password"
-                    placeholderTextColor={COLORS.text.tertiary}
+                    placeholderTextColor={C.h.graphite}
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
                     secureTextEntry
@@ -291,7 +312,7 @@ export default function AuthScreen() {
                 ]}
               >
                 <LinearGradient
-                  colors={[COLORS.brand.teal, COLORS.brand.tealLight]}
+                  colors={[C.h.bluemint, C.h.mint]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.submitGradient}
@@ -312,9 +333,10 @@ export default function AuthScreen() {
 
               <Pressable
                 style={({ pressed }) => [
+                
                   styles.socialButton,
                   pressed && { opacity: 0.8 },
-                ]}
+                ]} 
               >
                 <Text style={styles.socialButtonText}>Continue with Apple</Text>
               </Pressable>
@@ -381,7 +403,7 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontSize: 16,
-    color: COLORS.brand.teal,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   logoContainer: {
@@ -397,12 +419,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: COLORS.brand.tealLight,
+    borderColor: C.h.mint,
   },
   logoText: {
     fontSize: 32,
     fontWeight: '800',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     letterSpacing: 1,
   },
   header: {
@@ -411,7 +433,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     fontWeight: '500',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     textAlign: 'center',
     marginBottom: SPACING.xl,
     fontFamily: 'System',
@@ -419,7 +441,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: SPACING.xl,
@@ -434,7 +456,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     marginBottom: SPACING.sm,
   },
   input: {
@@ -442,9 +464,9 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     fontSize: 16,
-    color: COLORS.text.disabled,
+    color: C.h.graphite,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.baby,
   },
   forgotPassword: {
     alignSelf: 'flex-end',
@@ -452,7 +474,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     fontSize: 14,
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
     fontWeight: '600',
   },
   submitButton: {
@@ -461,7 +483,7 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xl,
     marginBottom: SPACING.lg,
 
-    shadowColor: COLORS.brand.teal,
+    shadowColor: C.h.bluemint,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -477,7 +499,7 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 16,
     fontWeight: '700',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
   divider: {
     flexDirection: 'row',
@@ -488,28 +510,28 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: COLORS.border,
+    backgroundColor: C.h.graphite,
   },
   dividerText: {
     fontSize: 14,
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
     marginHorizontal: SPACING.md,
   },
   socialButton: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     marginTop: SPACING.xl,
     marginBottom: SPACING.md,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.baby,
     alignItems: 'center',
 
   },
   socialButtonText: {
     fontSize: 15,
     fontWeight: '600',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
   toggleContainer: {
     flexDirection: 'row',
@@ -520,11 +542,11 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
   toggleLink: {
     fontSize: 14,
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
     fontWeight: '700',
   },
   guestButton: {
@@ -533,7 +555,7 @@ const styles = StyleSheet.create({
   },
   guestButtonText: {
     fontSize: 14,
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
     fontWeight: '600',
   },
 });

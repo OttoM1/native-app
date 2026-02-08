@@ -13,10 +13,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES, getChallengesByInterests } from '../data/challenges';
 import { getRandomTip } from '../data/tips';
-import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 import { MenuButton, MenuOverlay } from './MenuOverlay';
-
 const { width } = Dimensions.get('window');
 
 export default function DashboardScreen() {
@@ -29,6 +28,7 @@ export default function DashboardScreen() {
 
   const motivationalTip = getRandomTip();
   const recommendedChallenges = getChallengesByInterests(progress.selectedInterests).slice(0, 3);
+
 
   useEffect(() => {
     Animated.parallel([
@@ -52,7 +52,7 @@ export default function DashboardScreen() {
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.secondary]}
+      colors={['white', 'white', 'white', C.h.bluemint]}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -60,7 +60,6 @@ export default function DashboardScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Header */}
           <Animated.View
             style={[
               styles.header,
@@ -94,7 +93,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', COLORS.brand.teal]}
+                colors={['white', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
@@ -104,7 +103,7 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', COLORS.brand.teal]}
+                colors={['white', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
@@ -114,7 +113,7 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', COLORS.brand.teal]}
+                colors={['white', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.streak}</Text>
@@ -123,7 +122,6 @@ export default function DashboardScreen() {
             </View>
           </Animated.View>
 
-          {/* Motivational Tip */}
           <Animated.View
             style={[
               styles.tipCard,
@@ -134,12 +132,13 @@ export default function DashboardScreen() {
           >
             <View style={styles.tipHeader}>
               <Text style={styles.tipEmoji}></Text>
-              <Text style={styles.tipTitle}>Cerebra Tip</Text>
+              <Text style={styles.tipTitle}></Text>
             </View>
-            <Text style={styles.tipMessage}>{motivationalTip.message}</Text>
+            <Text style={styles.tipMessage}>
+              {/*motivationalTip.message*/}
+            </Text>
           </Animated.View>
 
-          {/* Top Skills */}
           {topSkills.length > 0 && (
             <Animated.View
               style={[
@@ -167,7 +166,6 @@ export default function DashboardScreen() {
             </Animated.View>
           )}
 
-          {/* Quick Actions */}
           <Animated.View
             style={[
               styles.section,
@@ -190,9 +188,9 @@ export default function DashboardScreen() {
                 <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}>Browse All Challenges</Text>
+                <Text style={styles.actionTitle}></Text>
                 <Text style={styles.actionSubtitle}>
-                  Explore {CATEGORIES.length} categories
+                {/*   Explore {CATEGORIES.length} categories */}
                 </Text>
               </View>
               <Text style={styles.actionArrow}>→</Text>
@@ -210,16 +208,14 @@ export default function DashboardScreen() {
                 <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}>View Progress</Text>
+                <Text style={styles.actionTitle}></Text>
                 <Text style={styles.actionSubtitle}>
-                  Track your skill levels
                 </Text>
               </View>
               <Text style={styles.actionArrow}>→</Text>
             </Pressable>
           </Animated.View>
 
-          {/* Recommended Challenges */}
           {recommendedChallenges.length > 0 && (
             <Animated.View
               style={[
@@ -256,7 +252,9 @@ export default function DashboardScreen() {
                       <Text style={styles.challengeEmoji}>{category?.icon}</Text>
                     </View>
                     <View style={styles.challengeContent}>
-                      <Text style={styles.challengeTitle}>{challenge.title}</Text>
+                      <Text style={styles.challengeTitle}>
+                     {/*    {challenge.title} */}
+                      </Text>
                       <View style={styles.challengeMeta}>
                         <View
                           style={[
@@ -267,10 +265,12 @@ export default function DashboardScreen() {
                           ]}
                         >
                           <Text style={styles.difficultyText}>
-                            {challenge.difficulty}
+                         {/*   {challenge.difficulty} */}
                           </Text>
                         </View>
-                        <Text style={styles.duration}>⏱ {challenge.duration}</Text>
+                        <Text style={styles.duration}>
+                      {/*    ⏱ {challenge.duration} */}
+                        </Text>
                       </View>
                     </View>
                   </Pressable>
@@ -302,8 +302,9 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 16,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     marginBottom: SPACING.xl,
+    paddingLeft: SPACING.sm,
   },
 
   headerRow: {
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
       fontWeight: '500',
         fontFamily: 'System',
       letterSpacing: -1,
-    color: COLORS.text.primary,
+    color: C.h.baby,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -338,12 +339,12 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: '800',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     marginBottom: SPACING.xs,
   },
   statLabel: {
     fontSize: 12,
-    color: COLORS.text.disabled,
+    color: C.h.graphite,
     opacity: 0.9,
   },
   tipCard: {
@@ -352,7 +353,7 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     marginBottom: SPACING.xxl,
     borderWidth: 1,
-    borderColor: COLORS.brand.teal,
+    borderColor: C.h.bluemint,
   },
   tipHeader: {
     flexDirection: 'row',
@@ -366,11 +367,11 @@ const styles = StyleSheet.create({
   tipTitle: {
     fontSize: 14,
     fontWeight: '700',
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
   },
   tipMessage: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 20,
   },
   section: {
@@ -379,7 +380,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: SPACING.md,
   },
   skillRow: {
@@ -389,24 +390,24 @@ const styles = StyleSheet.create({
   },
   skillName: {
     fontSize: 14,
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     width: 100,
   },
   progressBarContainer: {
     flex: 1,
     height: 8,
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.sm,
     overflow: 'hidden',
     marginHorizontal: SPACING.md,
   },
   progressBar: {
     height: '100%',
-    backgroundColor: COLORS.brand.teal,
+    backgroundColor:C.h.bluemint,
   },
   skillLevel: {
     fontSize: 12,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     width: 40,
     textAlign: 'right',
   },
@@ -418,13 +419,13 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.mint,
   },
   actionIcon: {
     width: 48,
     height: 48,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.bluemint,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
@@ -438,16 +439,16 @@ const styles = StyleSheet.create({
   actionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.xs,
   },
   actionSubtitle: {
     fontSize: 13,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
   actionArrow: {
     fontSize: 20,
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
   },
   challengeCard: {
     flexDirection: 'row',
@@ -457,7 +458,7 @@ const styles = StyleSheet.create({
     padding: SPACING.md,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.mint,
   },
   challengeIcon: {
     width: 50,
@@ -476,7 +477,7 @@ const styles = StyleSheet.create({
   challengeTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.baby,
     marginBottom: SPACING.sm,
   },
   challengeMeta: {
@@ -490,22 +491,22 @@ const styles = StyleSheet.create({
     marginRight: SPACING.sm,
   },
   difficultyBeginner: {
-    backgroundColor: COLORS.accent.green + '30',
+    backgroundColor: C.h.mint + '30',
   },
   difficultyIntermediate: {
-    backgroundColor: COLORS.accent.yellow + '30',
+    backgroundColor: C.h.bluemint + '30',
   },
   difficultyAdvanced: {
-    backgroundColor: COLORS.accent.orange + '30',
+    backgroundColor: C.h.error + '30',
   },
   difficultyText: {
     fontSize: 11,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     textTransform: 'capitalize',
   },
   duration: {
     fontSize: 12,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
   },
 });

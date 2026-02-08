@@ -1,9 +1,12 @@
 import { Stack } from 'expo-router';
+import { UserProvider } from './context/UserContext';
+
 import { StatusBar } from 'expo-status-bar';
 import { ProgressProvider } from './context/ProgressContext';
-
 export default function RootLayout() {
   return (
+    <UserProvider>
+
     <ProgressProvider>
       <StatusBar style="light" />
       <Stack
@@ -19,7 +22,9 @@ export default function RootLayout() {
         <Stack.Screen name="challenges" />
         <Stack.Screen name="challenge/[id]" />
         <Stack.Screen name="progress" />
-      </Stack>
-    </ProgressProvider>
+        </Stack>
+      </ProgressProvider>
+              </UserProvider>
+
   );
 }

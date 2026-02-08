@@ -12,7 +12,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { getChallenge, CATEGORIES } from '../data/challenges';
-import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
+import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 
 export default function ChallengeDetailScreen() {
   const navigation = useNavigation();
@@ -59,7 +59,7 @@ export default function ChallengeDetailScreen() {
 
   return (
     <LinearGradient
-      colors={[COLORS.background.primary, COLORS.background.secondary]}
+      colors={['white', 'white']}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -212,16 +212,16 @@ export default function ChallengeDetailScreen() {
           <Pressable
             onPress={handleStepComplete}
             style={({ pressed }) => [
-              styles.primaryButton,
+              styles.babyButton,
               currentStep === 0 && { flex: 1 },
               pressed && { opacity: 0.9 },
             ]}
           >
             <LinearGradient
-              colors={[category?.color || COLORS.brand.purple, category?.color + 'CC' || COLORS.brand.purpleLight]}
-              style={styles.primaryButtonGradient}
+              colors={[category?.color || C.h.link, category?.color + 'CC' || C.h.bluemint]}
+              style={styles.babyButtonGradient}
             >
-              <Text style={styles.primaryButtonText}>
+              <Text style={styles.babyButtonText}>
                 {isLastStep ? '✓ Complete Challenge' : 'Next Step →'}
               </Text>
             </LinearGradient>
@@ -242,14 +242,14 @@ const styles = StyleSheet.create({
   header: {
     padding: SPACING.lg,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    borderBottomColor:C.h.mint,
   },
   backButton: {
     marginBottom: SPACING.md,
   },
   backText: {
     fontSize: 16,
-    color: COLORS.brand.teal,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   headerContent: {
@@ -272,10 +272,10 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 13,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   completedBadge: {
-    backgroundColor: COLORS.success,
+    backgroundColor: C.h.mint,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
@@ -283,17 +283,17 @@ const styles = StyleSheet.create({
   completedText: {
     fontSize: 12,
     fontWeight: '600',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   title: {
     fontSize: 24,
     fontWeight: '800',
-    color: COLORS.text.primary,
+    color:C.h.baby,
     marginBottom: SPACING.sm,
   },
   description: {
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 20,
     marginBottom: SPACING.md,
   },
@@ -307,12 +307,12 @@ const styles = StyleSheet.create({
   },
   metaLabel: {
     fontSize: 13,
-    color: COLORS.text.tertiary,
+    color: C.h.baby,
     marginRight: SPACING.xs,
   },
   metaValue: {
     fontSize: 13,
-    color: COLORS.text.primary,
+    color: C.h.baby,
     fontWeight: '600',
     textTransform: 'capitalize',
   },
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 6,
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.bluemint,
     borderRadius: BORDER_RADIUS.sm,
     overflow: 'hidden',
     marginBottom: SPACING.sm,
@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    color: COLORS.text.tertiary,
+    color: C.h.graphite,
     textAlign: 'center',
   },
   content: {
@@ -343,19 +343,19 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   stepCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: C.h.mint,
   },
   stepHeader: {
     marginBottom: SPACING.md,
   },
   stepNumber: {
     fontSize: 12,
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
     fontWeight: '700',
     marginBottom: SPACING.xs,
     textTransform: 'uppercase',
@@ -363,18 +363,18 @@ const styles = StyleSheet.create({
   stepTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   stepContent: {
     fontSize: 15,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 22,
     marginBottom: SPACING.md,
   },
   linkButton: {
-    backgroundColor: COLORS.brand.teal + '20',
+    backgroundColor: C.h.mint + '20',
     borderWidth: 1,
-    borderColor: COLORS.brand.teal,
+    borderColor: C.h.bluemint,
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     alignItems: 'center',
@@ -382,25 +382,25 @@ const styles = StyleSheet.create({
   linkButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
   },
   codeBlock: {
-    backgroundColor: COLORS.background.primary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     borderLeftWidth: 4,
-    borderLeftColor: COLORS.brand.purple,
+    borderLeftColor: C.h.link,
   },
   codeText: {
     fontFamily: 'Courier',
     fontSize: 13,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 20,
   },
   taskBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.accent.green + '20',
+    backgroundColor: C.h.mint + '20',
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
   },
@@ -411,21 +411,21 @@ const styles = StyleSheet.create({
   taskText: {
     flex: 1,
     fontSize: 14,
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     fontWeight: '600',
   },
   tipsCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor:C.h.baby,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderLeftWidth: 4,
-    borderLeftColor: COLORS.brand.teal,
+    borderLeftColor: C.h.bluemint,
   },
   tipsTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: SPACING.md,
   },
   tipItem: {
@@ -434,25 +434,25 @@ const styles = StyleSheet.create({
   },
   tipBullet: {
     fontSize: 14,
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
     marginRight: SPACING.sm,
     fontWeight: '700',
   },
   tipText: {
     flex: 1,
     fontSize: 14,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     lineHeight: 20,
   },
   skillsCard: {
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
   },
   skillsTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     marginBottom: SPACING.md,
   },
   skillsList: {
@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
   skillChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.background.primary,
+    backgroundColor: C.h.baby,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
@@ -471,25 +471,25 @@ const styles = StyleSheet.create({
   },
   skillText: {
     fontSize: 13,
-    color: COLORS.text.primary,
+    color: C.h.graphite,
     fontWeight: '600',
     marginRight: SPACING.xs,
   },
   skillPoints: {
     fontSize: 12,
-    color: COLORS.brand.teal,
+    color: C.h.bluemint,
     fontWeight: '700',
   },
   footer: {
     flexDirection: 'row',
     padding: SPACING.lg,
-    backgroundColor: COLORS.background.secondary,
+    backgroundColor: C.h.bluemint,
     borderTopWidth: 1,
-    borderTopColor: COLORS.border,
+    borderTopColor: C.h.mint,
   },
   secondaryButton: {
     flex: 1,
-    backgroundColor: COLORS.background.tertiary,
+    backgroundColor: C.h.baby,
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     marginRight: SPACING.md,
@@ -499,25 +499,25 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     fontSize: 15,
     fontWeight: '600',
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
   },
-  primaryButton: {
+  babyButton: {
     flex: 2,
     borderRadius: BORDER_RADIUS.md,
     overflow: 'hidden',
   },
-  primaryButtonGradient: {
+  babyButtonGradient: {
     padding: SPACING.md,
     alignItems: 'center',
   },
-  primaryButtonText: {
+  babyButtonText: {
     fontSize: 15,
     fontWeight: '700',
-    color: COLORS.text.primary,
+    color: C.h.graphite,
   },
   errorText: {
     fontSize: 16,
-    color: COLORS.text.secondary,
+    color: C.h.graphite,
     textAlign: 'center',
   },
 });
