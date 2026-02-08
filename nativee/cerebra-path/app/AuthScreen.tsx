@@ -23,7 +23,7 @@ export default function AuthScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
 
-  // Animations
+  //
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
   const logoScale = useRef(new Animated.Value(0.8)).current;
@@ -50,27 +50,66 @@ export default function AuthScreen() {
     ]).start();
   }, []);
 
+
+
   const handleAuth = () => {
     if (isLogin) {
-      // TODO: Implement login logic
+
+      
+
       console.log('Login:', { email, password });
-      // For now, just navigate to onboarding
-      router.replace('/onboarding');
+
+
+      if (email !== 'dev69' && password !== 'dev69') {
+ alert('Only the Dev has access!');
+            // router.push('/AuthScreen');
+        return;
+
+      }
+
+      else if (password !== 'dev69') {
+      
+ alert('Only the Dev has access!');
+            // router.push('/AuthScreen');
+        return;
+
+      }
+            router.replace('/onboarding');
+
     } else {
-      // TODO: Implement signup logic
+
+
       if (password !== confirmPassword) {
         alert('Passwords do not match!');
         return;
       }
       console.log('Signup:', { name, email, password });
-      // For now, just navigate to onboarding
+
       router.replace('/onboarding');
     }
+
+    
+    while (password.length <= 2) {
+        alert('Passwords too short!');
+      router.push('/AuthScreen');
+      return;
+    }
+
+
   };
+  
+  
+  
+  
+  
+  
+  
+
 
   const toggleMode = () => {
     setIsLogin(!isLogin);
-    // Clear fields when switching
+
+
     setEmail('');
     setPassword('');
     setConfirmPassword('');
@@ -92,7 +131,7 @@ export default function AuthScreen() {
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
-            {/* Back button */}
+
             <Animated.View
               style={[
                 styles.backButtonContainer,
@@ -110,7 +149,7 @@ export default function AuthScreen() {
               </Pressable>
             </Animated.View>
 
-            {/* Logo */}
+            {/* Logo vittuun */}
             <Animated.View
               style={[
                 styles.logoContainer,
@@ -128,7 +167,6 @@ export default function AuthScreen() {
               </LinearGradient>
             </Animated.View>
 
-            {/* Title */}
             <Animated.View
               style={[
                 styles.header,
@@ -143,12 +181,13 @@ export default function AuthScreen() {
               </Text>
               <Text style={styles.subtitle}>
                 {isLogin
-                  ? 'Sign in to continue your learning journey'
-                  : 'Start your journey to mastering digital skills'}
+                  ? 'Sign in to continue'
+                  : 'Start your journey'}
               </Text>
             </Animated.View>
 
-            {/* Form */}
+
+
             <Animated.View
               style={[
                 styles.formContainer,
@@ -158,7 +197,10 @@ export default function AuthScreen() {
                 },
               ]}
             >
-              {/* Name field (signup only) */}
+
+
+
+
               {!isLogin && (
                 <View style={styles.inputContainer}>
                   <Text style={styles.label}>Full Name</Text>
@@ -173,7 +215,12 @@ export default function AuthScreen() {
                 </View>
               )}
 
-              {/* Email field */}
+
+
+
+
+
+
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Email</Text>
                 <TextInput
@@ -188,7 +235,10 @@ export default function AuthScreen() {
                 />
               </View>
 
-              {/* Password field */}
+
+
+
+
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Password</Text>
                 <TextInput
@@ -202,7 +252,6 @@ export default function AuthScreen() {
                 />
               </View>
 
-              {/* Confirm Password (signup only) */}
               {!isLogin && (
                 <View style={styles.inputContainer}>
                   <Text style={styles.label}>Confirm Password</Text>
@@ -218,7 +267,9 @@ export default function AuthScreen() {
                 </View>
               )}
 
-              {/* Forgot Password (login only) */}
+
+
+
               {isLogin && (
                 <Pressable
                   style={({ pressed }) => [
@@ -232,7 +283,6 @@ export default function AuthScreen() {
                 </Pressable>
               )}
 
-              {/* Submit Button */}
               <Pressable
                 onPress={handleAuth}
                 style={({ pressed }) => [
@@ -252,14 +302,12 @@ export default function AuthScreen() {
                 </LinearGradient>
               </Pressable>
 
-              {/* Divider */}
               <View style={styles.divider}>
                 <View style={styles.dividerLine} />
                 <Text style={styles.dividerText}>or</Text>
                 <View style={styles.dividerLine} />
               </View>
 
-              {/* Social Login Buttons */}
             
 
               <Pressable
@@ -378,6 +426,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     flex: 1,
+
   },
   inputContainer: {
     marginBottom: SPACING.lg,
@@ -411,6 +460,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: SPACING.xl,
     marginBottom: SPACING.lg,
+
     shadowColor: COLORS.brand.teal,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -427,12 +477,13 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 16,
     fontWeight: '700',
-    color: COLORS.text.disabled,
+    color: COLORS.text.secondary,
   },
   divider: {
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: SPACING.lg,
+
   },
   dividerLine: {
     flex: 1,
@@ -453,6 +504,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.border,
     alignItems: 'center',
+
   },
   socialButtonText: {
     fontSize: 15,

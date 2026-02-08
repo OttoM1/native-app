@@ -42,7 +42,6 @@ export default function ProgressScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Header */}
           <View style={styles.header}>
             <Pressable
               onPress={() => navigation.goBack()}
@@ -97,7 +96,6 @@ export default function ProgressScreen() {
             </View>
           </View>
 
-          {/* Skill breakdown */}
           {skillsArray.length > 0 ? (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Skill Breakdown</Text>
@@ -139,7 +137,6 @@ export default function ProgressScreen() {
                       <Text style={styles.progressPercent}>{Math.round(level)}%</Text>
                     </View>
 
-                    {/* Milestone indicators */}
                     <View style={styles.milestones}>
                       {[25, 50, 75, 100].map(milestone => (
                         <View
@@ -186,7 +183,6 @@ export default function ProgressScreen() {
             </View>
           )}
 
-          {/* Interests */}
           {progress.selectedInterests.length > 0 && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Your Interests</Text>
@@ -212,7 +208,6 @@ export default function ProgressScreen() {
             </View>
           )}
 
-          {/* Achievements (placeholder for future) */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Achievements </Text>
             <View style={styles.achievementsPlaceholder}>

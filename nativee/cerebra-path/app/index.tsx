@@ -104,9 +104,9 @@ export default function HomeScreen() {
           <Text style={styles.title
            
         }
-            >Cerebra Path</Text>
+            >App Template</Text>
           <Text style={styles.subtitle}>
-            Discover the relevant career path skills 
+            Dev @ottomulari.tech 
           </Text>
         </Animated.View>
 
@@ -125,12 +125,12 @@ export default function HomeScreen() {
             ]}
           >
             <LinearGradient
-              colors={["transparent", "transparent"]}
+              colors={[ '#71d8fa', '#ecfbff']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
             >
-              <Text style={styles.buttonText}>Start Learning</Text>
+              <Text style={styles.buttonText}>Continue</Text>
               <Text style={styles.buttonArrow}>→</Text>
             </LinearGradient>
           </Pressable>
@@ -238,9 +238,7 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.lg,
     marginTop: SPACING.xxl,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#20d5e257',
-    shadowColor: COLORS.brand.teal,
+    shadowColor: 'grey',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.35,
     shadowRadius: 16,
@@ -258,8 +256,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: '500',
-    color: COLORS.text.primary,
+    fontWeight: '700',
+    color: COLORS.text.secondary,
     marginRight: SPACING.sm,
   },
   buttonArrow: {

@@ -21,12 +21,12 @@ export interface Challenge {
 }
 
 export const CATEGORIES = [
-  { id: 'web-design', name: 'Modern Web Design', icon: '69', color: '#73b0f5' },
-  { id: 'app-dev', name: 'App Development', icon: '67', color: '#73b0f5' },
-  { id: 'ai-ml', name: 'AI & ML', icon: '69', color: '#73b0f5' },
-  { id: 'entrepreneurship', name: 'Start-Ups', icon: '67', color: '#73b0f5' },
-  { id: 'data-science', name: 'Data Science', icon: '69', color: '#73b0f5' },
-  { id: 'digital-marketing', name: 'Marketing Software', icon: '67', color: '#73b0f5' },
+  { id: 'web-design', name: 'Modern Web Design', icon: 'x', color: '#73b0f5' },
+  { id: 'app-dev', name: 'App Development', icon: 'x', color: '#73b0f5' },
+  { id: 'ai-ml', name: 'AI & ML', icon: 'x', color: '#73b0f5' },
+  { id: 'entrepreneurship', name: 'Start-Ups', icon: 'x', color: '#73b0f5' },
+  { id: 'data-science', name: 'Data Science', icon: 'x', color: '#73b0f5' },
+  { id: 'digital-marketing', name: 'Marketing Software', icon: 'x', color: '#73b0f5' },
 ];
 
 export const CHALLENGES: Challenge[] = [

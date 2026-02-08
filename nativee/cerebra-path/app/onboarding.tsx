@@ -41,7 +41,7 @@ export default function OnboardingScreen() {
       }),
       Animated.spring(scaleAnims[index], {
         toValue: 1,
-        tension: 30,
+        tension: 20,
         friction: 3,
         useNativeDriver: true,
       }),
@@ -78,9 +78,9 @@ export default function OnboardingScreen() {
             showsVerticalScrollIndicator={false}
           >
             <View style={styles.header}>
-              <Text style={styles.title}>What do you want to learn?</Text>
+              <Text style={styles.title}>Basics and Personal Data</Text>
               <Text style={styles.subtitle}>
-                Select your interests to get personalized challenges
+                Select what describes you the best
               </Text>
             </View>
 

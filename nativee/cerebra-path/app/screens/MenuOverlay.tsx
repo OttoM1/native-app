@@ -12,7 +12,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter, Href } from 'expo-router';
 const { width, height } = Dimensions.get('window');
-
 interface MenuOverlayProps {
   visible: boolean;
   onClose: () => void;
@@ -36,46 +35,48 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
       Animated.parallel([
         Animated.timing(slideAnim, { toValue: width, duration: 250, useNativeDriver: true }),
         Animated.timing(fadeAnim, { toValue: 0, duration: 250, useNativeDriver: true }),
-      ]).start(() => setShouldRender(false)); // Set to false when animation finishes
+      ]).start(() => setShouldRender(false)); 
     }
   }, [visible]);
 
-  // Clean conditional return
   if (!shouldRender) return null;
 
   const menuItems = [
     {
+    email: 'lol',
+  },
+    {
       id: 'home',
       title: 'Home',
-      icon: '6',
+      icon: 'x',
       route: '/dashboard',
       description: 'Your learning dashboard',
     },
     {
       id: 'challenges',
       title: 'Challenges',
-      icon: '9',
+      icon: 'x',
       route: '/challenges',
       description: 'Browse all challenges',
     },
     {
       id: 'progress',
       title: 'Progress',
-      icon: '6',
+      icon: 'x',
       route: '/progress',
       description: 'Track your skills',
     },
     {
       id: 'profile',
       title: 'Profile',
-      icon: '7',
+      icon: 'x',
       route: '/profile',
       description: 'View your profile',
     },
     {
       id: 'settings',
       title: 'Settings',
-      icon: '69',
+      icon: 'x',
       route: '/settings',
       description: 'App preferences',
     },
@@ -91,14 +92,13 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
   const handleLogout = () => {
     onClose();
     setTimeout(() => {
-      // TODO: Implement logout logic
       router.replace('/');
     }, 300);
   };
 
   return (
     <View style={styles.overlay}>
-      {/* Background overlay */}
+
       <Animated.View
         style={[
           styles.backdrop,
@@ -110,7 +110,11 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
         <Pressable style={styles.backdropPress} onPress={onClose} />
       </Animated.View>
 
-      {/* Menu panel */}
+
+
+
+
+
       <Animated.View
         style={[
           styles.menuPanel,
@@ -127,7 +131,10 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.menuContent}
           >
-            {/* Header */}
+
+
+
+
             <View style={styles.menuHeader}>
               <View style={styles.headerTop}>
                 <View style={styles.logoContainer}>
@@ -139,8 +146,12 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
                   </LinearGradient>
                   <View>
                     <Text style={styles.appName}>Cerebra Path</Text>
-                    <Text style={styles.userEmail}>test@mail.com</Text>
-                  </View>
+                    {menuItems.map((item, index) => (
+
+                      <Text style={styles.userEmail} key={item.id}>{item.email}</Text>
+                    ))}
+
+                    </View>
                 </View>
                 <Pressable
                   onPress={onClose}
@@ -154,7 +165,9 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               </View>
             </View>
 
-            {/* Navigation Items */}
+
+
+
             <View style={styles.menuSection}>
               <Text style={styles.sectionTitle}></Text>
               {menuItems.map((item, index) => (
@@ -180,7 +193,6 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               ))}
             </View>
 
-            {/* Account Section */}
             <View style={styles.menuSection}>
               <Text style={styles.sectionTitle}>Account</Text>
               
@@ -225,7 +237,6 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               </Pressable>
             </View>
 
-            {/* App Info */}
             <View style={styles.appInfo}>
               <Text style={styles.appInfoText}>Cerebra Path v1.0.0</Text>
               <Text style={styles.appInfoText}>© 2026 Cerebra Path</Text>
@@ -256,7 +267,6 @@ export function MenuButton({ onPress }: { onPress: () => void }) {
 }
 
 const styles = StyleSheet.create({
-  // Overlay styles
   overlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 999,
@@ -283,7 +293,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xl,
   },
 
-  // Header
+  // 
   menuHeader: {
     paddingHorizontal: SPACING.lg,
     paddingBottom: SPACING.xl,
@@ -338,7 +348,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 
-  // Menu sections
   menuSection: {
     paddingHorizontal: SPACING.lg,
     paddingTop: SPACING.xl,
@@ -352,7 +361,6 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
   },
 
-  // Menu items
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -404,7 +412,6 @@ const styles = StyleSheet.create({
     color: COLORS.error,
   },
 
-  // App info
   appInfo: {
     paddingHorizontal: SPACING.xs,
     paddingTop: SPACING.xxl,
@@ -417,7 +424,6 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 
-  // Menu button (hamburger)
   menuButton: {
     width: 40,
     height: 40,

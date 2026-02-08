@@ -44,7 +44,6 @@ export default function ChallengeDetailScreen() {
     }
 
     if (isLastStep) {
-      // Complete the challenge
       completeChallenge(challenge.id, challenge.skillGains);
       navigation.goBack();
     } else {
@@ -64,7 +63,6 @@ export default function ChallengeDetailScreen() {
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
-        {/* Header */}
         <View style={styles.header}>
           <Pressable
             onPress={() => navigation.goBack()}
@@ -105,7 +103,6 @@ export default function ChallengeDetailScreen() {
             </View>
           </View>
 
-          {/* Progress bar */}
           <View style={styles.progressContainer}>
             <View style={styles.progressBar}>
               <View
@@ -124,7 +121,9 @@ export default function ChallengeDetailScreen() {
           </View>
         </View>
 
-        {/* Step content */}
+
+
+
         <ScrollView
           style={styles.content}
           contentContainerStyle={styles.scrollContent}
@@ -138,7 +137,6 @@ export default function ChallengeDetailScreen() {
 
             <Text style={styles.stepContent}>{currentStepData.content}</Text>
 
-            {/* Type-specific content */}
             {currentStepData.type === 'link' && currentStepData.link && (
               <Pressable
                 onPress={() => handleLinkPress(currentStepData.link)}
@@ -167,7 +165,6 @@ export default function ChallengeDetailScreen() {
             )}
           </View>
 
-          {/* Tips section */}
           {challenge.tips.length > 0 && (
             <View style={styles.tipsCard}>
               <Text style={styles.tipsTitle}> Pro Tips</Text>
@@ -180,7 +177,10 @@ export default function ChallengeDetailScreen() {
             </View>
           )}
 
-          {/* Skills you'll gain */}
+
+
+
+
           <View style={styles.skillsCard}>
             <Text style={styles.skillsTitle}>Skills You Gain</Text>
             <View style={styles.skillsList}>
@@ -196,7 +196,6 @@ export default function ChallengeDetailScreen() {
           </View>
         </ScrollView>
 
-        {/* Navigation footer */}
         <View style={styles.footer}>
           {currentStep > 0 && (
             <Pressable
