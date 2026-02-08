@@ -82,7 +82,6 @@ export default function DashboardScreen() {
             </View>
           </Animated.View>
 
-          {/* Stats Cards */}
           <Animated.View
             style={[
               styles.statsContainer,
@@ -135,7 +134,6 @@ export default function DashboardScreen() {
               <Text style={styles.tipTitle}></Text>
             </View>
             <Text style={styles.tipMessage}>
-              {/*motivationalTip.message*/}
             </Text>
           </Animated.View>
 
@@ -190,7 +188,8 @@ export default function DashboardScreen() {
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}></Text>
                 <Text style={styles.actionSubtitle}>
-                {/*   Explore {CATEGORIES.length} categories */}
+
+                  
                 </Text>
               </View>
               <Text style={styles.actionArrow}>→</Text>
@@ -253,7 +252,8 @@ export default function DashboardScreen() {
                     </View>
                     <View style={styles.challengeContent}>
                       <Text style={styles.challengeTitle}>
-                     {/*    {challenge.title} */}
+
+                      
                       </Text>
                       <View style={styles.challengeMeta}>
                         <View
@@ -265,12 +265,11 @@ export default function DashboardScreen() {
                           ]}
                         >
                           <Text style={styles.difficultyText}>
-                         {/*   {challenge.difficulty} */}
                           </Text>
                         </View>
                         <Text style={styles.duration}>
-                      {/*    ⏱ {challenge.duration} */}
-                        </Text>
+
+                                                  </Text>
                       </View>
                     </View>
                   </Pressable>
