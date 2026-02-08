@@ -341,7 +341,6 @@ else {
                 <Text style={styles.socialButtonText}>Continue with Apple</Text>
               </Pressable>
 
-              {/* Toggle Login/Signup */}
               <View style={styles.toggleContainer}>
                 <Text style={styles.toggleText}>
                   {isLogin
@@ -370,7 +369,7 @@ else {
                   Continue as Guest
                 </Text>
               </Pressable>
-Guest Mode */}
+ */}
 
             </Animated.View>
           </ScrollView>
