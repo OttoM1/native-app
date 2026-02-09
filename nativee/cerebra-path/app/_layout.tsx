@@ -3,6 +3,9 @@ import { UserProvider } from './context/UserContext';
 
 import { StatusBar } from 'expo-status-bar';
 import { ProgressProvider } from './context/ProgressContext';
+
+import '../jaska.css';
+
 export default function RootLayout() {
   return (
     <UserProvider>

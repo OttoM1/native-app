@@ -151,12 +151,16 @@ else {
             keyboardShouldPersistTaps="handled"
           >
 
+                {/* 
             <Animated.View
               style={[
                 styles.backButtonContainer,
                 { opacity: fadeAnim },
               ]}
             >
+
+
+          
               <Pressable
                 onPress={() => router.push('./AuthScreen')}
                 style={({ pressed }) => [
@@ -166,7 +170,11 @@ else {
               >
                 <Text style={styles.backText}>← Back</Text>
               </Pressable>
+
+              
             </Animated.View>
+
+            */}
 
             {/* Logo vittuun */}
             <Animated.View
@@ -473,7 +481,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     fontSize: 14,
-    color: C.h.bluemint,
+    color: C.h.link,
     fontWeight: '600',
   },
   submitButton: {
@@ -545,7 +553,7 @@ const styles = StyleSheet.create({
   },
   toggleLink: {
     fontSize: 14,
-    color: C.h.bluemint,
+    color: C.h.link,
     fontWeight: '700',
   },
   guestButton: {

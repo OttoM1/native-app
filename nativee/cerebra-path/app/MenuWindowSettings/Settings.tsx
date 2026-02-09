@@ -47,7 +47,9 @@ export default function Settings() {
     
   return (
     <LinearGradient
-      colors={['white', 'white', 'white', C.h.bluemint]}
+      colors={['white', 'white', '#ffff']}
+      start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -66,19 +68,43 @@ export default function Settings() {
           >
 
                       
+  <Pressable style={styles.backButton}
+onPress={() => router.push('../screens/DashboardScreen')}
+            >
+              <Text style={styles.backText}>
+                ← Back
+                </Text>
+            </Pressable>
+
+
 <Text style={styles.title}>General Settings</Text>
 
 
 
-          </Animated.View>
-          
-          <View style={styles.infobox}>
-            <Text style={styles.text} >Userame:  {name} </Text>
-              <Text style={styles.text}>Email:  {email} </Text>
-            <Text style={styles.text}>Password:  {password} </Text>
+
+
+<View style={styles.infobox}>
+            
+              <Text style={styles.text} >Userame:  <Text style={styles.span}>{name}</Text> </Text>
+              <View style={styles.divider}>
+                <View style={styles.dividerLine}></View>
+                </View>
+            <Text style={styles.text}>Email:  <Text style={styles.span}>{email}</Text> </Text>
+ <View style={styles.divider}>
+                <View style={styles.dividerLine}></View>
+                </View>
+            <Text style={styles.text}>Password: <Text style={styles.span}> {password}</Text> </Text>
+ <View style={styles.divider}>
+                <View style={styles.dividerLine}></View>
+                </View>
 
 </View>
 
+            
+
+
+
+          </Animated.View>
 
         
         </ScrollView>
@@ -116,25 +142,55 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     title: {
-        marginBottom: SPACING.xxl,
-        fontSize: 42,
+      marginBottom: SPACING.xxl,
+      marginTop: SPACING.lg,
+        fontSize: 40,
         textAlign: 'left',
         fontWeight: '500',
         fontFamily: 'System',
         letterSpacing: -1,
         color: C.h.baby,
-    },
+  },
+    
+  backButton: {
+    marginBottom: SPACING.lg,
+  },
+  backText: {
+    fontSize: 16,
+    color: C.h.graphite,
+    fontWeight: '600',
+  },
    
   infobox: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginBottom: SPACING.xxl,
+    marginVertical: SPACING.xxl,
   },
 
   text: {
     color: C.h.graphite,
-    fontSize: 20,
+    fontSize: 22,
     marginBottom: SPACING.lg,
     fontWeight: 600,
+  },
+
+  span: {
+    color: C.h.link,
+    fontSize: 20,
+    fontWeight: 200,
+  },
+
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+ marginBottom: SPACING.xl,
+
+  },
+
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: C.h.graphite,
+
   },
 });
