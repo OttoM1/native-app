@@ -9,6 +9,7 @@ import {
   Pressable,
   Animated,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -19,7 +20,8 @@ const { width } = Dimensions.get('window');
 export default function Settings() {
           const router = useRouter();
        const { email, name, password } = useUser();
-     
+
+
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
@@ -42,7 +44,7 @@ export default function Settings() {
     
     
     
-    
+
     
     
   return (
@@ -80,7 +82,7 @@ onPress={() => router.push('../screens/DashboardScreen')}
 <Text style={styles.title}>General Settings</Text>
 
 
-
+            
 
 
 <View style={styles.infobox}>

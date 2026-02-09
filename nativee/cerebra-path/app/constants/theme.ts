@@ -1,6 +1,6 @@
 export const C = {
   h: {
-       graphite: '#66696e',
+       graphite: '#303030', //'#66696e'
 
     bluemint: '#49f7cf',
   mint: '#42faa4',

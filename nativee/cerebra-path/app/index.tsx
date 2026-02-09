@@ -136,7 +136,7 @@ export default function HomeScreen() {
             ]}
           >
             <LinearGradient
-              colors={[ '#71d8fa', '#ecfbff']}
+              colors={[ C.h.mint, '#ecfbff']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 54,
     fontWeight: '500',
-    color: C.h.baby,
+    color: C.h.bluemint,
     textAlign: 'center',
     fontFamily: 'System',
     marginBottom: SPACING.xl,
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   },
   buttonArrow: {
     fontSize: 20,
-    color: C.h.baby,
+    color: C.h.bluemint,
     fontWeight: '700',
   },
   linkButton: {

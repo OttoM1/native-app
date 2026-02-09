@@ -18,7 +18,7 @@ import { useUser } from './context/UserContext';
 
 export default function AuthScreen() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
 
 
@@ -101,7 +101,7 @@ if (!isLogin) {
   
       console.log('Signup:', { name, email, password });
 
-      router.replace('/onboarding');
+      router.replace('/OnboardingScreen');
     
 }
     
@@ -112,7 +112,7 @@ else if (password !== '69' && email !== 'dev' ) {
     }
 
 else {
-        router.push('/onboarding');
+        router.push('/OnboardingScreen');
 
     }
 
@@ -257,7 +257,7 @@ else {
                   <TextInput
                     style={styles.input}
                     placeholder="Enter your username"
-                    placeholderTextColor={C.h.baby}
+                    placeholderTextColor={C.h.graphite}
                     value={name}
                     onChangeText={setName}
                     autoCapitalize="words"
@@ -346,7 +346,7 @@ else {
                   pressed && { opacity: 0.8 },
                 ]} 
               >
-                <Text style={styles.socialButtonText}>Continue with Apple</Text>
+                <Text style={styles.socialButtonText}>Continue with GAMEBOOK</Text>
               </Pressable>
 
               <View style={styles.toggleContainer}>
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     fontWeight: '500',
-    color: C.h.baby,
+    color: C.h.bluemint,
     textAlign: 'center',
     marginBottom: SPACING.xl,
     fontFamily: 'System',
@@ -536,8 +536,8 @@ const styles = StyleSheet.create({
 
   },
   socialButtonText: {
-    fontSize: 15,
-    fontWeight: '600',
+    fontSize: 14,
+    fontWeight: '700',
     color: C.h.graphite,
   },
   toggleContainer: {
