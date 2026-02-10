@@ -15,6 +15,8 @@ export default function HomeScreen() {
   const slideAnim = useRef(new Animated.Value(50)).current;
 
 
+
+
   useEffect(() => {
     Animated.sequence([
       Animated.parallel([
@@ -69,15 +71,23 @@ export default function HomeScreen() {
     outputRange: [0.3, 0.8],
   });
 
+
+
+
+
+
+
   return (
     
 
    <LinearGradient
-      colors={["white", "white"]}
+      colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+       start={{ x: 0, y: 1 }}
+              end={{ x: 0, y: 0 }}
       style={styles.container}
     >
       <View style={styles.particlesContainer}>
-        {[...Array(20)].map((_, i) => (
+        {[...Array(28)].map((_, i) => (
           <View
             key={i}
             style={[
@@ -103,9 +113,16 @@ export default function HomeScreen() {
         >
 
 
-         
+
+
+
+
+
           <Text style={styles.title}
-          > Dih App </Text>
+          > Go Birdie <Text style={{ color: '#444', fontWeight: 100, fontSize: 28, paddingBottom: SPACING.xxl, marginBottom: SPACING.xxl}}>©</Text></Text>
+
+
+          
 
 
 <Pressable onPress={() => router.push('https://ottomulari.tech')} >
@@ -115,9 +132,6 @@ export default function HomeScreen() {
             </Text>
             
           </Pressable>
-          
-
-
 
         </Animated.View>
 
@@ -136,9 +150,9 @@ export default function HomeScreen() {
             ]}
           >
             <LinearGradient
-              colors={[ C.h.mint, '#ecfbff']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
+              colors={[C.h.bluemint, C.h.mint]}
+                               start={{ x: 0, y: 0 }}
+                               end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
             >
               <Text style={styles.buttonText}>Continue</Text>
@@ -209,7 +223,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: 'white',
+    backgroundColor: '#101010',
     opacity: 0.3,
   },
   logoCircle: {
@@ -226,13 +240,13 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   title: {
-    fontSize: 54,
-    fontWeight: '500',
+    fontSize: 56,
+    fontWeight: '800',
     color: C.h.bluemint,
     textAlign: 'center',
     fontFamily: 'System',
     marginBottom: SPACING.xl,
-    letterSpacing: -1,
+    letterSpacing: 0,
   },
   subtitle: {
     fontSize: 18,
@@ -247,9 +261,9 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.lg,
     marginTop: SPACING.xxl,
     overflow: 'hidden',
-    shadowColor: 'grey',
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.63,
     shadowRadius: 16,
     elevation: 8,
   },
@@ -266,16 +280,16 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: '700',
-    color: C.h.graphite,
+    color: '#111',
     marginRight: SPACING.sm,
   },
   buttonArrow: {
     fontSize: 20,
-    color: C.h.bluemint,
+    color: '#444',
     fontWeight: '700',
   },
   linkButton: {
-    paddingVertical: SPACING.md,
+    paddingVertical: SPACING.xs,
   },
   linkText: {
     fontSize: 14,
@@ -306,7 +320,7 @@ const styles = StyleSheet.create({
 
   bottomContainer: {
     position: 'absolute',
-    bottom: 50, 
+    bottom: 38, 
     width: '100%',
     alignItems: 'center',
     zIndex: 2,

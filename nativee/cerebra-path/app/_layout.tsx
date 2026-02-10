@@ -11,12 +11,12 @@ export default function RootLayout() {
     <UserProvider>
 
     <ProgressProvider>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <Stack
         screenOptions={{
           headerShown: false,
           animation: 'fade',
-          contentStyle: { backgroundColor: '#ffffff' },
+          contentStyle: { backgroundColor: '#101010' },
         }}
       >
         <Stack.Screen name="index" />

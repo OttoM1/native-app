@@ -137,9 +137,33 @@ else {
 
   return (
     <LinearGradient
-      colors={['white', 'white']}
+  colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+       start={{ x: 0, y: 1 }}
+      end={{ x: 0, y: 0 }}
       style={styles.container}
     >
+
+
+ <View style={styles.particlesContainer}>
+        {[...Array(28)].map((_, i) => (
+          <View
+            key={i}
+            style={[
+              styles.particle,
+              {
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.5,
+              },
+            ]}
+          />
+        ))}
+      </View>
+
+
+
+
+
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -187,7 +211,7 @@ else {
               ]}
             >
               <LinearGradient
-                colors={['white', 'white']}
+                colors={['#101010', '#101010']}
                 style={styles.logoCircle}
               >
                 <Text style={styles.logoText}>CP</Text>
@@ -467,7 +491,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: '#10101040',
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     fontSize: 16,
@@ -490,9 +514,9 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xl,
     marginBottom: SPACING.lg,
 
-    shadowColor: C.h.bluemint,
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.5,
     shadowRadius: 8,
     elevation: 4,
   },
@@ -506,7 +530,7 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 16,
     fontWeight: '700',
-    color: C.h.graphite,
+    color: '#111',
   },
   divider: {
     flexDirection: 'row',
@@ -534,11 +558,18 @@ const styles = StyleSheet.create({
     borderColor: C.h.baby,
     alignItems: 'center',
 
+
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    elevation: 4,
+
   },
   socialButtonText: {
     fontSize: 14,
     fontWeight: '700',
-    color: C.h.graphite,
+    color: '#111',
   },
   toggleContainer: {
     flexDirection: 'row',
@@ -564,5 +595,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: C.h.baby,
     fontWeight: '600',
+  },
+
+
+
+  particlesContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 0,
+  },
+  particle: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: C.h.bluemint,
   },
 });

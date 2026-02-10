@@ -53,14 +53,14 @@ const toggleInterest = (categoryId: string, scaleAnim: Animated.Value) => {
 
     Animated.sequence([
       Animated.timing(scaleAnim, {
-        toValue: 0.9,
-        duration: 100,
+        toValue: 0.97,
+        duration: 110,
         useNativeDriver: true,
       }),
       Animated.spring(scaleAnim, {
         toValue: 1,
-        tension: 16,
-        friction: 3,
+        tension: 10,
+        friction: 6,
         useNativeDriver: true,
       }),
     ]).start();
@@ -119,9 +119,28 @@ setSelectedInterests(prev => {
 
   return (
     <LinearGradient
-      colors={['white', 'white']}
-      style={[styles.container]}
-    >
+     colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+            start={{ x: 0, y: 1 }}
+                   end={{ x: 0, y: 0 }}
+           style={styles.container}
+         >
+           <View style={styles.particlesContainer}>
+             {[...Array(28)].map((_, i) => (
+               <View
+                 key={i}
+                 style={[
+                   styles.particle,
+                   {
+                     left: `${Math.random() * 100}%`,
+                     top: `${Math.random() * 100}%`,
+                     opacity: Math.random() * 0.5,
+                   },
+                 ]}
+               />
+             ))}
+           </View>
+
+
       <Animated.View style={[styles.safeArea, { opacity: pageOpacity }, {transform: [{scale: bounceAnim}] }]}>
         <SafeAreaView style={styles.safeArea}>
           <ScrollView
@@ -163,7 +182,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>😄</Text>
@@ -212,7 +231,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>💪</Text>
@@ -278,7 +297,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>⛳</Text>
@@ -329,7 +348,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>🏌️‍♂️</Text>
@@ -393,7 +412,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>⏳</Text>
@@ -444,7 +463,7 @@ setSelectedInterests(prev => {
                     <View
                       style={[
                         styles.iconContainer,
-                        { backgroundColor: 'white' },
+                        { backgroundColor: 'transparent' },
                       ]}
                     >
                       <Text style={styles.icon}>🗿</Text>
@@ -504,8 +523,8 @@ setSelectedInterests(prev => {
               <LinearGradient
                 colors={
                   selectedInterests.length === 0
-                    ? ['#71d8fa', '#ecfbff']
-                    : ['#71facc', 'white']
+                    ? ['#71d8fa', C.h.baby]
+                    : ['#71facc', C.h.mint]
                 }
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -591,7 +610,7 @@ justifyContent: 'space-around',
 
   card: {
     width: '100%',
-    backgroundColor: 'white',
+    backgroundColor: '#10101040',
     borderRadius: BORDER_RADIUS.lg,
     borderWidth: 1,
     borderColor: C.h.bluemint,
@@ -599,7 +618,7 @@ justifyContent: 'space-around',
   },
   cardSelected: {
     borderColor: C.h.mint,
-    borderWidth: 3,
+    borderWidth: 2,
 
     shadowColor: C.h.bluemint,
     shadowOffset: { width: 0, height: 4 },
@@ -669,9 +688,9 @@ justifyContent: 'space-around',
   button: {
     borderRadius: BORDER_RADIUS.lg,
     overflow: 'hidden',
-    shadowColor: C.h.graphite,
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.4,
     shadowRadius: 8,
     elevation: 4,
     transform: 'scale(.92)',
@@ -685,9 +704,24 @@ justifyContent: 'space-around',
   buttonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#202020',
+    color: '#111',
   },
   buttonTextDisabled: {
-    color: C.h.graphite
+    color: '#333'
+  },
+
+
+
+
+  particlesContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 0,
+  },
+  particle: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: C.h.bluemint,
   },
 });

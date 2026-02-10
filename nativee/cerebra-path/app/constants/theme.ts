@@ -1,12 +1,11 @@
 export const C = {
   h: {
-       graphite: '#303030', //'#66696e'
+       graphite: '#d4d4d4', //'#66696e'
 
-    bluemint: '#49f7cf',
-  mint: '#42faa4',
-
-    baby: '#71d8fa',
-            link: '#6a9af5',
+    bluemint: '#2ebf9d',
+  mint: '#1ee674',
+    baby: '#36f5f5',
+            link: '#71d8fa',
   error: '#ff0d3a',
 
   },

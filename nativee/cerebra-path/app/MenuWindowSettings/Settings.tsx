@@ -49,7 +49,7 @@ export default function Settings() {
     
   return (
     <LinearGradient
-      colors={['white', 'white', '#ffff']}
+      colors={['#101010', '#101010', '#ffff']}
       start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
       style={styles.container}

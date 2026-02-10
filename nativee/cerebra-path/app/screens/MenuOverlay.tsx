@@ -118,7 +118,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
         ]}
       >
         <LinearGradient
-          colors={['white', 'white', 'white']}
+          colors={['#101010', '#101010', '#101010']}
           style={styles.menuGradient}
         >
           <ScrollView
@@ -133,7 +133,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               <View style={styles.headerTop}>
                 <View style={styles.logoContainer}>
                   <LinearGradient
-                    colors={['white', C.h.bluemint]}
+                    colors={['#101010', C.h.bluemint]}
                     style={styles.miniLogo}
                   >
                     <Text style={styles.miniLogoText}>69</Text>
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   miniLogoText: {
     fontSize: 20,
     fontWeight: '800',
-    color: 'white',
+    color: '#101010',
   },
   appName: {
     fontSize: 18,
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#101010',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.md,

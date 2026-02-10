@@ -52,9 +52,26 @@ export default function DashboardScreen() {
 
   return (
     <LinearGradient
-      colors={['white', 'white', 'white', C.h.bluemint]}
-      style={styles.container}
-    >
+     colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+                 start={{ x: 0, y: 1 }}
+                        end={{ x: 0, y: 0 }}
+                style={styles.container}
+              >
+                <View style={styles.particlesContainer}>
+                  {[...Array(28)].map((_, i) => (
+                    <View
+                      key={i}
+                      style={[
+                        styles.particle,
+                        {
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                          opacity: Math.random() * 0.5,
+                        },
+                      ]}
+                    />
+                  ))}
+                </View>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -92,7 +109,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', C.h.bluemint]}
+                colors={['transparent', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
@@ -102,7 +119,7 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', C.h.bluemint]}
+                colors={['transparent', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
@@ -112,7 +129,7 @@ export default function DashboardScreen() {
 
             <View style={styles.statCard}>
               <LinearGradient
-                colors={['white', C.h.bluemint]}
+                colors={['transparent', C.h.bluemint]}
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.streak}</Text>
@@ -347,7 +364,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   tipCard: {
-    backgroundColor: 'white',
+    backgroundColor: '#101010',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.xxl,
@@ -413,7 +430,7 @@ const styles = StyleSheet.create({
   actionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#101010',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
@@ -452,7 +469,7 @@ const styles = StyleSheet.create({
   challengeCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#101010',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.lg,
@@ -507,5 +524,22 @@ const styles = StyleSheet.create({
   duration: {
     fontSize: 12,
     color: C.h.graphite,
+  },
+
+
+
+
+
+
+  particlesContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 0,
+  },
+  particle: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: C.h.bluemint,
   },
 });

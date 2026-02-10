@@ -1,4 +1,4 @@
-# Cerebra Path - Expo Router Version
+# BIRDIE GO - Expo Router Version
 
 Complete redesign ready to integrate into your existing Expo Router project!
 
@@ -80,27 +80,6 @@ your-project/
     └── theme.ts                 ← MERGE or REPLACE
 ```
 
-## 🎨 Design Features
-
-- Cosmic dark theme (#0a0e1a)
-- Purple (#9644b1) & Teal (#3fd2b0) brand colors
-- Smooth animations throughout
-- Responsive layouts
-- Category-specific accent colors
-
-## 📖 Full Documentation
-
-- `SETUP_INSTRUCTIONS.md` - Detailed integration guide
-- `INTEGRATION_GUIDE.md` - Options for merging with your project
-
-## 🎯 What Works Now
-
-✅ Animated landing page  
-✅ Interest selection with 6 categories
-✅ State persistence (AsyncStorage)
-✅ Theme system ready
-✅ Challenge data structure
-
 ## 🔨 What You Need to Create
 
 The screens using the React Navigation versions as reference:
@@ -136,5 +115,3 @@ router.back();
 Check the detailed guides or ask for the complete screen conversions!
 
 ---
-
-**Cerebra Path** - Ready to launch your MVP! 🚀
