@@ -1,13 +1,17 @@
 export const C = {
   h: {
-       graphite: '#d4d4d4', //'#66696e'
+       graphite: '#b8b8b8', //'#66696e'
 
-    bluemint: '#00ffd1', //29c4aa
+    bluemint: 'rgba(0, 125, 100, 0.9)', //29c4aa
     
   mint: '#4ed998',
     baby: '#36f5f5',
             link: '#71d8fa',
-  error: '#ff0d3a',
+    error: '#ff0d3a',
+  
+    r: 'rgba(175, 237, 2, 0.9)',
+
+    shadow: 'rgba(68, 219, 139, 0.2)',
 
   },
 };

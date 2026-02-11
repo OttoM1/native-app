@@ -49,9 +49,9 @@ export default function Settings() {
     
   return (
     <LinearGradient
-      colors={['#101010', '#101010', '#ffff']}
-      start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
+     colors={["#101010", "#050505", "#050505", "#000", "#000"]}
+      start={{ x: 0, y: 1 }}
+              end={{ x: 0, y: 0 }}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -151,7 +151,10 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontFamily: 'System',
         letterSpacing: -1,
-        color: C.h.baby,
+        color: C.h.bluemint,
+    textShadowColor: 'rgb(110, 220, 6)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2,
   },
     
   backButton: {
@@ -159,7 +162,7 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontSize: 16,
-    color: C.h.graphite,
+    color: C.h.r,
     fontWeight: '600',
   },
    
@@ -170,14 +173,14 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: C.h.graphite,
+    color: '#444',
     fontSize: 22,
     marginBottom: SPACING.lg,
     fontWeight: 600,
   },
 
   span: {
-    color: C.h.link,
+    color: C.h.r,
     fontSize: 20,
     fontWeight: 200,
   },

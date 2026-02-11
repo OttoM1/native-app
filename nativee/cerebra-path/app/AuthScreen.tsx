@@ -22,7 +22,7 @@ export default function AuthScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const { email, setEmail, name, setName, password, setPassword } = useUser();
 
-  // Animations
+  // anim
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const inputFadeAnim = useRef(new Animated.Value(0)).current;
@@ -80,10 +80,16 @@ export default function AuthScreen() {
       }
       console.log('Signup:', { name, email, password });
       router.replace('/OnboardingScreen');
-    } else if (password !== '69' && email !== 'dev') {
+    } else if (password !== '69') {
       alert('You are not that guy');
       return;
-    } else {
+    }
+    else if (name !== 'dev') {
+      alert('You are not that guy');
+      return;
+    }
+    
+    else {
       router.push('/OnboardingScreen');
     }
   };
@@ -97,28 +103,17 @@ export default function AuthScreen() {
     setName('');
   };
 
+
+
+
   return (
     <LinearGradient
-      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
+      colors={["#101010", "#050505", "#050505", "#000", "#000"]}
       start={{ x: 0, y: 1 }}
       end={{ x: 0, y: 0 }}
       style={styles.container}
     >
-      <View style={styles.particlesContainer}>
-        {[...Array(16)].map((_, i) => (
-          <View
-            key={i}
-            style={[
-              styles.particle,
-              {
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.7,
-              },
-            ]}
-          />
-        ))}
-      </View>
+     
 
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
@@ -234,7 +229,7 @@ export default function AuthScreen() {
                 ]}
               >
                 <LinearGradient
-                  colors={['#000', '#000']}
+                  colors={['rgba(0, 28, 16, 0.3)', 'rgba(0, 28, 16, 0.3)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.submitGradient}
@@ -288,17 +283,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  particlesContainer: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 0,
-  },
-  particle: {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: C.h.bluemint,
-  },
   safeArea: {
     flex: 1,
   },
@@ -325,6 +309,9 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
     fontFamily: 'System',
     letterSpacing: -1,
+    textShadowColor: 'rgb(110, 220, 6)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2,
   },
   subtitle: {
     fontSize: 15,
@@ -352,11 +339,11 @@ const styles = StyleSheet.create({
   forgotPassword: {
     alignSelf: 'flex-end',
     marginBottom: SPACING.lg,
-    marginTop: -SPACING.sm,
+    marginTop: SPACING.xs,
   },
   forgotPasswordText: {
     fontSize: 13,
-    color: '#baff00',
+    color: C.h.r,
     fontWeight: '500',
   },
   submitButton: {
@@ -373,20 +360,9 @@ const styles = StyleSheet.create({
     filter: 'opacity(0.9)',
 
 
-    borderBottomWidth: 2,
-    borderBottomColor: '#00ffd1',
+    borderWidth: 2,
+    borderColor: C.h.bluemint,
 
-    
-    borderRightWidth: 2,
-    borderRightColor: "#baff00",
-
-
-    borderTopWidth: 2,
-    borderTopColor: '#00ffd1',
-
-    
-    borderLeftWidth: 2,
-    borderLeftColor: "#baff00",
 
 
   },
@@ -420,11 +396,12 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   socialButton: {
-    backgroundColor: 'rgba(0, 28, 16, 0.2)',
+    backgroundColor: 'rgba(0, 28, 16, 0.3)',
     borderRadius: BORDER_RADIUS.lg,
     paddingVertical: SPACING.lg,
-    borderBottomWidth: 2,
-    borderColor: 'rgba(0, 125, 100, 0.9)',
+    borderWidth: 1.6,
+    borderColor:  C.h.r,
+
     alignItems: 'center',
     filter: 'opacity(0.9)',
         
@@ -457,7 +434,7 @@ const styles = StyleSheet.create({
   },
   toggleLink: {
     fontSize: 14,
-    color: '#baff00',
+    color:  C.h.r,
     fontWeight: '700',
   },
 });

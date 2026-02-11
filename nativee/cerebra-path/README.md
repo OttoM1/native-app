@@ -1,29 +1,63 @@
-# BIRDIE GO - Expo Router Version
+# Go Birdie - Expo Router Version
 
-Complete redesign ready to integrate into your existing Expo Router project!
+## Vision
+
+Go Birdie aims to help golfers improve faster through smarter practice and on-course decision support. By turning practice and round data into personalized insights, the app acts as a digital coach and caddie, guiding players toward better performance and more confident play.
+
+## Scope
+
+The app focuses on three core areas:
+
+- **Practice Tracking & Analysis**  
+  Capture practice data to identify strengths, weaknesses, and improvement trends.
+
+- **Personalized Coaching**  
+  Generate tailored practice tips and adaptive challenges based on player performance.
+
+- **On-Course Caddie Assistance**  
+  Provide club and strategy suggestions during rounds using player data and situational context.
 
 ## 📦 What's Inside
 
 ### Core Files (Ready to Copy)
 
 - `app/context/ProgressContext.tsx` - State management with AsyncStorage
-- `app/data/challenges.ts` - 6 sample challenges across all categories
-- `app/data/tips.ts` - 15 motivational messages
-- `constants/theme.ts` - Cerebra Path design system
+- `app/data/tips.ts`
+- `constants/theme.ts` - design system
 
 ### Screens (Expo Router Compatible)
 
 - `app/_layout.tsx` - Root layout with ProgressProvider
 - `app/index.tsx` - Animated home screen
 - `app/onboarding.tsx` - Interest selection
-- _(You'll need to create: dashboard.tsx, challenges.tsx, progress.tsx, challenge/[id].tsx)_
+- `app/AuthScreen.tsx` - Log in screen
+- `app/screens/DashboardScreen.tsx` - Home window
+- `app/screens/MenuOverlay` - Control display
+- `app/MenuWindowSettings/Settings.tsx` - General settings
 
 ## 🚀 Quick Setup
+
+## Prerequisites
+
+Make sure the following are installed:
+
+- Node.js (LTS recommended)
+- npm or yarn
+- Expo CLI
+- Android Studio (for Android emulator)
+- Xcode (for iOS simulator, macOS only)
 
 ### 1. Install Dependencies
 
 ```bash
+npx expo install expo
+npm install @react-navigation/native @react-navigation/bottom-tabs @react-navigation/elements
+npx expo install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated
 npm install expo-linear-gradient @react-native-async-storage/async-storage
+npx expo install @react-native-masked-view/masked-view
+npm install nativewind tailwindcss
+npm install react react-dom react-native react-native-web
+
 ```
 
 ### 2. Copy Files to Your Project
@@ -57,27 +91,27 @@ npx expo start
 ```
 
 Navigate: Home → Onboarding → (Dashboard - you'll create this)
-
-## 📁 Where Files Go in Your Project
+Project Structure
 
 ```
-your-project/
-├── app/
-│   ├── _layout.tsx              ← REPLACE
-│   ├── index.tsx                ← REPLACE (or rename old one)
-│   ├── onboarding.tsx           ← NEW
-│   ├── dashboard.tsx            ← CREATE THIS
-│   ├── challenges.tsx           ← CREATE THIS
-│   ├── progress.tsx             ← CREATE THIS
-│   ├── challenge/
-│   │   └── [id].tsx             ← CREATE THIS
-│   ├── context/
-│   │   └── ProgressContext.tsx  ← NEW
-│   └── data/
-│       ├── challenges.ts        ← NEW
-│       └── tips.ts              ← NEW
-└── constants/
-    └── theme.ts                 ← MERGE or REPLACE
+cerebra-path/
+├── app/                    # Expo Router screens & layouts
+├── assets/                 # Images, fonts, icons
+├── components/             # Reusable UI components
+├── context/                # React Context providers (e.g. UserContext)
+├── database/               # Supabase / local database helpers
+├── hooks/                  # Custom React hooks
+├── scripts/                # Utility & reset scripts
+├── styles/
+│   └── jaska.css            # Global styles
+├── app.json                # Expo configuration
+├── babel.config.js
+├── metro.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── package.json
+└── README.md
+
 ```
 
 ## 🔨 What You Need to Create
@@ -88,27 +122,13 @@ The screens using the React Navigation versions as reference:
    - `useNavigation()` → `useRouter()`
    - `navigation.navigate()` → `router.push()`
 
-2. **challenges.tsx** - Copy from `src/screens/ChallengesScreen.tsx`
+2. **AuthScreen.tsx** - Copy from `src/AuthScreen.tsx`
 
 3. **progress.tsx** - Copy from `src/screens/ProgressScreen.tsx`
 
-4. **challenge/[id].tsx** - Copy from `src/screens/ChallengeDetailScreen.tsx`, update:
-   - `route.params` → `useLocalSearchParams()`
+4. **Settings.tsx** - Copy from `src/MenuWindowSettings/Settings.tsx`, update:
+   - `route.params`
    - Dynamic route handling
-
-## 💡 Navigation Examples
-
-```typescript
-import { useRouter } from "expo-router";
-
-const router = useRouter();
-
-// Navigate between screens
-router.push("/dashboard");
-router.push("/challenges");
-router.push(`/challenge/${challengeId}`);
-router.back();
-```
 
 ## 🤝 Need Help?
 

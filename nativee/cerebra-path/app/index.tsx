@@ -82,7 +82,7 @@ export default function HomeScreen() {
     
 
    <LinearGradient
-      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
+      colors={["#101010", "#050505", "#050505", "#000", "#000"]}
        start={{ x: 0, y: 1 }}
               end={{ x: 0, y: 0 }}
       style={styles.container}
@@ -166,7 +166,7 @@ export default function HomeScreen() {
 
 
             <LinearGradient
-              colors={['#000', '#000']} //C.h.bluemint, C.h.mint
+              colors={['rgba(0, 28, 16, 0.3)', 'rgba(0, 28, 16, 0.3)']} //C.h.bluemint, C.h.mint
                                start={{ x: 0, y: 0 }}
                                end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
@@ -268,15 +268,16 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.xl,
     letterSpacing: -1,
 marginTop: -22,
-    textShadowColor: 'rgba(2, 2, 2, 0.7)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowColor: 'rgb(110, 220, 6)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2,
+    
   },
 
   subtitle1: {
     fontSize: 18,
     fontWeight: 100,
-    color: '#baff00',
+    color:  C.h.r,
     textAlign: 'center',
     marginBottom: SPACING.md,
     lineHeight: 24,
@@ -304,28 +305,18 @@ marginTop: -22,
     overflow: 'hidden',
     shadowColor: C.h.bluemint,
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.2,
     shadowRadius: BORDER_RADIUS.xl,
-    elevation: 10,
+    elevation: 5,
     filter: 'opacity(0.9)',
 
-borderBottomRightRadius: SPACING.lg,
+borderRadius: SPACING.md,
 
 
-    borderBottomWidth: 3,
-    borderBottomColor: '#00ffd1',
-
-    
-    borderRightWidth: 3,
-    borderRightColor: "#baff00",
-
-
-    borderTopWidth: 3,
-    borderTopColor: '#00ffd1',
+    borderWidth: 2,
+    borderColor: C.h.bluemint,
 
     
-    borderLeftWidth: 3,
-    borderLeftColor: "#baff00",
   },
   buttonPressed: {
     transform: [{ scale: 0.98 }],
@@ -353,7 +344,7 @@ borderBottomRightRadius: SPACING.lg,
   },
   linkText: {
     fontSize: 14,
-    color: '#baff00',
+    color:  C.h.r,
     textAlign: 'center',
   },
   decorTop: {

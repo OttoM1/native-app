@@ -12,7 +12,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES, getChallengesByInterests } from '../data/challenges';
-import { getRandomTip } from '../data/tips';
 import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 import { MenuButton, MenuOverlay } from './MenuOverlay';
@@ -26,7 +25,7 @@ export default function DashboardScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
 
-  const motivationalTip = getRandomTip();
+  // const motivationalTip = getRandomTip();
   const recommendedChallenges = getChallengesByInterests(progress.selectedInterests).slice(0, 3);
 
 
@@ -52,7 +51,7 @@ export default function DashboardScreen() {
 
   return (
     <LinearGradient
-      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
+      colors={["#101010", "#050505", "#050505", "#000", "#000"]}
                  start={{ x: 0, y: 1 }}
                         end={{ x: 0, y: 0 }}
                 style={styles.container}
@@ -113,7 +112,7 @@ export default function DashboardScreen() {
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
-                <Text style={styles.statLabel}>Skill lvl</Text>
+                <Text style={styles.statLabel}>Metrics</Text>
               </LinearGradient>
             </View>
 
@@ -123,7 +122,7 @@ export default function DashboardScreen() {
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.completedChallenges.length}</Text>
-                <Text style={styles.statLabel}>Completed</Text>
+                <Text style={styles.statLabel}>Metrics</Text>
               </LinearGradient>
             </View>
 
@@ -133,7 +132,7 @@ export default function DashboardScreen() {
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.streak}</Text>
-                <Text style={styles.statLabel}>Day Streak </Text>
+                <Text style={styles.statLabel}>Metrics</Text>
               </LinearGradient>
             </View>
           </Animated.View>
@@ -189,7 +188,7 @@ export default function DashboardScreen() {
               },
             ]}
           >
-            <Text style={styles.sectionTitle}>Your choice of tool today</Text>
+            <Text style={styles.sectionTitle}>Choose your tool</Text>
             
                       <Pressable
                           onPress={() => router.push('./ChallengesScreen')}
@@ -200,7 +199,7 @@ export default function DashboardScreen() {
               ]}
             >
               <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>!</Text>
+                <Text style={styles.actionEmoji}>👨‍🏫</Text>
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>Go Birdie Caddie</Text>
@@ -221,7 +220,7 @@ export default function DashboardScreen() {
               ]}
             >
               <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>!</Text>
+                <Text style={styles.actionEmoji}>🏌️‍♂️</Text>
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>Practice Drills</Text>
@@ -318,7 +317,7 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 16,
-    color: C.h.graphite,
+    color: '#333',
     marginBottom: SPACING.xl,
     paddingLeft: SPACING.sm,
   },
@@ -336,6 +335,9 @@ const styles = StyleSheet.create({
         fontFamily: 'System',
       letterSpacing: -1,
     color: C.h.bluemint,
+    textShadowColor: 'rgb(110, 220, 6)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -405,7 +407,8 @@ display: 'none',
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: C.h.graphite,
+    color: C.h.bluemint,
+    marginLeft: SPACING.md,
     marginBottom: SPACING.md,
     marginTop: SPACING.xl,
   },
@@ -445,7 +448,7 @@ display: 'none',
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: C.h.r,
 
 
     shadowColor: 'black',
@@ -458,14 +461,14 @@ display: 'none',
     width: 48,
     height: 48,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: '#444',
+    backgroundColor: '#222',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
   },
   actionEmoji: {
     fontSize: 24,
-    color: '#baff00',
+    color: C.h.r,
   },
   actionContent: {
     flex: 1,
@@ -473,7 +476,8 @@ display: 'none',
   actionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: C.h.baby,
+        color: C.h.graphite,
+
     marginBottom: SPACING.xs,
   },
   actionSubtitle: {
@@ -482,7 +486,7 @@ display: 'none',
   },
   actionArrow: {
     fontSize: 20,
-    color: '#baff00',
+    color:  C.h.r,
   },
   challengeCard: {
     flexDirection: 'row',

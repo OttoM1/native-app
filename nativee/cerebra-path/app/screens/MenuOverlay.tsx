@@ -55,14 +55,14 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
     {
       id: 'home',
       title: 'Home',
-      icon: 'x',
+      icon: '⛳',
       route: '/dashboard',
       description: 'Your learning dashboard',
     },
     {
       id: 'challenges',
-      title: 'Challenges',
-      icon: 'x',
+      title: 'Drills',
+      icon: '🏌️‍♂️',
       route: '/challenges',
       description: 'Browse all challenges',
     },
@@ -70,7 +70,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
     {
       id: 'settings',
       title: 'Settings',
-      icon: 'x',
+      icon: '⚙️',
       route: '/settings',
       description: 'App preferences',
     },
@@ -138,7 +138,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
                     colors={['#101010', C.h.bluemint]}
                     style={styles.miniLogo}
                   >
-                    <Text style={styles.miniLogoText}>69</Text>
+                    <Text style={styles.miniLogoText}>👤</Text>
                   </LinearGradient>
                   <View>
                     <Text style={styles.appName}>{name}</Text>
@@ -220,7 +220,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
                 ]}
               >
                 <View style={styles.menuItemIcon}>
-                  <Text style={styles.menuItemEmoji}>69</Text>
+                  <Text style={styles.menuItemEmoji}>🚪</Text>
                 </View>
                 <View style={styles.menuItemContent}>
                   <Text style={[styles.menuItemTitle, styles.logoutText]}>
@@ -234,8 +234,8 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
             </View>
 
             <View style={styles.appInfo}>
-              <Text style={styles.appInfoText}>Cerebra Path v1.0.0</Text>
-              <Text style={styles.appInfoText}>© 2026 Cerebra Path</Text>
+              <Text style={styles.appInfoText}>Go Birdie v1.0.0</Text>
+              <Text style={styles.appInfoText}>© 2026 Go Birdie</Text>
             </View>
           </ScrollView>
         </LinearGradient>
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.lg,
     paddingBottom: SPACING.xl,
     borderBottomWidth: 1,
-    borderBottomColor: '#baff00',
+    borderBottomColor:  C.h.r,
   },
   headerTop: {
     flexDirection: 'row',
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 12,
     fontWeight: '700',
-    color: C.h.baby,
+    color: C.h.r,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginBottom: SPACING.md,
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0, 20, 5, 0.15)',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.md,
@@ -373,14 +373,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: '#444',
+    backgroundColor: '#222',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
   },
   menuItemEmoji: {
     fontSize: 20,
-    color: '#baff00',
+    color:  C.h.r,
   },
   menuItemContent: {
     flex: 1,
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
   },
   menuItemArrow: {
     fontSize: 18,
-    color: '#baff00',
+    color:  C.h.r,
   },
   logoutItem: {
     borderColor: C.h.error + '60',
