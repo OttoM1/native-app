@@ -202,7 +202,14 @@ export default function DashboardScreen() {
                 <Text style={styles.actionEmoji}>👨‍🏫</Text>
               </View>
               <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}>Go Birdie Caddie</Text>
+                <Text style={styles.actionTitle}>
+
+                   <Text style={{color: C.h.r, filter: 'brightness(1)'}}>Go</Text>
+                                  
+                                  <Text style={{ color: C.h.bluemint, filter: 'brightness(1.4)' }}>Birdie </Text>
+                                             
+                  
+                  Caddie</Text>
                 <Text style={styles.actionSubtitle}>
 
                   
@@ -334,10 +341,9 @@ const styles = StyleSheet.create({
       fontWeight: '500',
         fontFamily: 'System',
       letterSpacing: -1,
-    color: C.h.bluemint,
-    textShadowColor: 'rgb(110, 220, 6)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+      color: C.h.bluemint,
+        filter: 'brightness(1.4)',
+
   },
   statsContainer: {
     flexDirection: 'row',
@@ -411,6 +417,8 @@ display: 'none',
     marginLeft: SPACING.md,
     marginBottom: SPACING.md,
     marginTop: SPACING.xl,
+
+    filter: 'brightness(1.4)',
   },
   skillRow: {
     flexDirection: 'row',

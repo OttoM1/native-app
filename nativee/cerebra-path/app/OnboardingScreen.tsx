@@ -413,19 +413,16 @@ const styles = StyleSheet.create({
   introHello: {
     fontSize: 48,
     fontWeight: '700',
-    color: '#444',
+    color: 'rgb(220, 220, 220)',
     textAlign: 'center',
     marginBottom: SPACING.xxl,
     fontFamily: 'System',
     letterSpacing: -1,
-    textShadowColor: C.h.shadow,
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 8,
         marginLeft: SPACING.sm,
 
   },
   introSubtext: {
-    fontSize: 16,
+    fontSize: 19,
     color: C.h.r,
     textAlign: 'center',
     opacity: 0.7,
@@ -489,9 +486,9 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
     fontFamily: 'System',
     letterSpacing: -1,
-    textShadowColor: 'rgb(110, 220, 6)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+
+        filter: 'brightness(1.4)',
+
   },
   subtitle: {
     fontSize: 15,

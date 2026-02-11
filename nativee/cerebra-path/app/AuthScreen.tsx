@@ -21,6 +21,7 @@ export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState('');
   const { email, setEmail, name, setName, password, setPassword } = useUser();
+const scrollViewRef = useRef(null);
 
   // anim
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -94,14 +95,30 @@ export default function AuthScreen() {
     }
   };
 
-  const toggleMode = () => {
-    animateToggle();
+
+const toggleMode = () => {
+  Animated.sequence([
+    Animated.timing(inputFadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }),
+  ]).start(() => {
+    // Update state after fade-out completes, before fade-in
     setIsLogin(!isLogin);
     setEmail('');
     setPassword('');
     setConfirmPassword('');
     setName('');
-  };
+    
+    // Then fade back in with new content
+    Animated.timing(inputFadeAnim, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  });
+};
 
 
 
@@ -121,9 +138,14 @@ export default function AuthScreen() {
           style={styles.keyboardView}
         >
           <ScrollView
-            contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
-            keyboardShouldPersistTaps="handled"
+            
+
+            ref={scrollViewRef}
+  contentContainerStyle={styles.scrollContent}
+  showsVerticalScrollIndicator={false}
+  keyboardShouldPersistTaps="handled"
+  scrollEnabled={true}
+  bounces={false}
           >
 
             <View style={styles.topSpacer} />
@@ -140,7 +162,15 @@ export default function AuthScreen() {
               ]}
             >
               <Text style={styles.title}>
-                {isLogin ? 'Welcome Back' : 'Join Go Birdie'}
+                {isLogin ? 'Welcome Back' : (
+    <>
+      Join 
+       <Text style={{color: C.h.r, filter: 'brightness(.6)'}}> Go</Text>
+                      
+                      <Text style={{ color: C.h.bluemint,  }}>Birdie</Text>
+                                 
+    </>
+  )}
               </Text>
               <Text style={styles.subtitle}>
                 {isLogin ? 'Sign in' : 'Let the birdies sing'}
@@ -252,6 +282,7 @@ export default function AuthScreen() {
                   styles.socialButton,
                   pressed && { opacity: 0.8 },
                 ]}
+                onPress={() => router.push('https://www.golfgamebook.com/?r=0')}
               >
                 <Text style={styles.socialButtonText}>Continue with GAMEBOOK</Text>
               </Pressable>
@@ -309,9 +340,10 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
     fontFamily: 'System',
     letterSpacing: -1,
-    textShadowColor: 'rgb(110, 220, 6)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+
+        filter: 'brightness(1.4)',
+
+      
   },
   subtitle: {
     fontSize: 15,

@@ -151,10 +151,9 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontFamily: 'System',
         letterSpacing: -1,
-        color: C.h.bluemint,
-    textShadowColor: 'rgb(110, 220, 6)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+      color: C.h.bluemint,
+            filter: 'brightness(1.4)',
+
   },
     
   backButton: {

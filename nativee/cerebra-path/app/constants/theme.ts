@@ -9,7 +9,7 @@ export const C = {
             link: '#71d8fa',
     error: '#ff0d3a',
   
-    r: 'rgba(175, 237, 2, 0.9)',
+    r: 'rgba(175, 237, 2, 0.9)', //F5FF03E6
 
     shadow: 'rgba(68, 219, 139, 0.2)',
 

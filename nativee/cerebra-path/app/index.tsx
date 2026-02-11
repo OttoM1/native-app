@@ -118,12 +118,12 @@ export default function HomeScreen() {
 
 
 
-
           <Text style={styles.title}
-          > Go Birdie <Text style={{ color: '#444', fontWeight: 100, fontSize: 28, paddingBottom: SPACING.xxl, marginBottom: SPACING.xxl}}></Text></Text>
+          >
+           <Text style={{color: C.h.r, filter: 'brightness(.6)'}}> Go</Text>
+            Birdie <Text style={{ color: '#444', fontWeight: 100, fontSize: 28, paddingBottom: SPACING.xxl, marginBottom: SPACING.xxl }}></Text></Text>
 
 
-          
 
 
 <Pressable onPress={() => router.push('https://ottomulari.tech')} >
@@ -267,10 +267,10 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     marginBottom: SPACING.xl,
     letterSpacing: -1,
-marginTop: -22,
-    textShadowColor: 'rgb(110, 220, 6)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+    marginTop: -22,
+
+    filter: 'brightness(1.4)',
+
     
   },
 
@@ -305,7 +305,7 @@ marginTop: -22,
     overflow: 'hidden',
     shadowColor: C.h.bluemint,
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.35,
     shadowRadius: BORDER_RADIUS.xl,
     elevation: 5,
     filter: 'opacity(0.9)',

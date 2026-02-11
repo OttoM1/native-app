@@ -234,8 +234,16 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
             </View>
 
             <View style={styles.appInfo}>
-              <Text style={styles.appInfoText}>Go Birdie v1.0.0</Text>
-              <Text style={styles.appInfoText}>© 2026 Go Birdie</Text>
+              <Text style={styles.appInfoText}>
+                           <Text style={{color: C.h.r, filter: 'brightness(1)'}}>Go</Text>
+                
+                <Text style={{ color: C.h.bluemint, filter: 'brightness(1.4)' }}>Birdie </Text>
+                 v1.0.0</Text>
+              <Text style={styles.appInfoText}>© 2026
+ <Text style={{color: C.h.r, filter: 'brightness(1)'}}> Go</Text>
+                
+                <Text style={{ color: C.h.bluemint, filter: 'brightness(1.4)' }}>Birdie</Text>
+                             </Text>
             </View>
           </ScrollView>
         </LinearGradient>
