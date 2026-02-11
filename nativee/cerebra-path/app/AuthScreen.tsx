@@ -18,17 +18,14 @@ import { useUser } from './context/UserContext';
 
 export default function AuthScreen() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState('');
+  const { email, setEmail, name, setName, password, setPassword } = useUser();
 
-
-const { email, setEmail, name, setName, password, setPassword } = useUser();
-
-  //
+  // Animations
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(30)).current;
-  const logoScale = useRef(new Animated.Value(0.8)).current;
-
+  const slideAnim = useRef(new Animated.Value(50)).current;
+  const inputFadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.parallel([
@@ -39,96 +36,61 @@ const { email, setEmail, name, setName, password, setPassword } = useUser();
       }),
       Animated.spring(slideAnim, {
         toValue: 0,
-        tension: 50,
+        tension: 40,
         friction: 8,
         useNativeDriver: true,
       }),
-      Animated.spring(logoScale, {
+    ]).start();
+
+
+    Animated.stagger(100, [
+      Animated.timing(inputFadeAnim, {
         toValue: 1,
-        tension: 40,
-        friction: 7,
+        duration: 500,
         useNativeDriver: true,
       }),
     ]).start();
   }, []);
 
 
+  const animateToggle = () => {
+    Animated.sequence([
+      Animated.timing(inputFadeAnim, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(inputFadeAnim, {
+        toValue: 1,
+        duration: 400,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
 
   const handleAuth = () => {
-   /* if (isLogin) {
-
-      
-
-      console.log('Login:', { email, password });
-
-
-      if (email !== 'dev69' && password !== 'dev69') {
- alert('Only the Dev has access!');
-            // router.push('/AuthScreen');
-        return;
-
-      }
-
-      else if (password !== 'dev69') {
-      
- alert('Only the Dev has access!');
-            // router.push('/AuthScreen');
-        return;
-
-      }
-            router.replace('/onboarding');
-
-    } 
-    
-    */
-            
-      
-if (!isLogin) {
-
+    if (!isLogin) {
       if (password !== confirmPassword) {
         alert('Passwords do not match');
         return;
       }
-  if (password.length <= 3) {
+      if (password.length <= 3) {
         alert('Password is too short. Need to be more than 3 characters');
         return;
       }
-  if (password !== confirmPassword && password.length <= 3) {
-        alert('Passwords did not match and were too short');
-        return;
-      }
-  
-  
       console.log('Signup:', { name, email, password });
-
       router.replace('/OnboardingScreen');
-    
-}
-    
-else if (password !== '69' && email !== 'dev' ) {
-  
- alert('You are not that guy');
-        return;
+    } else if (password !== '69' && email !== 'dev') {
+      alert('You are not that guy');
+      return;
+    } else {
+      router.push('/OnboardingScreen');
     }
-
-else {
-        router.push('/OnboardingScreen');
-
-    }
-
   };
-  
-  
-  
-  
-  
-  
-
 
   const toggleMode = () => {
+    animateToggle();
     setIsLogin(!isLogin);
-
-
     setEmail('');
     setPassword('');
     setConfirmPassword('');
@@ -137,15 +99,13 @@ else {
 
   return (
     <LinearGradient
-  colors={["#101010", "#101010", "#101010", "#000", "#000"]}
-       start={{ x: 0, y: 1 }}
+      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
+      start={{ x: 0, y: 1 }}
       end={{ x: 0, y: 0 }}
       style={styles.container}
     >
-
-
- <View style={styles.particlesContainer}>
-        {[...Array(28)].map((_, i) => (
+      <View style={styles.particlesContainer}>
+        {[...Array(16)].map((_, i) => (
           <View
             key={i}
             style={[
@@ -153,16 +113,12 @@ else {
               {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.5,
+                opacity: Math.random() * 0.7,
               },
             ]}
           />
         ))}
       </View>
-
-
-
-
 
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
@@ -175,48 +131,9 @@ else {
             keyboardShouldPersistTaps="handled"
           >
 
-                {/* 
-            <Animated.View
-              style={[
-                styles.backButtonContainer,
-                { opacity: fadeAnim },
-              ]}
-            >
+            <View style={styles.topSpacer} />
 
 
-          
-              <Pressable
-                onPress={() => router.push('./AuthScreen')}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed && { opacity: 0.6 },
-                ]}
-              >
-                <Text style={styles.backText}>← Back</Text>
-              </Pressable>
-
-              
-            </Animated.View>
-
-            */}
-
-            {/* Logo vittuun */}
-            <Animated.View
-              style={[
-                styles.logoContainer,
-                {
-                  opacity: fadeAnim, 
-                  transform: [{ scale: logoScale }],
-                },
-              ]}
-            >
-              <LinearGradient
-                colors={['#101010', '#101010']}
-                style={styles.logoCircle}
-              >
-                <Text style={styles.logoText}>CP</Text>
-              </LinearGradient>
-            </Animated.View>
 
             <Animated.View
               style={[
@@ -228,75 +145,51 @@ else {
               ]}
             >
               <Text style={styles.title}>
-                {isLogin ? 'Welcome Back' : 'Create Account'}
+                {isLogin ? 'Welcome Back' : 'Join Go Birdie'}
               </Text>
               <Text style={styles.subtitle}>
-                {isLogin
-                  ? 'Sign in to continue'
-                  : 'Start your journey'}
+                {isLogin ? 'Sign in' : 'Let the birdies sing'}
               </Text>
             </Animated.View>
-
-
 
             <Animated.View
               style={[
                 styles.formContainer,
-                {
-                  opacity: fadeAnim,
-                  transform: [{ translateY: slideAnim }],
-                },
+                { opacity: inputFadeAnim },
               ]}
             >
-
-
-
-
               {!isLogin && (
-               
-           <View style={styles.inputContainer}>
-
-                   <Text style={styles.label}>Email</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter your email"
-                  placeholderTextColor={C.h.graphite}
-                  value={email}
-                  onChangeText={setEmail} 
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                />
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email address"
+                    placeholderTextColor={C.h.graphite}
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoComplete="email"
+                  />
                 </View>
               )}
 
 
-
-
-
-
-
-               <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Username</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter your username"
-                    placeholderTextColor={C.h.graphite}
-                    value={name}
-                    onChangeText={setName}
-                    autoCapitalize="words"
-                  />
+              <View style={styles.inputGroup}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Username"
+                  placeholderTextColor={C.h.graphite}
+                  value={name}
+                  onChangeText={setName}
+                  autoCapitalize="words"
+                />
               </View>
 
 
-
-
-
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>Password</Text>
+              <View style={styles.inputGroup}>
                 <TextInput
                   style={styles.input}
-                  placeholder="Enter your password"
+                  placeholder="Password"
                   placeholderTextColor={C.h.graphite}
                   value={password}
                   onChangeText={setPassword}
@@ -306,11 +199,10 @@ else {
               </View>
 
               {!isLogin && (
-                <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Confirm Password</Text>
+                <View style={styles.inputGroup}>
                   <TextInput
                     style={styles.input}
-                    placeholder="Re-enter your password"
+                    placeholder="Confirm password"
                     placeholderTextColor={C.h.graphite}
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
@@ -320,9 +212,6 @@ else {
                 </View>
               )}
 
-
-
-
               {isLogin && (
                 <Pressable
                   style={({ pressed }) => [
@@ -330,11 +219,12 @@ else {
                     pressed && { opacity: 0.6 },
                   ]}
                 >
-                  <Text style={styles.forgotPasswordText}>
-                    Forgot Password?
-                  </Text>
+                  <Text style={styles.forgotPasswordText}>Forgot password?</Text>
                 </Pressable>
               )}
+
+
+
 
               <Pressable
                 onPress={handleAuth}
@@ -344,7 +234,7 @@ else {
                 ]}
               >
                 <LinearGradient
-                  colors={[C.h.bluemint, C.h.mint]}
+                  colors={['#000', '#000']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.submitGradient}
@@ -355,54 +245,37 @@ else {
                 </LinearGradient>
               </Pressable>
 
+
               <View style={styles.divider}>
                 <View style={styles.dividerLine} />
                 <Text style={styles.dividerText}>or</Text>
                 <View style={styles.dividerLine} />
               </View>
 
-            
-
               <Pressable
                 style={({ pressed }) => [
-                
                   styles.socialButton,
                   pressed && { opacity: 0.8 },
-                ]} 
+                ]}
               >
                 <Text style={styles.socialButtonText}>Continue with GAMEBOOK</Text>
               </Pressable>
+            </Animated.View>
 
-              <View style={styles.toggleContainer}>
-                <Text style={styles.toggleText}>
-                  {isLogin
-                    ? "Don't have an account? "
-                    : 'Already have an account? '}
-                </Text>
-                <Pressable
-                  onPress={toggleMode}
-                  style={({ pressed }) => pressed && { opacity: 0.6 }}
-                >
-                  <Text style={styles.toggleLink}>
-                    {isLogin ? 'Sign Up' : 'Sign In'}
-                  </Text>
-                </Pressable>
-              </View>
+            <View style={styles.bottomSpacer} />
 
-              {/* 
+            <Animated.View style={[styles.toggleContainer, { opacity: fadeAnim }]}>
+              <Text style={styles.toggleText}>
+                {isLogin ? "Don't have an account? " : 'Already have an account? '}
+              </Text>
               <Pressable
-                onPress={() => router.replace('/onboarding')}
-                style={({ pressed }) => [
-                  styles.guestButton,
-                  pressed && { opacity: 0.6 },
-                ]}
+                onPress={toggleMode}
+                style={({ pressed }) => pressed && { opacity: 0.6 }}
               >
-                <Text style={styles.guestButtonText}>
-                  Continue as Guest
+                <Text style={styles.toggleLink}>
+                  {isLogin ? 'Sign Up' : 'Sign In'}
                 </Text>
               </Pressable>
- */}
-
             </Animated.View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -415,190 +288,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  safeArea: {
-    flex: 1,
-  },
-  keyboardView: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    padding: SPACING.lg,
-    paddingTop: SPACING.xl,
-  },
-  backButtonContainer: {
-    marginBottom: SPACING.lg,
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-  },
-  backText: {
-    fontSize: 16,
-    color: C.h.graphite,
-    fontWeight: '600',
-  },
-  logoContainer: {
-    display: 'none',
-    alignItems: 'center',
-    marginBottom: SPACING.xl,
-  },
-  logoCircle: {
-    display: 'none',
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: C.h.mint,
-  },
-  logoText: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: C.h.baby,
-    letterSpacing: 1,
-  },
-  header: {
-    marginBottom: SPACING.xl,
-  },
-  title: {
-    fontSize: 48,
-    fontWeight: '500',
-    color: C.h.bluemint,
-    textAlign: 'center',
-    marginBottom: SPACING.xl,
-    fontFamily: 'System',
-    letterSpacing: -1,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: C.h.graphite,
-    textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: SPACING.xl,
-  },
-  formContainer: {
-    flex: 1,
-
-  },
-  inputContainer: {
-    marginBottom: SPACING.lg,
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: C.h.graphite,
-    marginBottom: SPACING.sm,
-  },
-  input: {
-    backgroundColor: '#10101040',
-    borderRadius: BORDER_RADIUS.md,
-    padding: SPACING.md,
-    fontSize: 16,
-    color: C.h.graphite,
-    borderWidth: 1,
-    borderColor: C.h.baby,
-  },
-  forgotPassword: {
-    alignSelf: 'flex-end',
-    marginBottom: SPACING.xl,
-  },
-  forgotPasswordText: {
-    fontSize: 14,
-    color: C.h.link,
-    fontWeight: '600',
-  },
-  submitButton: {
-    borderRadius: BORDER_RADIUS.lg,
-    overflow: 'hidden',
-    marginTop: SPACING.xl,
-    marginBottom: SPACING.lg,
-
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  submitButtonPressed: {
-    transform: [{ scale: 0.98 }],
-  },
-  submitGradient: {
-    paddingVertical: SPACING.md,
-    alignItems: 'center',
-  },
-  submitText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#111',
-  },
-  divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: SPACING.lg,
-
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: C.h.graphite,
-  },
-  dividerText: {
-    fontSize: 14,
-    color: C.h.baby,
-    marginHorizontal: SPACING.md,
-  },
-  socialButton: {
-    backgroundColor: C.h.baby,
-    borderRadius: BORDER_RADIUS.md,
-    padding: SPACING.md,
-    marginTop: SPACING.xl,
-    marginBottom: SPACING.md,
-    borderWidth: 1,
-    borderColor: C.h.baby,
-    alignItems: 'center',
-
-
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-    elevation: 4,
-
-  },
-  socialButtonText: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#111',
-  },
-  toggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: SPACING.xxl,
-    marginBottom: SPACING.lg,
-  },
-  toggleText: {
-    fontSize: 14,
-    color: C.h.graphite,
-  },
-  toggleLink: {
-    fontSize: 14,
-    color: C.h.link,
-    fontWeight: '700',
-  },
-  guestButton: {
-    paddingVertical: SPACING.md,
-    alignItems: 'center',
-  },
-  guestButtonText: {
-    fontSize: 14,
-    color: C.h.baby,
-    fontWeight: '600',
-  },
-
-
-
   particlesContainer: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 0,
@@ -609,5 +298,166 @@ const styles = StyleSheet.create({
     height: 2,
     borderRadius: 1,
     backgroundColor: C.h.bluemint,
+  },
+  safeArea: {
+    flex: 1,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: SPACING.xl,
+    justifyContent: 'space-between',
+  },
+  topSpacer: {
+    height: 60,
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: SPACING.xxl * 1.5,
+  },
+  title: {
+    fontSize: 48,
+    fontWeight: '700',
+    color: C.h.bluemint,
+    textAlign: 'center',
+    marginBottom: SPACING.md,
+    fontFamily: 'System',
+    letterSpacing: -1,
+  },
+  subtitle: {
+    fontSize: 15,
+    color: C.h.graphite,
+    textAlign: 'center',
+    lineHeight: 22,
+    opacity: 0.8,
+  },
+  formContainer: {
+    width: '100%',
+  },
+  inputGroup: {
+    marginBottom: SPACING.lg,
+  },
+  input: {
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: BORDER_RADIUS.lg,
+    paddingVertical: SPACING.lg,
+    paddingHorizontal: SPACING.lg,
+    fontSize: 16,
+    color: C.h.graphite,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  forgotPassword: {
+    alignSelf: 'flex-end',
+    marginBottom: SPACING.lg,
+    marginTop: -SPACING.sm,
+  },
+  forgotPasswordText: {
+    fontSize: 13,
+    color: '#baff00',
+    fontWeight: '500',
+  },
+  submitButton: {
+    borderRadius: BORDER_RADIUS.lg,
+    overflow: 'hidden',
+    marginTop: SPACING.md,
+    marginBottom: SPACING.xl,
+
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: BORDER_RADIUS.xl,
+    elevation: 7,
+    filter: 'opacity(0.9)',
+
+
+    borderBottomWidth: 2,
+    borderBottomColor: '#00ffd1',
+
+    
+    borderRightWidth: 2,
+    borderRightColor: "#baff00",
+
+
+    borderTopWidth: 2,
+    borderTopColor: '#00ffd1',
+
+    
+    borderLeftWidth: 2,
+    borderLeftColor: "#baff00",
+
+
+  },
+  submitButtonPressed: {
+    transform: [{ scale: 0.98 }],
+  },
+  submitGradient: {
+    paddingVertical: SPACING.lg,
+    alignItems: 'center',
+  },
+  submitText: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: C.h.graphite,
+    letterSpacing: 0.5,
+  },
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: SPACING.lg,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  dividerText: {
+    fontSize: 13,
+    color: C.h.graphite,
+    marginHorizontal: SPACING.lg,
+    opacity: 0.5,
+  },
+  socialButton: {
+    backgroundColor: 'rgba(0, 28, 16, 0.2)',
+    borderRadius: BORDER_RADIUS.lg,
+    paddingVertical: SPACING.lg,
+    borderBottomWidth: 2,
+    borderColor: 'rgba(0, 125, 100, 0.9)',
+    alignItems: 'center',
+    filter: 'opacity(0.9)',
+        
+
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: BORDER_RADIUS.lg,
+    elevation: 6,
+
+  },
+  socialButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: C.h.graphite,
+  },
+  bottomSpacer: {
+    height: 40,
+  },
+  toggleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: SPACING.xl,
+  },
+  toggleText: {
+    fontSize: 14,
+    color: C.h.graphite,
+    opacity: 0.7,
+  },
+  toggleLink: {
+    fontSize: 14,
+    color: '#baff00',
+    fontWeight: '700',
   },
 });

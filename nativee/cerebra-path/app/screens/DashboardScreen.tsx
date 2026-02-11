@@ -52,7 +52,7 @@ export default function DashboardScreen() {
 
   return (
     <LinearGradient
-     colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
                  start={{ x: 0, y: 1 }}
                         end={{ x: 0, y: 0 }}
                 style={styles.container}
@@ -113,7 +113,7 @@ export default function DashboardScreen() {
                 style={styles.statGradient}
               >
                 <Text style={styles.statValue}>{progress.totalPoints}</Text>
-                <Text style={styles.statLabel}>Total Points</Text>
+                <Text style={styles.statLabel}>Skill lvl</Text>
               </LinearGradient>
             </View>
 
@@ -189,7 +189,7 @@ export default function DashboardScreen() {
               },
             ]}
           >
-            <Text style={styles.sectionTitle}>Quick Actions</Text>
+            <Text style={styles.sectionTitle}>Your choice of tool today</Text>
             
                       <Pressable
                           onPress={() => router.push('./ChallengesScreen')}
@@ -203,7 +203,7 @@ export default function DashboardScreen() {
                 <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}></Text>
+                <Text style={styles.actionTitle}>Go Birdie Caddie</Text>
                 <Text style={styles.actionSubtitle}>
 
                   
@@ -224,7 +224,7 @@ export default function DashboardScreen() {
                 <Text style={styles.actionEmoji}>!</Text>
               </View>
               <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}></Text>
+                <Text style={styles.actionTitle}>Practice Drills</Text>
                 <Text style={styles.actionSubtitle}>
                 </Text>
               </View>
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
       fontWeight: '500',
         fontFamily: 'System',
       letterSpacing: -1,
-    color: C.h.baby,
+    color: C.h.bluemint,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -364,12 +364,21 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   tipCard: {
-    backgroundColor: '#101010',
+    backgroundColor: 'transparent',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.xxl,
     borderWidth: 1,
-    borderColor: C.h.bluemint,
+    borderColor: 'black',
+
+display: 'none',
+
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 14,
+    elevation: 6,
+
   },
   tipHeader: {
     flexDirection: 'row',
@@ -398,6 +407,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: C.h.graphite,
     marginBottom: SPACING.md,
+    marginTop: SPACING.xl,
   },
   skillRow: {
     flexDirection: 'row',
@@ -430,24 +440,32 @@ const styles = StyleSheet.create({
   actionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#101010',
+    backgroundColor: 'transparent',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: C.h.mint,
+    borderColor: 'black',
+
+
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 16,
+    elevation: 8,
   },
   actionIcon: {
     width: 48,
     height: 48,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: C.h.bluemint,
+    backgroundColor: '#444',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
   },
   actionEmoji: {
     fontSize: 24,
+    color: '#baff00',
   },
   actionContent: {
     flex: 1,
@@ -464,7 +482,7 @@ const styles = StyleSheet.create({
   },
   actionArrow: {
     fontSize: 20,
-    color: C.h.baby,
+    color: '#baff00',
   },
   challengeCard: {
     flexDirection: 'row',
@@ -474,7 +492,7 @@ const styles = StyleSheet.create({
     padding: SPACING.md,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: C.h.mint,
+    borderColor: C.h.bluemint,
   },
   challengeIcon: {
     width: 50,
@@ -493,7 +511,7 @@ const styles = StyleSheet.create({
   challengeTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: C.h.baby,
+    color: C.h.bluemint,
     marginBottom: SPACING.sm,
   },
   challengeMeta: {

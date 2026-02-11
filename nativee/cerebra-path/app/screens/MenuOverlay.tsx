@@ -118,7 +118,9 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
         ]}
       >
         <LinearGradient
-          colors={['#101010', '#101010', '#101010']}
+          colors={['#111', '#111', '#111', '#000', '#000']}
+ start={{ x: 0, y: 1 }}
+          end={{ x: 0, y: 0 }}
           style={styles.menuGradient}
         >
           <ScrollView
@@ -292,7 +294,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.lg,
     paddingBottom: SPACING.xl,
     borderBottomWidth: 1,
-    borderBottomColor: C.h.mint,
+    borderBottomColor: '#baff00',
   },
   headerTop: {
     flexDirection: 'row',
@@ -310,8 +312,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
-    borderWidth: 2,
-    borderColor: C.h.bluemint,
   },
   miniLogoText: {
     fontSize: 20,
@@ -358,12 +358,12 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#101010',
+    backgroundColor: 'transparent',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.md,
     borderWidth: 1,
-    borderColor: C.h.mint,
+    borderColor: C.h.bluemint,
   },
   menuItemPressed: {
     backgroundColor: C.h.bluemint,
@@ -373,13 +373,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: C.h.baby,
+    backgroundColor: '#444',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: SPACING.md,
   },
   menuItemEmoji: {
     fontSize: 20,
+    color: '#baff00',
   },
   menuItemContent: {
     flex: 1,
@@ -396,7 +397,7 @@ const styles = StyleSheet.create({
   },
   menuItemArrow: {
     fontSize: 18,
-    color: C.h.graphite,
+    color: '#baff00',
   },
   logoutItem: {
     borderColor: C.h.error + '60',
@@ -436,7 +437,7 @@ const styles = StyleSheet.create({
   hamburgerLine: {
     width: '100%',
     height: 3,
-    backgroundColor: C.h.graphite,
+    backgroundColor: '#444',
     borderRadius: 1,
   },
 });

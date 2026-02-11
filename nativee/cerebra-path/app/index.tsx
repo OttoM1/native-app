@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Animated, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { C, SPACING, BORDER_RADIUS } from './constants/theme';
+import { opacity } from 'react-native-reanimated/lib/typescript/Colors';
 
 
 
@@ -81,7 +82,7 @@ export default function HomeScreen() {
     
 
    <LinearGradient
-      colors={["#101010", "#101010", "#101010", "#000", "#000"]}
+      colors={["#101010", "#101010", "#050505", "#000", "#000"]}
        start={{ x: 0, y: 1 }}
               end={{ x: 0, y: 0 }}
       style={styles.container}
@@ -119,7 +120,7 @@ export default function HomeScreen() {
 
 
           <Text style={styles.title}
-          > Go Birdie <Text style={{ color: '#444', fontWeight: 100, fontSize: 28, paddingBottom: SPACING.xxl, marginBottom: SPACING.xxl}}>©</Text></Text>
+          > Go Birdie <Text style={{ color: '#444', fontWeight: 100, fontSize: 28, paddingBottom: SPACING.xxl, marginBottom: SPACING.xxl}}></Text></Text>
 
 
           
@@ -127,8 +128,21 @@ export default function HomeScreen() {
 
 <Pressable onPress={() => router.push('https://ottomulari.tech')} >
         
+            <Text style={styles.subtitle1}>
+            Devs:  
+            </Text>
             <Text style={styles.subtitle}>
-            Dev @ottomulari.tech 
+            @ottomulari.tech 
+            </Text>
+            
+          </Pressable>
+
+
+<Pressable onPress={() => router.push('https://konttila.dev')} >
+        
+            <Text style={styles.subtitle3}>
+              @konttila.dev
+              <br></br>
             </Text>
             
           </Pressable>
@@ -149,8 +163,10 @@ export default function HomeScreen() {
               pressed && styles.buttonPressed,
             ]}
           >
+
+
             <LinearGradient
-              colors={[C.h.bluemint, C.h.mint]}
+              colors={['#000', '#000']} //C.h.bluemint, C.h.mint
                                start={{ x: 0, y: 0 }}
                                end={{ x: 1, y: 0 }}
               style={styles.buttonGradient}
@@ -158,6 +174,10 @@ export default function HomeScreen() {
               <Text style={styles.buttonText}>Continue</Text>
               <Text style={styles.buttonArrow}>→</Text>
             </LinearGradient>
+
+            
+
+
           </Pressable>
         </Animated.View>
 
@@ -240,32 +260,72 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   title: {
-    fontSize: 56,
+    fontSize: 69,
     fontWeight: '800',
     color: C.h.bluemint,
     textAlign: 'center',
     fontFamily: 'System',
     marginBottom: SPACING.xl,
-    letterSpacing: 0,
+    letterSpacing: -1,
+marginTop: -22,
+    textShadowColor: 'rgba(2, 2, 2, 0.7)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
+
+  subtitle1: {
+    fontSize: 18,
+    fontWeight: 100,
+    color: '#baff00',
+    textAlign: 'center',
+    marginBottom: SPACING.md,
+    lineHeight: 24,
   },
   subtitle: {
     fontSize: 18,
     fontWeight: 100,
-    color: C.h.graphite,
+    color: '#444',
+    textAlign: 'center',
+    marginBottom: SPACING.md,
+    lineHeight: 24,
+  },
+
+  subtitle3: {
+    fontSize: 18,
+    fontWeight: 100,
+    color: '#444',
     textAlign: 'center',
     marginBottom: SPACING.xxl,
     lineHeight: 24,
   },
   button: {
     marginBottom: SPACING.md,
-    borderRadius: BORDER_RADIUS.lg,
-    marginTop: SPACING.xxl,
+    marginTop: 68,
     overflow: 'hidden',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.63,
-    shadowRadius: 16,
-    elevation: 8,
+    shadowColor: C.h.bluemint,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: BORDER_RADIUS.xl,
+    elevation: 10,
+    filter: 'opacity(0.9)',
+
+borderBottomRightRadius: SPACING.lg,
+
+
+    borderBottomWidth: 3,
+    borderBottomColor: '#00ffd1',
+
+    
+    borderRightWidth: 3,
+    borderRightColor: "#baff00",
+
+
+    borderTopWidth: 3,
+    borderTopColor: '#00ffd1',
+
+    
+    borderLeftWidth: 3,
+    borderLeftColor: "#baff00",
   },
   buttonPressed: {
     transform: [{ scale: 0.98 }],
@@ -280,12 +340,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#111',
+    color: C.h.graphite,
     marginRight: SPACING.sm,
   },
   buttonArrow: {
     fontSize: 20,
-    color: '#444',
+    color: C.h.graphite,
     fontWeight: '700',
   },
   linkButton: {
@@ -293,7 +353,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: C.h.link,
+    color: '#baff00',
     textAlign: 'center',
   },
   decorTop: {
@@ -335,6 +395,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     zIndex: 2,
   },
+
+
 
 
 });
