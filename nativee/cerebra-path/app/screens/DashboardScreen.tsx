@@ -191,7 +191,7 @@ export default function DashboardScreen() {
             <Text style={styles.sectionTitle}>Choose your tool</Text>
             
                       <Pressable
-                          onPress={() => router.push('./ChallengesScreen')}
+                          onPress={() => router.push('../tools/CaddieSkeleton')}
 
               style={({ pressed }) => [
                 styles.actionCard,
