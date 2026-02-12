@@ -10,6 +10,8 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -284,7 +286,10 @@ const toggleMode = () => {
                 ]}
                 onPress={() => router.push('https://www.golfgamebook.com/?r=0')}
               >
-                <Text style={styles.socialButtonText}>Continue with GAMEBOOK</Text>
+                <Text style={styles.socialButtonText}>Continue with GAMEBOOK 
+                      <MaterialIcons name="golf-course" color="whitesmoke" size={18} />
+
+                </Text>
               </Pressable>
             </Animated.View>
 

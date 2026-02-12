@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import { useUser } from '../context/UserContext';
+import Feather from 'react-native-vector-icons/Feather';
 
-import {
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { 
   View,
   Text,
   StyleSheet,
@@ -55,7 +57,8 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
     {
       id: 'home',
       title: 'Home',
-      icon: '⛳',
+     renderIcon: (color: string) =>     <Feather name="settings" color="#666" size={24} />
+,
       route: '/dashboard',
       description: 'Your learning dashboard',
     },
@@ -138,7 +141,9 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
                     colors={['#101010', C.h.bluemint]}
                     style={styles.miniLogo}
                   >
-                    <Text style={styles.miniLogoText}>👤</Text>
+                    {/* <Text style={styles.miniLogoText}></Text> */}
+              <MaterialCommunityIcons name="account" color="#444" size={24} style={styles.miniLogoText} />
+
                   </LinearGradient>
                   <View>
                     <Text style={styles.appName}>{name}</Text>
@@ -176,6 +181,9 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
                   ]}
                 >
                   <View style={styles.menuItemIcon}>
+
+
+
                     <Text style={styles.menuItemEmoji}>{item.icon}</Text>
                   </View>
                   <View style={styles.menuItemContent}>
@@ -322,9 +330,9 @@ const styles = StyleSheet.create({
     marginRight: SPACING.md,
   },
   miniLogoText: {
-    fontSize: 20,
+    fontSize: 26,
     fontWeight: '800',
-    color: '#101010',
+    color: '#000',
   },
   appName: {
     fontSize: 18,

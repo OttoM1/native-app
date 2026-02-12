@@ -45,7 +45,7 @@ export default function OnboardingScreen() {
   const TEXT_SNIPPETS = [
     { main: `Hello ${name}`, sub: "Let's dial in your game." },
     { main: "Personalized", sub: "data-driven progress starts here." },
-    { main: "Tee Off !" },
+    { main: "🐦" },
   ];
   
   const TEXT_DURATION = 2600; 
