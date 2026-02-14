@@ -1,15 +1,15 @@
 export const C = {
   h: {
-       graphite: '#b8b8b8', //'#66696e'
+       graphite: '#b8b8b8' , //
 
-    bluemint: 'rgba(0, 125, 100, 0.9)', //29c4aa
+    bluemint: '#383434' , // 'rgba(0, 125, 100, 0.9)'
     
-  mint: '#4ed998',
+  mint: '#4ed998', //  
     baby: '#36f5f5',
             link: '#71d8fa',
     error: '#ff0d3a',
   
-    r: 'rgba(175, 237, 2, 0.9)', //F5FF03E6
+    r: '#6e0000' , // 'rgba(175, 237, 2, 0.9)'
 
     shadow: 'rgba(68, 219, 139, 0.2)',
 
@@ -34,6 +34,7 @@ export const SPACING = {
   neg: -4,
   xs: 4,
   sm: 8,
+  sd: 12,
   md: 16,
   lg: 24,
   xl: 32,

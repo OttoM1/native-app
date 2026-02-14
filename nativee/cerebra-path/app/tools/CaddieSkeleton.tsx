@@ -14,6 +14,12 @@ import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useUser } from '../context/UserContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { useRouter } from 'expo-router';
+import { canGoBack } from 'expo-router/build/global-state/routing';
+import DashboardScreen from '../screens/DashboardScreen';
+
+
+
 type ClubDistances = {
   [key: string]: number;
 };
@@ -107,42 +113,57 @@ const metersToYards = (m: number): number => m * 1.09361;
 const yardsToMeters = (y: number): number => y / 1.09361;
 const celsiusToFahrenheit = (c: number): number => Math.round(c * 9 / 5 + 32);
 
+
+const clubNameMap: { [key: string]: string } = {
+  'Driver': 'driver',
+  '3-Wood': '3-wood',
+  '5-Wood': '5-wood',
+  'Hybrid': 'hybrid',
+  '3-iron': '3-iron',
+  '4-iron': '4-iron',
+  '5-iron': '5-iron',
+  '6-iron': '6-iron',
+  '7-iron': '7-iron',
+  '8-iron': '8-iron',
+  '9-iron': '9-iron',
+  'P-Wedge': 'P-Wedge',
+  'S-Wedge': 'S-Wedge',
+  '60°-Wedge': '60-wedge',
+};
+
 const CaddieSkeleton: React.FC = () => {
-
-
-
   const [showIntro, setShowIntro] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [canDismiss, setCanDismiss] = useState(false);
   const textFadeAnim = useRef(new Animated.Value(0)).current;
   const introPulseAnim = useRef(new Animated.Value(1)).current;
   const contentFadeAnim = useRef(new Animated.Value(0)).current;
+  const router = useRouter();
 
   const TEXT_SNIPPETS = [
     { main: "GoBirdie Caddy", sub: "version 1.0" },
     { main: "Every Variable", sub: "wind, elevation, temperature & lie" },
-    { main: "But First", sub: "configure your club distances" },
+    { main: "Let's Begin", sub: "your personalized caddy experience" },
   ];
   
   const TEXT_DURATION = 2500;
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [isImperial, setIsImperial] = useState(false);
+  const [isImperial, setIsImperial] = useState(true); 
+  const { name, clubYardages } = useUser();
 
-  const [clubDistances, setClubDistances] = useState<ClubDistances>({
-    driver: 250,
-    '3-wood': 230,
-    '5-wood': 215,
-    '3-iron': 210,
-    '4-iron': 195,
-    '5-iron': 180,
-    '6-iron': 165,
-    '7-iron': 155,
-    '8-iron': 145,
-    '9-iron': 135,
-    'P-Wedge': 120,
-    'S-Wedge': 105,
-  });
+  const getInitialClubDistances = (): ClubDistances => {
+    const distances: ClubDistances = {};
+    
+    Object.entries(clubNameMap).forEach(([userContextName, caddyName]) => {
+      const yardage = clubYardages[userContextName];
+      distances[caddyName] = yardage ? parseInt(yardage, 10) : 0;
+    });
+    
+    return distances;
+  };
+
+  const [clubDistances, setClubDistances] = useState<ClubDistances>(getInitialClubDistances());
 
   const [distance, setDistance] = useState('');
   const [hill, setHill] = useState<HillType>('');
@@ -160,6 +181,7 @@ const CaddieSkeleton: React.FC = () => {
     'driver',
     '3-wood',
     '5-wood',
+    'hybrid',
     '3-iron',
     '4-iron',
     '5-iron',
@@ -169,11 +191,13 @@ const CaddieSkeleton: React.FC = () => {
     '9-iron',
     'P-Wedge',
     'S-Wedge',
+    '60-wedge',
   ];
 
-  const { name } = useUser();
 
-
+  useEffect(() => {
+    setClubDistances(getInitialClubDistances());
+  }, [clubYardages]);
 
   useEffect(() => {
     Animated.sequence([
@@ -244,14 +268,6 @@ const CaddieSkeleton: React.FC = () => {
     ]).start(() => {
       setShowIntro(false);
     });
-  };
-
-  const updateClubDistance = (club: string, value: string) => {
-    const numValue = parseFloat(value);
-    setClubDistances((prev) => ({
-      ...prev,
-      [club]: isNaN(numValue) ? 0 : numValue,
-    }));
   };
 
   const toggleUnits = () => {
@@ -385,7 +401,7 @@ const CaddieSkeleton: React.FC = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 5) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -424,8 +440,6 @@ const CaddieSkeleton: React.FC = () => {
     });
   };
 
-
-
   if (showIntro) {
     const currentSnippet = TEXT_SNIPPETS[currentTextIndex];
     
@@ -444,7 +458,6 @@ const CaddieSkeleton: React.FC = () => {
               styles.introContent,
               {
                 opacity: textFadeAnim,
-                transform: [{ scale: introPulseAnim }],
               },
             ]}
           >
@@ -459,60 +472,20 @@ const CaddieSkeleton: React.FC = () => {
                 { opacity: textFadeAnim }
               ]}
             >
-              <Text style={styles.tapIndicatorText}>tap anywhere to continue</Text>
+              <Animated.Text style={[styles.tapIndicatorText, {
+                transform: [{ scale: introPulseAnim }
+                ]
+              },
+              ]}>tap anywhere to continue</Animated.Text>
             </Animated.View>
           )}
-
-         
         </LinearGradient>
-      </Pressable>
+        
+       </Pressable>
     );
   }
 
-
-
-
-
-
   const renderStep0 = () => (
-    <ScrollView
-      style={styles.stepContainer}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.scrollContent}
-    >
-      <Text style={styles.title}>Set Your Club Distances</Text>
-      <Text style={styles.subtitle}>({isImperial ? 'yards' : 'meters'})</Text>
-
-      <TouchableOpacity style={styles.toggleButton} onPress={toggleUnits}>
-        <Text style={styles.toggleButtonText}>
-          {isImperial ? 'Imperial' : 'Metric'}
-        </Text>
-      </TouchableOpacity>
-
-      <View style={styles.card}>
-        {clubs.map((club) => (
-          <View key={club} style={styles.inputRow}>
-            <Text style={styles.label}>
-              {club.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
-            </Text>
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              value={clubDistances[club]?.toString() || ''}
-              onChangeText={(val) => updateClubDistance(club, val)}
-              placeholderTextColor="rgba(230, 249, 255, 0.3)"
-            />
-          </View>
-        ))}
-      </View>
-
-      <TouchableOpacity style={styles.button} onPress={nextStep}>
-        <Text style={styles.buttonText}>Continue →</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
-
-  const renderStep1 = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.title}>Distance Metrics</Text>
       <Text style={styles.subtitle}>Tell us about your shot</Text>
@@ -556,9 +529,6 @@ const CaddieSkeleton: React.FC = () => {
       </View>
 
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.buttonSecondary} onPress={prevStep}>
-          <Text style={styles.buttonText}>← Back</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={nextStep}>
           <Text style={styles.buttonText}>Next →</Text>
         </TouchableOpacity>
@@ -566,7 +536,7 @@ const CaddieSkeleton: React.FC = () => {
     </View>
   );
 
-  const renderStep2 = () => (
+  const renderStep1 = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.title}>Weather Variables</Text>
       <Text style={styles.subtitle}>Current conditions</Text>
@@ -621,7 +591,7 @@ const CaddieSkeleton: React.FC = () => {
     </View>
   );
 
-  const renderStep3 = () => (
+  const renderStep2 = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.title}>Shot Specifics</Text>
       <Text style={styles.subtitle}>Final details</Text>
@@ -665,7 +635,7 @@ const CaddieSkeleton: React.FC = () => {
     </View>
   );
 
-  const renderStep4 = () => (
+  const renderStep3 = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.title}>Ready to Calculate</Text>
       <Text style={styles.subtitle}>Get your recommendation</Text>
@@ -683,7 +653,7 @@ const CaddieSkeleton: React.FC = () => {
     </View>
   );
 
-  const renderStep5 = () => (
+  const renderStep4 = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.title}>Your Recommendation</Text>
       <Text style={styles.subtitle}>Calculated for precision</Text>
@@ -717,32 +687,26 @@ const CaddieSkeleton: React.FC = () => {
         start={{ x: 0, y: 1 }}
         end={{ x: 0, y: 0 }}
       >
-       
+
+        <Pressable
+       onPress={() => router.push('../screens/DashboardScreen')}
+        >
+        
+          <Text style={[styles.buttonText, { color: C.h.r, }]}>← Return Home</Text>
+
+        </Pressable>
 
         {currentStep === 0 && renderStep0()}
         {currentStep === 1 && renderStep1()}
         {currentStep === 2 && renderStep2()}
         {currentStep === 3 && renderStep3()}
         {currentStep === 4 && renderStep4()}
-        {currentStep === 5 && renderStep5()}
       </LinearGradient>
     </View>
   );
 };
 
-
-
-
-
-
-
-
-
-
-
 const styles = StyleSheet.create({
-
-
   introContainer: {
     flex: 1,
   },
@@ -753,29 +717,26 @@ const styles = StyleSheet.create({
   },
   introContent: {
     alignItems: 'center',
-    zIndex: 2,
   },
   introHello: {
-    fontSize: 54,
+    fontSize: 42,
     fontWeight: '700',
-    color: C.h.bluemint,
+    color: C.h.graphite,
     textAlign: 'center',
     marginBottom: SPACING.xl,
     fontFamily: 'System',
     letterSpacing: -1,
   },
   introSubtext: {
-    fontSize: 19,
-    color: C.h.graphite,
+    fontSize: 16,
+    color: C.h.r,
     textAlign: 'center',
     opacity: 0.7,
-    letterSpacing: 2,
-    textTransform: 'lowercase',
+    letterSpacing: 1,
   },
   tapIndicator: {
     position: 'absolute',
     bottom: 60,
-    alignSelf: 'center',
     paddingVertical: SPACING.md,
     paddingHorizontal: SPACING.xl,
   },
@@ -784,214 +745,172 @@ const styles = StyleSheet.create({
     color: C.h.graphite,
     opacity: 0.6,
     letterSpacing: 1,
-    textTransform: 'lowercase',
   },
-
-
-
-
-
-
-
-
-
-
-
-  // pää kontsa
   container: {
     flex: 1,
   },
   gradient: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: SPACING.xl,
   },
   stepContainer: {
-    flex: 1,
+    width: '100%',
+    maxWidth: 500,
     padding: SPACING.xl,
   },
   scrollContent: {
     paddingBottom: SPACING.xxl,
   },
   title: {
-    fontSize: 44,
+    fontSize: 36,
     fontWeight: '700',
     color: C.h.bluemint,
-    marginBottom: SPACING.sm,
     textAlign: 'center',
+    marginBottom: SPACING.md,
     fontFamily: 'System',
     letterSpacing: -1,
-
-    filter: 'brightness(1.4)',
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 15,
     color: C.h.graphite,
-    marginBottom: SPACING.xxl,
     textAlign: 'center',
+    marginBottom: SPACING.xxl,
     opacity: 0.7,
-    letterSpacing: 0.5,
-  },
-  toggleButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    padding: SPACING.lg,
-    borderRadius: BORDER_RADIUS.xl,
-    marginBottom: SPACING.xl,
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: C.h.r,
-  },
-  toggleButtonText: {
-    color: C.h.bluemint,
-    fontSize: 16,
-    fontWeight: '500',
-    letterSpacing: 0.5,
   },
   card: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: BORDER_RADIUS.xl,
     padding: SPACING.lg,
     marginBottom: SPACING.xl,
+    borderWidth: 1,
+    borderColor: 'rgba(113, 250, 204, 0.15)',
   },
   inputRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: SPACING.md,
-    paddingVertical: SPACING.sm,
   },
   label: {
+    fontSize: 16,
     color: C.h.graphite,
-    fontSize: 15,
-    flex: 1,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   input: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    color: C.h.graphite,
-    padding: SPACING.md,
     borderRadius: BORDER_RADIUS.md,
-    width: 80,
+    padding: SPACING.md,
+    color: C.h.bluemint,
+    fontSize: 16,
+    fontWeight: '700',
+    minWidth: 80,
     textAlign: 'center',
     borderWidth: 1,
-    borderColor: C.h.baby,
-    fontSize: 16,
-    fontWeight: '600',
+    borderColor: C.h.bluemint + '40',
   },
   inputField: {
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    color: C.h.graphite,
+    borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
-    borderRadius: BORDER_RADIUS.xl,
+    color: C.h.bluemint,
+    fontSize: 18,
+    fontWeight: '600',
     marginBottom: SPACING.lg,
-    fontSize: 16,
     borderWidth: 1,
-    borderColor: C.h.r,
-    fontWeight: '500',
+    borderColor: 'rgba(113, 250, 204, 0.2)',
   },
   pickerContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    borderRadius: BORDER_RADIUS.xl,
+    borderRadius: BORDER_RADIUS.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: C.h.r,
+    borderColor: 'rgba(113, 250, 204, 0.2)',
     overflow: 'hidden',
   },
   picker: {
-    color: C.h.graphite,
+    color: C.h.bluemint,
     backgroundColor: 'transparent',
   },
-  button: {
-    backgroundColor: 'rgba(0, 28, 16, 0.3)',
-    padding: SPACING.lg,
-    borderRadius: BORDER_RADIUS.xl,
+  toggleButton: {
+    backgroundColor: C.h.bluemint + '20',
+    borderRadius: BORDER_RADIUS.md,
+    padding: SPACING.md,
+    marginBottom: SPACING.xl,
     alignItems: 'center',
-    marginTop: SPACING.md,
+    borderWidth: 1,
+    borderColor: C.h.bluemint + '40',
+  },
+  toggleButtonText: {
+    color: C.h.bluemint,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: BORDER_RADIUS.lg,
+    padding: SPACING.lg,
+    alignItems: 'center',
+    marginBottom: SPACING.md,
     borderWidth: 2,
-
-    borderTopColor: C.h.bluemint,
-    borderBottomColor: C.h.bluemint,
-    borderLeftColor: C.h.r,
-    borderRightColor: C.h.r,
-     shadowColor: 'black',
-
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    borderColor: C.h.bluemint,
   },
   buttonSecondary: {
-    backgroundColor: 'rgba(40, 0, 10, 0.4)',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
-    borderRadius: BORDER_RADIUS.xl,
     alignItems: 'center',
-    marginTop: SPACING.md,
-    flex: 1,
-    marginRight: SPACING.md,
-    borderWidth: 2,
-    borderColor: C.h.error,
+    marginBottom: SPACING.md,
+    borderWidth: 1,
+    borderColor: 'rgba(113, 250, 204, 0.3)',
   },
   buttonLarge: {
-    backgroundColor: 'rgba(0, 28, 16, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.xl,
-    borderRadius: BORDER_RADIUS.xl,
     alignItems: 'center',
     marginBottom: SPACING.xl,
     borderWidth: 2,
-    borderTopColor: C.h.bluemint,
-    borderBottomColor: C.h.bluemint,
-    borderLeftColor: C.h.r,
-    borderRightColor: C.h.r,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 10,
+    borderColor: C.h.mint,
   },
   buttonText: {
-    color: C.h.graphite,
+    color: C.h.bluemint,
     fontSize: 17,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
   buttonRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: SPACING.lg,
+    gap: SPACING.md,
   },
   resultContainer: {
-    backgroundColor: 'rgba(113, 250, 204, 0.08)',
-    padding: SPACING.xxl * 1.5,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     borderRadius: BORDER_RADIUS.xl,
-    marginVertical: SPACING.xl,
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: C.h.mint,
-    shadowColor: C.h.mint,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+    padding: SPACING.xxl,
+    marginBottom: SPACING.xl,
+    borderWidth: 1,
+    borderColor: 'rgba(113, 250, 204, 0.3)',
   },
   resultLabel: {
-    color: C.h.graphite,
     fontSize: 14,
-    fontWeight: '500',
+    color: C.h.graphite,
+    textAlign: 'center',
     marginBottom: SPACING.sm,
-    opacity: 0.7,
-    letterSpacing: 1,
     textTransform: 'uppercase',
+    letterSpacing: 1,
+    opacity: 0.7,
   },
   resultText: {
-    color: C.h.mint,
     fontSize: 32,
     fontWeight: '700',
-    marginVertical: SPACING.sm,
-    letterSpacing: -0.5,
-    textShadowColor: C.h.mint,
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 10,
+    color: C.h.mint,
+    textAlign: 'center',
+    marginBottom: SPACING.lg,
   },
   resultDivider: {
-    width: '60%',
     height: 1,
-    backgroundColor: 'rgba(113, 250, 204, 0.3)',
+    backgroundColor: 'rgba(113, 250, 204, 0.2)',
     marginVertical: SPACING.lg,
   },
 });

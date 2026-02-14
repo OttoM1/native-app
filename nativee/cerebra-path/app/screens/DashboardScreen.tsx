@@ -6,16 +6,23 @@ import {
   ScrollView,
   Pressable,
   Animated,
+  ImageBackground,
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProgress } from '../context/ProgressContext';
 import { CATEGORIES, getChallengesByInterests } from '../data/challenges';
 import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
 import { useRouter } from 'expo-router';
 import { MenuButton, MenuOverlay } from './MenuOverlay';
+
+import { useUser } from '../context/UserContext';
+
 const { width } = Dimensions.get('window');
+
+
 
 export default function DashboardScreen() {
           const router = useRouter();
@@ -24,6 +31,9 @@ export default function DashboardScreen() {
   const { progress } = useProgress();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
+
+  const { name } = useUser();
+
 
   // const motivationalTip = getRandomTip();
   const recommendedChallenges = getChallengesByInterests(progress.selectedInterests).slice(0, 3);
@@ -91,7 +101,7 @@ export default function DashboardScreen() {
             <View style={styles.headerRow}>
               <View>
                 <Text style={styles.title}>Home</Text>
-                                <Text style={styles.greeting}>Welcome back!</Text>
+                                <Text style={styles.greeting}>Welcome back { name }!</Text>
 
               </View>
               <MenuButton onPress={() => setMenuVisible(true)} />
@@ -190,52 +200,95 @@ export default function DashboardScreen() {
           >
             <Text style={styles.sectionTitle}>Choose your tool</Text>
             
-                      <Pressable
-                          onPress={() => router.push('../tools/CaddieSkeleton')}
+                    
+            <ImageBackground
+  source={require('../mattBlack.png')}
+  imageStyle={styles.cardImageBitMap}
+  style={styles.actionCard}
+  resizeMode="cover"
+>
+  <Pressable
+    onPress={() => router.push('../tools/CaddieSkeleton')}
+    style={({ pressed }) => [
+      {
+        flexDirection: 'row',  
+        alignItems: 'center', 
+        flex: 1,              
+        width: '100%',
+      },
+      pressed && { opacity: 0.8 },
+    ]}
+  >
+    <View style={styles.actionIcon}>
+      <Text style={styles.actionEmoji}>👨‍🏫</Text>
+    </View>
+    
+    <View style={styles.actionContent}>
+      <Text style={styles.actionTitle}>
+        <Text style={{color: C.h.r, filter: 'brightness(1)'}}>Go</Text>
+        <Text style={{ color: C.h.bluemint, filter: 'brightness(1.4)' }}>Birdie </Text>
+        Caddie
+      </Text>
+      <Text style={styles.actionSubtitle}></Text>
+    </View>
+    
+    <Text style={styles.actionArrow}>→</Text>
+  </Pressable>
+            </ImageBackground>
+            
 
-              style={({ pressed }) => [
-                styles.actionCard,
-                pressed && { opacity: 0.8 },
-              ]}
-            >
-              <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>👨‍🏫</Text>
-              </View>
-              <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}>
 
-                   <Text style={{color: C.h.r, filter: 'brightness(1)'}}>Go</Text>
-                                  
-                                  <Text style={{ color: C.h.bluemint, filter: 'brightness(1.4)' }}>Birdie </Text>
-                                             
-                  
-                  Caddie</Text>
-                <Text style={styles.actionSubtitle}>
 
-                  
-                </Text>
-              </View>
-              <Text style={styles.actionArrow}>→</Text>
-            </Pressable>
+
+
+
+
+
+               
+            <ImageBackground
+  source={require('../mattBlack.png')}
+  imageStyle={styles.cardImageBitMap}
+  style={styles.actionCard}
+  resizeMode="cover"
+>
 
             <Pressable
-                          onPress={() => router.push('./ProgressScreen')}
+                          onPress={() => router.push('./DashboardScreen')}
 
-              style={({ pressed }) => [
-                styles.actionCard,
-                pressed && { opacity: 0.8 },
-              ]}
+             style={({ pressed }) => [
+      {
+        flexDirection: 'row',  
+        alignItems: 'center', 
+        flex: 1,              
+        width: '100%',
+      },
+      pressed && { opacity: 0.8 },
+    ]}
             >
-              <View style={styles.actionIcon}>
-                <Text style={styles.actionEmoji}>🏌️‍♂️</Text>
-              </View>
-              <View style={styles.actionContent}>
-                <Text style={styles.actionTitle}>Practice Drills</Text>
-                <Text style={styles.actionSubtitle}>
-                </Text>
-              </View>
-              <Text style={styles.actionArrow}>→</Text>
-            </Pressable>
+      
+
+
+
+
+<View style={styles.actionIcon}>
+      <Text style={styles.actionEmoji}>🏌️‍♂️</Text>
+    </View>
+    
+    <View style={styles.actionContent}>
+                  <Text style={styles.actionTitle}>
+                    Practice Drills
+      </Text>
+      <Text style={styles.actionSubtitle}></Text>
+    </View>
+    
+    <Text style={styles.actionArrow}>→</Text>
+
+
+              </Pressable>
+              
+</ImageBackground>
+
+
           </Animated.View>
 
           {recommendedChallenges.length > 0 && (
@@ -254,7 +307,7 @@ export default function DashboardScreen() {
                 return (
                   <Pressable
                         key={challenge.id}
-                        onPress={() => router.push('./ChallengeDetailScreen')}
+                        onPress={() => router.push('./DashboardScreen')}
                         
                         
                         
@@ -316,7 +369,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    padding: SPACING.lg,
+    paddingHorizontal: SPACING.sm,
+    paddingTop: SPACING.md,
     paddingBottom: SPACING.xxl,
   },
   header: {
@@ -326,7 +380,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     marginBottom: SPACING.xl,
-    paddingLeft: SPACING.sm,
+    paddingLeft: SPACING.xs,
   },
 
   headerRow: {
@@ -451,19 +505,30 @@ display: 'none',
   actionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.lg,
     marginBottom: SPACING.lg,
     borderWidth: 1,
     borderColor: C.h.r,
+flex: 1,
 
-
-    shadowColor: 'black',
+    shadowColor: C.h.r,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 16,
     elevation: 8,
+  },
+
+  cardImageBitMap: {
+    width: '100%',
+    flex: 1,
+    height: '100%',
+        borderRadius: BORDER_RADIUS.lg,
+
+    opacity: 0.7,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   actionIcon: {
     width: 48,
@@ -482,24 +547,24 @@ display: 'none',
     flex: 1,
   },
   actionTitle: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: '600',
         color: C.h.graphite,
 
     marginBottom: SPACING.xs,
   },
   actionSubtitle: {
-    fontSize: 13,
+    fontSize: 16,
     color: C.h.graphite,
   },
   actionArrow: {
-    fontSize: 20,
+    fontSize: 24,
     color:  C.h.r,
   },
   challengeCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#101010',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.lg,
@@ -570,6 +635,7 @@ display: 'none',
     width: 2,
     height: 2,
     borderRadius: 1,
-    backgroundColor: C.h.bluemint,
+    opacity: 0.6,
+    backgroundColor: C.h.r,
   },
 });

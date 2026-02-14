@@ -57,8 +57,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
     {
       id: 'home',
       title: 'Home',
-     renderIcon: (color: string) =>     <Feather name="settings" color="#666" size={24} />
-,
+icon: '🏠',
       route: '/dashboard',
       description: 'Your learning dashboard',
     },
@@ -79,7 +78,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
     },
   ];
 
-  const handleNavigate = (route: './ChallengesScreen') => {
+  const handleNavigate = (route: '../MenuWindowSettings/Settings') => {
     onClose();
     setTimeout(() => {
       router.push(route);
@@ -174,7 +173,7 @@ export function MenuOverlay({ visible, onClose }: MenuOverlayProps) {
               {menuItems.map((item, index) => (
                 <Pressable
                   key={item.id}
-                  onPress={() => handleNavigate('./ChallengesScreen')}
+                  onPress={() => router.push('./DashboardScreen')}
                   style={({ pressed }) => [
                     styles.menuItem,
                     pressed && styles.menuItemPressed,
@@ -374,7 +373,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 20, 5, 0.15)',
+    backgroundColor: 'rgba(1, 1, 1, 0.25)',
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.md,
     marginBottom: SPACING.md,

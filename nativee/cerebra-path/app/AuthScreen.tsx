@@ -106,14 +106,12 @@ const toggleMode = () => {
       useNativeDriver: true,
     }),
   ]).start(() => {
-    // Update state after fade-out completes, before fade-in
     setIsLogin(!isLogin);
     setEmail('');
     setPassword('');
     setConfirmPassword('');
     setName('');
     
-    // Then fade back in with new content
     Animated.timing(inputFadeAnim, {
       toValue: 1,
       duration: 400,
@@ -261,7 +259,8 @@ const toggleMode = () => {
                 ]}
               >
                 <LinearGradient
-                  colors={['rgba(0, 28, 16, 0.3)', 'rgba(0, 28, 16, 0.3)']}
+                  colors={['rgba(8, 8, 10, 0.3)',
+ 'rgba(8, 8, 10, 0.3)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.submitGradient}
@@ -284,10 +283,11 @@ const toggleMode = () => {
                   styles.socialButton,
                   pressed && { opacity: 0.8 },
                 ]}
-                onPress={() => router.push('https://www.golfgamebook.com/?r=0')}
+                onPress={toggleMode}
               >
-                <Text style={styles.socialButtonText}>Continue with GAMEBOOK 
-                      <MaterialIcons name="golf-course" color="whitesmoke" size={18} />
+                <Text style={styles.socialButtonText}>
+                  {isLogin ? 'Create an Account' : 'Sign In'}
+                     {/**  <MaterialIcons name="golf-course" color="whitesmoke" size={18} /> */}
 
                 </Text>
               </Pressable>
@@ -297,14 +297,15 @@ const toggleMode = () => {
 
             <Animated.View style={[styles.toggleContainer, { opacity: fadeAnim }]}>
               <Text style={styles.toggleText}>
-                {isLogin ? "Don't have an account? " : 'Already have an account? '}
+                {isLogin ? "Do you have GAMEBOOK? " : 'Do you have GAMEBOOK? '}
               </Text>
               <Pressable
-                onPress={toggleMode}
+                                onPress={() => router.push('https://www.golfgamebook.com/?r=0')}
+
                 style={({ pressed }) => pressed && { opacity: 0.6 }}
               >
                 <Text style={styles.toggleLink}>
-                  {isLogin ? 'Sign Up' : 'Sign In'}
+                  {isLogin ? 'Sign In' : 'Sign Up'}
                 </Text>
               </Pressable>
             </Animated.View>
@@ -327,7 +328,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: SPACING.xl,
+    paddingHorizontal: SPACING.lg,
     justifyContent: 'space-between',
   },
   topSpacer: {
@@ -424,7 +425,7 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
   dividerText: {
     fontSize: 13,
@@ -433,7 +434,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   socialButton: {
-    backgroundColor: 'rgba(0, 28, 16, 0.3)',
+    backgroundColor: 'rgba(8, 8, 10, 0.3)',
     borderRadius: BORDER_RADIUS.lg,
     paddingVertical: SPACING.lg,
     borderWidth: 1.6,
