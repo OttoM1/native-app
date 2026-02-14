@@ -48,6 +48,13 @@ Predictive Coaching: Beyond just giving a club recommendation, the app provides 
 
 (Trackman API): For serious golfers at simulator bays or with personal launch monitors, GoBirdie integrates directly with Trackman. It automatically ingests highly accurate data points (carry, spin rate, face angle, smash factor) in real-time during the drill.
 
+
+## Current team:
+2 developers
+1 ui designer
+1 architect
+
+
 ## 📦 What's Inside
 
 ### Core Files (Ready to Copy)
