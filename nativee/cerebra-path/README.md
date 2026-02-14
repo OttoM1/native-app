@@ -1,21 +1,51 @@
 # Go Birdie - Expo Router Version
 
-## Vision
+Where the vision started:
+https://ottomulari.tech/indexcaddy.html
 
-Go Birdie aims to help golfers improve faster through smarter practice and on-course decision support. By turning practice and round data into personalized insights, the app acts as a digital coach and caddie, guiding players toward better performance and more confident play.
+## Vision & Target Audience:
+
+Beginner to intermediate golfers looking to systematically progress to the next level.
+
+GoBirdie is a smart, data-driven golf companion that bridges the gap between the driving range and the golf course.
+By actively logging practice performance to build individual "club profiles," GoBirdie acts as a highly personalized digital caddie.
+The ultimate goal is to completely replace traditional rangefinders and golf watches, providing players with automated, hyper-personalized club selections and swing tips based on their unique, historically tracked data.
 
 ## Scope
 
-The app focuses on three core areas:
+## The initial deployment relies on manual inputs to establish the core data loop, focusing on two main features:
 
-- **Practice Tracking & Analysis**  
-  Capture practice data to identify strengths, weaknesses, and improvement trends.
+GoBirdie Practice Drills:  
+What it is: A comprehensive library of golf drills. While they can be used casually, the core value is in data collection.
+How it works: After completing a drill, the app prompts the user to input their results.
+The Output: The app builds a highly personalized "Skill Profile" for every individual club. It tracks specific tendencies (e.g., "Your 7-iron misses left 58% of the time") and uses this data to recommend personalized future practice plans.
 
-- **Personalized Coaching**  
-  Generate tailored practice tips and adaptive challenges based on player performance.
+GoBirdie Caddie (Manual Mode):
+What it is: An on-course decision-support tool for the perfect club selection.
+How it works: The user inputs variables for their upcoming shot (wind, temperature, elevation, and lie).
+The Output: The app calculates the ideal club choice by combining the environmental inputs with the player's personalized data (gathered from an initial Q&A onboarding and their Practice Drill history).
 
-- **On-Course Caddie Assistance**  
-  Provide club and strategy suggestions during rounds using player data and situational context.
+## Future Roadmap
+
+As the app evolves, the focus shifts from manual data entry to seamless, automated assistance.
+
+## Phase 2: API & Sensor Automation
+
+Integrate Weather APIs and phone GPS to automatically pull wind, temperature, and elevation.
+
+Introduce AR/Camera functionality: Users simply point their phone at the pin to estimate distance, drastically reducing manual input during a round.
+
+## Phase 3 (The Ultimate Product): The All-in-One Digital Caddie
+
+Full Course GPS Integration: Incorporate the same software used by premium golf watches. The user only needs to manually input their "lie."
+
+Automated Shot Calculation: The app automatically calculates the exact adjusted distance to the pin.
+
+Predictive Coaching: Beyond just giving a club recommendation, the app provides personalized, context-aware tips based on historical practice data (e.g., "Adjusted distance is 155 yards. Use your 7-iron, but remember to keep the club face closed because you have a tendency to miss right with this club.")
+
+## Phase 4
+
+(Trackman API): For serious golfers at simulator bays or with personal launch monitors, GoBirdie integrates directly with Trackman. It automatically ingests highly accurate data points (carry, spin rate, face angle, smash factor) in real-time during the drill.
 
 ## 📦 What's Inside
 
