@@ -202,7 +202,7 @@ export default function DashboardScreen() {
             
                     
             <ImageBackground
-  source={require('../mattBlack.png')}
+  source={require('../ui_assets/mattBlack.png')}
   imageStyle={styles.cardImageBitMap}
   style={styles.actionCard}
   resizeMode="cover"
@@ -246,7 +246,7 @@ export default function DashboardScreen() {
 
                
             <ImageBackground
-  source={require('../mattBlack.png')}
+  source={require('../ui_assets/mattBlack.png')}
   imageStyle={styles.cardImageBitMap}
   style={styles.actionCard}
   resizeMode="cover"

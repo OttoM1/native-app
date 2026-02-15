@@ -20,7 +20,7 @@ import { useUser } from './context/UserContext';
 
 export default function AuthScreen() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const { email, setEmail, name, setName, password, setPassword } = useUser();
 const scrollViewRef = useRef(null);

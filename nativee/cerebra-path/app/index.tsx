@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { C, SPACING, BORDER_RADIUS } from './constants/theme';
 
 export default function HomeScreen() {
+  
   const router = useRouter();
 
   const [showLoading, setShowLoading] = useState(false);
@@ -15,7 +16,10 @@ export default function HomeScreen() {
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const fadeOutAnim = useRef(new Animated.Value(1)).current;
   const fadeOutAnimProgress = useRef(new Animated.Value(1)).current;
-  const addFullBorder = useRef(new Animated.Value(0)).current;
+  const addRightBorder = useRef(new Animated.Value(0)).current;
+    const addBottomBorder = useRef(new Animated.Value(0)).current;
+  const addLeftBorder = useRef(new Animated.Value(0)).current;
+
   const shine = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -27,8 +31,8 @@ export default function HomeScreen() {
 
 
     const autoNavigateTimer = setTimeout(() => {
-      router.push('./AuthScreen');
-    }, 12700);
+      router.push('./ui_assets/IntroVideo');
+    }, 12800);
 
     let subtitleInterval: ReturnType<typeof setInterval> | null = null;
     let subtitleStopTimer: ReturnType<typeof setTimeout> | null = null;
@@ -66,7 +70,7 @@ export default function HomeScreen() {
     Animated.timing(fadeOutAnim, {
       toValue: 0,
       duration: 1400,
-      delay: 5000,
+      delay: 5500,
       useNativeDriver: true,
     }).start();
 
@@ -146,19 +150,43 @@ export default function HomeScreen() {
     Animated.sequence([
       Animated.timing(rotateAnim, {
         toValue: 3,
-        duration: 4600,
+        duration: 3800,
         easing: Easing.linear,
         useNativeDriver: true,
       }),
-      Animated.timing(addFullBorder, {
+      Animated.timing(addRightBorder, {
         toValue: 1,
-        duration: 800,
+        duration: 300,
+        useNativeDriver: false, 
+      }),
+       Animated.timing(addBottomBorder, {
+         toValue: 1,
+         delay: 180,
+        duration: 300,
+        useNativeDriver: false, 
+       }),
+        Animated.timing(addLeftBorder, {
+          toValue: 1,
+                   delay: 360,
+
+        duration: 300,
         useNativeDriver: false, 
       }),
     ]).start();
   }, []);
   
-  const borderColorAnim = addFullBorder.interpolate({
+  const borderColorAnim = addRightBorder.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['transparent', '#730000'],
+  });
+
+  const borderColorAnim2 = addBottomBorder.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['transparent', '#730000'],
+  });
+
+
+  const borderColorAnim3 = addLeftBorder.interpolate({
     inputRange: [0, 1],
     outputRange: ['transparent', '#730000'],
   });
@@ -170,17 +198,17 @@ export default function HomeScreen() {
 
   return (
     <LinearGradient
-      colors={["#060505", "#000", "#000000"]}
+      colors={["#000", "#000", "#000000"]} //060505
       start={{ x: 0, y: 1 }}
       end={{ x: 0, y: 0 }}
       style={styles.container}
     >
-      <ImageBackground
-        source={require('./mattBlack.png')}
-        imageStyle={styles.containerImageBitMap}
-        style={styles.imageContainer}
-        resizeMode="cover"
-      >
+     
+
+        <View         style={styles.imageContainer}
+ >
+
+
         <View style={styles.particlesContainer}>
           {[...Array(16)].map((_, i) => (
             <View
@@ -204,7 +232,7 @@ export default function HomeScreen() {
 
           <View style={styles.card}>
             <ImageBackground
-              source={require('./mattBlack.png')}
+              source={require('./ui_assets/mattBlack.png')}
               style={styles.cardBorder}
               imageStyle={styles.cardImageBitmap}
               resizeMode="cover"
@@ -212,7 +240,7 @@ export default function HomeScreen() {
               <View style={styles.cardContent}>
                 <Animated.View style={[styles.logoContainer,  { filter: animatedBrightness }]}>
                   <ImageBackground
-                    source={require('./icon.png')}
+                    source={require('./ui_assets/icon.png')}
                     style={styles.logoCircle}
                     imageStyle={styles.cardImageBitmap2}
                     resizeMode="cover"
@@ -221,8 +249,8 @@ export default function HomeScreen() {
                     style={[
                       styles.logoSpinner,
                       {
-                        borderBottomColor: borderColorAnim,
-                        borderLeftColor: borderColorAnim,
+                        borderBottomColor: borderColorAnim2,
+                        borderLeftColor: borderColorAnim3,
                         borderRightColor: borderColorAnim,
                         transform: [{ rotate: spin }], 
                         opacity: fadeOutAnim 
@@ -260,7 +288,7 @@ export default function HomeScreen() {
             </ImageBackground>
           </View>
         </Animated.View>
-      </ImageBackground>
+        </View>
     </LinearGradient>
   );
 }
@@ -272,11 +300,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
   },
-  containerImageBitMap: {
-    width: '100%',
-    height: '100%',
-    opacity: 0.2,
-  },
+
   particlesContainer: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 0,

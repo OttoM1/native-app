@@ -20,7 +20,7 @@ export default function RootLayout() {
           animation: 'fade',
           contentStyle: { backgroundColor: '#101010' },
         }}
-      >
+        >
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="dashboard" />

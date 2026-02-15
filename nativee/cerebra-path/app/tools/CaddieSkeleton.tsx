@@ -916,3 +916,7 @@ const styles = StyleSheet.create({
 });
 
 export default CaddieSkeleton;
+
+
+
+//introvideo before results
