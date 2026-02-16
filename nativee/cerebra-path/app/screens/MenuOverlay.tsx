@@ -268,6 +268,9 @@ export function MenuButton({ onPress }: { onPress: () => void }) {
         pressed && { opacity: 0.6 },
       ]}
     >
+
+
+      
       <View style={styles.hamburger}>
         <View style={styles.hamburgerLine} />
         <View style={styles.hamburgerLine} />
@@ -278,6 +281,8 @@ export function MenuButton({ onPress }: { onPress: () => void }) {
 }
 
 const styles = StyleSheet.create({
+
+
   overlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 999,
@@ -304,7 +309,10 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xl,
   },
 
-  // 
+
+
+
+
   menuHeader: {
     paddingHorizontal: SPACING.lg,
     paddingBottom: SPACING.xl,
@@ -312,6 +320,7 @@ const styles = StyleSheet.create({
     borderBottomColor:  C.h.r,
   },
   headerTop: {
+
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -343,6 +352,8 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: C.h.graphite,
   },
+
+
   closeButton: {
     width: 36,
     height: 36,

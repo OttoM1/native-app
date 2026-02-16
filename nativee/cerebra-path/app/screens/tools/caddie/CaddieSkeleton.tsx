@@ -10,13 +10,13 @@ import {
   Pressable,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { C, SPACING, BORDER_RADIUS } from '../constants/theme';
-import { useUser } from '../context/UserContext';
+import { C, SPACING, BORDER_RADIUS } from '../../../constants/theme';
+import { useUser } from '../../../context/UserContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useRouter } from 'expo-router';
 import { canGoBack } from 'expo-router/build/global-state/routing';
-import DashboardScreen from '../screens/DashboardScreen';
+import DashboardScreen from '../../DashboardScreen';
 
 
 
@@ -689,7 +689,7 @@ const CaddieSkeleton: React.FC = () => {
       >
 
         <Pressable
-       onPress={() => router.push('../screens/DashboardScreen')}
+       onPress={() => router.replace('/screens/DashboardScreen')}
         >
         
           <Text style={[styles.buttonText, { color: C.h.r, }]}>← Return Home</Text>
@@ -706,6 +706,7 @@ const CaddieSkeleton: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   introContainer: {
     flex: 1,
@@ -715,6 +716,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   introContent: {
     alignItems: 'center',
   },

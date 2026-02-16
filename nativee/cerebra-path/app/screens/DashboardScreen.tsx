@@ -208,7 +208,7 @@ export default function DashboardScreen() {
   resizeMode="cover"
 >
   <Pressable
-    onPress={() => router.push('../tools/CaddieSkeleton')}
+    onPress={() => router.push('./tools/caddie/CaddieSkeleton')}
     style={({ pressed }) => [
       {
         flexDirection: 'row',  
@@ -250,10 +250,10 @@ export default function DashboardScreen() {
   imageStyle={styles.cardImageBitMap}
   style={styles.actionCard}
   resizeMode="cover"
->
+            >
 
             <Pressable
-                          onPress={() => router.push('./DashboardScreen')}
+                          onPress={() => router.push('./tools/drills/DrillsSkeleton')}
 
              style={({ pressed }) => [
       {
